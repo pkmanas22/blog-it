@@ -3,7 +3,7 @@ import React from "react";
 import { Avatar } from "@bigbinary/neetoui";
 import { NavLink } from "react-router-dom";
 
-import { SIDE_BAR_ITEMS } from "./constants";
+import { SIDE_BAR_ITEMS, DEFAULT_AVATAR_URL } from "./constants";
 
 const Sidebar = () => (
   <div className="flex w-16 flex-col items-center justify-between border-r-2 p-3 py-5">
@@ -24,7 +24,7 @@ const Sidebar = () => (
       <Avatar
         size="large"
         user={{
-          imageUrl: "https://i.pravatar.cc/300",
+          imageUrl: DEFAULT_AVATAR_URL,
           name: "User",
         }}
       />
