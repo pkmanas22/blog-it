@@ -1,5 +1,11 @@
 import React from "react";
 
-const Home = () => <div>Home</div>;
+import { Typography } from "@bigbinary/neetoui";
+
+const Home = () => (
+  <Typography style="h1" weight="bold">
+    Blog Posts
+  </Typography>
+);
 
 export default Home;
