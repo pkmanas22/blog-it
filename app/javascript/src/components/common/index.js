@@ -1,3 +1,4 @@
+import PageHeader from "./PageHeader";
 import Sidebar from "./Sidebar";
 
-export { Sidebar };
+export { Sidebar, PageHeader };
