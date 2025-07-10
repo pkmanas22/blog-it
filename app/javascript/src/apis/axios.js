@@ -1,6 +1,8 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "/";
+import { AXIOS_BASE_URL } from "../constants";
+
+axios.defaults.baseURL = AXIOS_BASE_URL;
 
 export const setAuthHeaders = () => {
   axios.defaults.headers = {
@@ -10,10 +12,4 @@ export const setAuthHeaders = () => {
       .querySelector('[name="csrf-token"]')
       .getAttribute("content"),
   };
-  const token = localStorage.getItem("authToken");
-  const email = localStorage.getItem("authEmail");
-  if (token && email) {
-    axios.defaults.headers["X-Auth-Email"] = email;
-    axios.defaults.headers["X-Auth-Token"] = token;
-  }
 };
