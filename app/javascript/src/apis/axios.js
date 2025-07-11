@@ -2,28 +2,11 @@ import {
   keysToCamelCase,
   serializeKeysToSnakeCase,
 } from "@bigbinary/neeto-cist";
+import { Toastr } from "@bigbinary/neetoui";
 import axios from "axios";
 import { evolve } from "ramda";
 
-import { AXIOS_BASE_URL } from "../constants";
-
-const transformKeysToCamelCase = response => {
-  if (response.data) response.data = keysToCamelCase(response.data);
-};
-
-const responseInterceptors = () => {
-  axios.interceptors.response.use(response => {
-    transformKeysToCamelCase(response);
-
-    return response.data;
-  });
-};
-
-const requestInterceptors = () => {
-  axios.interceptors.request.use(
-    evolve({ data: serializeKeysToSnakeCase, params: serializeKeysToSnakeCase })
-  );
-};
+import { AXIOS_BASE_URL, DEFAULT_ERROR_NOTIFICATION } from "../constants";
 
 const setHttpHeaders = () => {
   axios.defaults.headers = {
@@ -33,13 +16,57 @@ const setHttpHeaders = () => {
       .querySelector('[name="csrf-token"]')
       .getAttribute("content"),
   };
+
+  // TODO: Set email & token to localstorage
+};
+
+const handleSuccessResponse = response => {
+  if (response?.data) {
+    response.data = keysToCamelCase(response.data);
+
+    if (response.data.notice) {
+      Toastr.success(response.data.notice);
+    }
+  }
+  response.success = response.status === 200;
+
+  return response.data;
+};
+
+const handleErrorResponse = error => {
+  const status = error.response?.status;
+  if (error.message === "Network Error") {
+    Toastr.error("No internet connection");
+
+    return Promise.reject(error);
+  }
+
+  if (status === 401) {
+    // TODO: Check for authorization response
+  }
+
+  Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
+
+  if (status === 423) window.location.href = "/";
+
+  return Promise.reject(error);
+};
+
+const registerIntercepts = () => {
+  axios.interceptors.response.use(handleSuccessResponse, handleErrorResponse);
+
+  axios.interceptors.request.use(
+    evolve({
+      data: serializeKeysToSnakeCase,
+      params: serializeKeysToSnakeCase,
+    })
+  );
 };
 
 const initializeAxios = () => {
   axios.defaults.baseURL = AXIOS_BASE_URL;
   setHttpHeaders();
-  responseInterceptors();
-  requestInterceptors();
+  registerIntercepts();
 };
 
 export default initializeAxios;
