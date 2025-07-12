@@ -1,8 +1,8 @@
 import React from "react";
 
-import Form from "./Form";
+import { PageHeader } from "components/common";
 
-import { PageHeader } from "../common";
+import Form from "./Form";
 
 const CreateNewPost = () => (
   <>

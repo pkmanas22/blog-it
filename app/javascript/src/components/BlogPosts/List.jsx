@@ -1,11 +1,10 @@
 import React from "react";
 
-import { NoData } from "@bigbinary/neetoui";
+import { PageLoader } from "components/common";
+import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
+import { NoData } from "neetoui";
 
 import Card from "./Card";
-
-import { useFetchPosts } from "../../hooks/reactQuery/usePostsApi";
-import { PageLoader } from "../common";
 
 const List = () => {
   const { data: { posts = [] } = {}, isLoading } = useFetchPosts();

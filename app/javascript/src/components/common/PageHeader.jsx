@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Typography } from "@bigbinary/neetoui";
+import { Typography } from "neetoui";
 
 const PageHeader = ({ label, children }) => (
   <div className="flex items-center justify-between py-3">

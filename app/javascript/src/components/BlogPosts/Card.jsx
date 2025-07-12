@@ -1,8 +1,8 @@
 import React from "react";
 
-import { truncate } from "@bigbinary/neeto-cist";
-import { Typography } from "@bigbinary/neetoui";
 import { formatDate } from "date-fns";
+import { truncate } from "neetocist";
+import { Typography } from "neetoui";
 
 const Card = ({ title, description, createdAt }) => (
   <div className="space-y-2 rounded-md border-b-2 p-2 shadow-sm">

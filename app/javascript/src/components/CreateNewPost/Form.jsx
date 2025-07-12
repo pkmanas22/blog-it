@@ -5,7 +5,7 @@ import {
   Input as FormikInput,
   Button as FormikButton,
   Textarea as FormikTextarea,
-} from "@bigbinary/neetoui/formik";
+} from "neetoui/formik";
 
 import {
   NEW_POST_INITIAL_VALUES,

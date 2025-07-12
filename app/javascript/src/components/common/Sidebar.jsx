@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Avatar } from "@bigbinary/neetoui";
+import { Avatar } from "neetoui";
 import { NavLink } from "react-router-dom";
 
 import { SIDE_BAR_ITEMS, DEFAULT_AVATAR_URL } from "./constants";

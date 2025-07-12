@@ -1,5 +1,8 @@
 import React from "react";
 
+import BlogPosts from "components/BlogPosts";
+import { Sidebar } from "components/common";
+import CreateNewPost from "components/CreateNewPost";
 import { QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
@@ -8,12 +11,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
-import BlogPosts from "./components/BlogPosts";
-import { Sidebar } from "./components/common";
-import CreateNewPost from "./components/CreateNewPost";
-import routes from "./routes";
-import queryClient from "./utils/queryClient";
+import routes from "src/routes";
+import queryClient from "utils/queryClient";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

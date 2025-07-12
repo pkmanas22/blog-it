@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Spinner } from "@bigbinary/neetoui";
+import { Spinner } from "neetoui";
 
 const PageLoader = () => (
   <div className="mt-20 flex w-full items-center justify-center">

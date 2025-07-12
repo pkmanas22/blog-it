@@ -1,6 +1,5 @@
-import { Book, Edit } from "@bigbinary/neeto-icons";
-
-import routes from "../../routes";
+import { Book, Edit } from "neetoicons";
+import routes from "src/routes";
 
 export const SIDE_BAR_ITEMS = [
   {

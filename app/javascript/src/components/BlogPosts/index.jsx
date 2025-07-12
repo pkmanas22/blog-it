@@ -1,12 +1,11 @@
 import React from "react";
 
-import { Button } from "@bigbinary/neetoui";
+import { PageHeader } from "components/common";
+import { Button } from "neetoui";
 import { Link } from "react-router-dom";
+import routes from "src/routes";
 
 import List from "./List";
-
-import routes from "../../routes";
-import { PageHeader } from "../common";
 
 const BlogPosts = () => (
   <>

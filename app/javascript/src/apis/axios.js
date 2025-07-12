@@ -1,9 +1,6 @@
-import {
-  keysToCamelCase,
-  serializeKeysToSnakeCase,
-} from "@bigbinary/neeto-cist";
-import { Toastr } from "@bigbinary/neetoui";
 import axios from "axios";
+import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
+import { Toastr } from "neetoui";
 import { evolve } from "ramda";
 
 import { AXIOS_BASE_URL, DEFAULT_ERROR_NOTIFICATION } from "../constants";
