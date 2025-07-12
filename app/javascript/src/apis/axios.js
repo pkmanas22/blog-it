@@ -4,7 +4,9 @@ import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
 
-import { AXIOS_BASE_URL, DEFAULT_ERROR_NOTIFICATION } from "../constants";
+import { AXIOS_BASE_URL, DEFAULT_ERROR_NOTIFICATION } from "./constants";
+
+import routes from "../routes";
 
 const setHttpHeaders = () => {
   axios.defaults.headers = {
@@ -45,7 +47,7 @@ const handleErrorResponse = error => {
 
   Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
 
-  if (status === 423) window.location.href = "/";
+  if (status === 423) window.location.href = routes.root;
 
   return Promise.reject(error);
 };
