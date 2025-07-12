@@ -1,3 +1,4 @@
+import i18n from "../src/common/i18n";
 import "../stylesheets/application.scss";
 import ReactRailsUJS from "react_ujs";
 import App from "../src/App";
