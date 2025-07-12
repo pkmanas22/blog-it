@@ -1,6 +1,9 @@
 const routes = {
   root: "/",
-  list: "/list",
+  blogs: {
+    index: "/blogs",
+    create: "/blogs/create",
+  },
 };
 
 export default routes;

@@ -1,15 +1,15 @@
-import { Book, List } from "@bigbinary/neeto-icons";
+import { Book, Edit } from "@bigbinary/neeto-icons";
 
 import routes from "../../routes";
 
 export const SIDE_BAR_ITEMS = [
   {
     icon: Book,
-    slug: routes.root,
+    slug: routes.blogs.index,
   },
   {
-    icon: List,
-    slug: routes.list,
+    icon: Edit,
+    slug: routes.blogs.create,
   },
 ];
 
