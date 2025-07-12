@@ -1,3 +1,32 @@
 {
-  "title": "Blog-it"
+  "title": "Blog-it",
+  "blogPosts": "Blog posts",
+  "addNewBlog": "Add new blog post",
+  "noBlogPosts": "You have not created any posts yet, try creating a new one",
+  "errors": {
+    "noInternetConnection": "No internet connection",
+    "axiosNetworkError": "Network Error",
+    "defaultError": "Something went wrong!"
+  },
+  "validation": {
+    "title": {
+      "required": "Title is required",
+      "min": "Title must be at least {{min}} characters",
+      "max": "Title must be at most {{max}} characters"
+    },
+    "description": {
+      "required": "Description is required",
+      "min": "Description must be at least {{min}} characters",
+      "max": "Description must be at most {{max}} characters"
+    }
+  },
+  "form": {
+    "title": "Title",
+    "description": "Description",
+    "submit": "Submit",
+    "placeholders": {
+      "title": "Enter the post title",
+      "description": "Write a detailed description"
+    }
+  }
 }

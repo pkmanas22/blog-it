@@ -4,18 +4,19 @@ import { PageHeader } from "components/common";
 import { Button } from "neetoui";
 import { Link } from "react-router-dom";
 import routes from "src/routes";
+import withT from "utils/withT";
 
 import List from "./List";
 
-const BlogPosts = () => (
+const BlogPosts = ({ t }) => (
   <>
-    <PageHeader label="Blog posts">
+    <PageHeader label={t("blogPosts")}>
       <Link to={routes.blogs.create}>
-        <Button label="Add new blog post" />
+        <Button label={t("addNewBlog")} />
       </Link>
     </PageHeader>
     <List />
   </>
 );
 
-export default BlogPosts;
+export default withT(BlogPosts);

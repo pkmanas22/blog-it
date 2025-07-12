@@ -6,13 +6,14 @@ import {
   Button as FormikButton,
   Textarea as FormikTextarea,
 } from "neetoui/formik";
+import withT from "utils/withT";
 
 import {
   NEW_POST_INITIAL_VALUES,
   NEW_POST_VALIDATION_SCHEMA,
 } from "./constants";
 
-const Form = () => (
+const Form = ({ t }) => (
   <NeetoUIForm
     className="container space-y-4 rounded-md border p-3 shadow-sm md:p-12"
     formikProps={{
@@ -21,15 +22,22 @@ const Form = () => (
       onSubmit: () => {},
     }}
   >
-    <FormikInput required className="w-full" label="Title" name="title" />
+    <FormikInput
+      required
+      className="w-full"
+      label={t("form.title")}
+      name="title"
+      placeholder={t("form.placeholders.title")}
+    />
     <FormikTextarea
       required
       className="max-h-40 w-full"
-      label="Description"
+      label={t("form.description")}
       name="description"
+      placeholder={t("form.placeholders.description")}
     />
-    <FormikButton className="w-20" label="Submit" type="submit" />
+    <FormikButton className="w-20" label={t("form.submit")} type="submit" />
   </NeetoUIForm>
 );
 
-export default Form;
+export default withT(Form);

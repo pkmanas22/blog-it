@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import * as yup from "yup";
 
 export const NEW_POST_INITIAL_VALUES = {
@@ -9,13 +10,13 @@ export const NEW_POST_VALIDATION_SCHEMA = yup.object().shape({
   title: yup
     .string()
     .trim()
-    .required("Title is required")
-    .min(5, "Title must be at least 5 characters")
-    .max(150, "Title must be at most 150 characters"),
+    .required(t("validation.title.required"))
+    .min(5, t("validation.title.min", { min: 5 }))
+    .max(150, t("validation.title.max", { max: 150 })),
   description: yup
     .string()
     .trim()
-    .required("Description is required")
-    .min(20, "Description must be at least 20 characters")
-    .max(5000, "Description must be at most 5000 characters"),
+    .required(t("validation.description.required"))
+    .min(20, t("validation.description.min", { min: 20 }))
+    .max(5000, t("validation.description.max", { max: 5000 })),
 });

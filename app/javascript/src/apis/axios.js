@@ -1,4 +1,5 @@
 import axios from "axios";
+import { t } from "i18next";
 import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
@@ -32,8 +33,8 @@ const handleSuccessResponse = response => {
 
 const handleErrorResponse = error => {
   const status = error.response?.status;
-  if (error.message === "Network Error") {
-    Toastr.error("No internet connection");
+  if (error.message === t("errors.axiosNetworkError")) {
+    Toastr.error(t("errors.noInternetConnection"));
 
     return Promise.reject(error);
   }
