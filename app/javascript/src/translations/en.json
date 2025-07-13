@@ -2,6 +2,7 @@
   "title": "Blog-it",
   "blogPosts": "Blog posts",
   "addNewBlog": "Add new blog post",
+  "newBlogPost": "New blog post",
   "noBlogPosts": "You have not created any posts yet, try creating a new one",
   "errors": {
     "noInternetConnection": "No internet connection",
@@ -24,6 +25,7 @@
     "title": "Title",
     "description": "Description",
     "submit": "Submit",
+    "cancel": "Cancel",
     "placeholders": {
       "title": "Enter the post title",
       "description": "Write a detailed description"
