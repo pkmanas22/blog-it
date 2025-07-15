@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.order({ updated_at: :desc })
-    render_json({ posts: @posts })
+    render
   end
 
   def create
