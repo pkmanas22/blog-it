@@ -21,7 +21,7 @@ const App = () => (
       <ToastContainer />
       <div className="neeto-ui-bg-white flex h-screen w-screen">
         <Sidebar />
-        <div className="flex-1 overflow-y-auto p-12">
+        <div className="flex-1 overflow-hidden py-12 pl-12">
           <Switch>
             <Route exact component={BlogLists} path={routes.blogs.index} />
             <Route exact component={CreateNewPost} path={routes.blogs.create} />

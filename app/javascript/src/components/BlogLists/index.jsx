@@ -15,7 +15,9 @@ const BlogLists = ({ t }) => (
         <Button label={t("addNewBlog")} />
       </Link>
     </PageHeader>
-    <List />
+    <div className="h-full overflow-y-auto">
+      <List />
+    </div>
   </>
 );
 

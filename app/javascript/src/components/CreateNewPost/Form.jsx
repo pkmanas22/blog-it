@@ -43,7 +43,7 @@ const Form = () => {
 
   return (
     <NeetoUIForm
-      className="container flex h-full max-h-96 flex-col justify-between rounded-md border p-3 shadow-sm md:p-12"
+      className="flex flex-col justify-between"
       formikProps={{
         initialValues: NEW_POST_INITIAL_VALUES,
         validationSchema: NEW_POST_VALIDATION_SCHEMA,
@@ -66,7 +66,7 @@ const Form = () => {
           placeholder={t("form.placeholders.description")}
         />
       </div>
-      <div className="mt-10 flex justify-end gap-2 ">
+      <div className="mt-40 flex justify-end gap-2 ">
         <Button
           className="w-20"
           disabled={isLoading}

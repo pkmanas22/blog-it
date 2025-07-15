@@ -9,7 +9,7 @@ import buildUrl from "utils/buildUrl";
 
 const Card = ({ title, description, createdAt, slug }) => (
   <Link
-    className="space-y-2 rounded-md border-b-2 p-2 shadow-sm"
+    className="w-11/12 space-y-2 rounded-md border-b-2 p-2 shadow-sm"
     to={buildUrl(routes.blogs.show, { slug })}
   >
     <Typography style="h3" weight="semibold">

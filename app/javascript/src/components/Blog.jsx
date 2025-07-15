@@ -17,7 +17,9 @@ const Blog = () => {
   return (
     <>
       <PageHeader label={title} />
-      <Typography className="mt-2 w-4/5">{description}</Typography>
+      <div className="h-full overflow-y-auto">
+        <Typography className="mb-10 mt-2 w-4/5">{description}</Typography>
+      </div>
     </>
   );
 };
