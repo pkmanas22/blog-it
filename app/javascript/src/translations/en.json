@@ -4,6 +4,8 @@
   "addNewBlog": "Add new blog post",
   "newBlogPost": "New blog post",
   "noBlogPosts": "You have not created any posts yet, try creating a new one",
+  "noCategories": "You have not created any categories yet, try creating a new one",
+  "categories": "categories",
   "pageNotFound": {
     "title": "The page you're looking for doesn't exist.",
     "button": "Back to home"
@@ -39,6 +41,15 @@
       "title": "Enter the post title",
       "description": "Write a detailed description",
       "category": "Search category"
+    }
+  },
+  "newCategoryModal": {
+    "header": "New category",
+    "form": {
+      "title": "Category title",
+      "placeholder": "React",
+      "add": "Add",
+      "cancel": "Cancel"
     }
   }
 }

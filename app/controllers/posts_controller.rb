@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.save!
-    render_notice(t("successfullyCreated"))
+    render_notice(t("successfullyCreated", model: Post.model_name.human))
   end
 
   before_action :load_post!, only: %i[show]
