@@ -19,4 +19,8 @@ export const NEW_POST_VALIDATION_SCHEMA = yup.object().shape({
     .required(t("validation.description.required"))
     .min(20, t("validation.description.min", { min: 20 }))
     .max(5000, t("validation.description.max", { max: 5000 })),
+  categories: yup
+    .array()
+    .required(t("validation.categories.required"))
+    .min(1, t("validation.categories.min")),
 });

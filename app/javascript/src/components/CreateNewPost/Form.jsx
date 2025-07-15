@@ -2,6 +2,8 @@ import { QUERY_KEYS } from "constants/query";
 
 import React from "react";
 
+import { PageLoader } from "components/common";
+import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { Button } from "neetoui";
 import {
@@ -9,10 +11,11 @@ import {
   Input as FormikInput,
   Button as FormikButton,
   Textarea as FormikTextarea,
+  Select as FormikSelect,
 } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import routes from "src/routes";
+import routes from "routes";
 import queryClient from "utils/queryClient";
 
 import {
@@ -25,13 +28,19 @@ const Form = () => {
 
   const history = useHistory();
 
-  const { isLoading, mutate: createPost } = useCreatePost();
+  const { isLoading: isSubmissionLoading, mutate: createPost } =
+    useCreatePost();
+
+  const { data: { categories = [] } = {}, isLoading: isCategoriesLoading } =
+    useFetchCategories();
 
   const handleFormSubmit = data => {
-    const { title, description } = data;
+    const { title, description, categories = [] } = data;
+
+    const categoryIds = categories.map(({ value }) => value);
 
     createPost(
-      { title, description },
+      { title, description, categoryIds, userId: 1 },
       {
         onSuccess: () => {
           history.push(routes.blogs.index);
@@ -40,6 +49,13 @@ const Form = () => {
       }
     );
   };
+
+  if (isCategoriesLoading) return <PageLoader />;
+
+  const categoryOptions = categories.map(({ name, id }) => ({
+    label: name,
+    value: id,
+  }));
 
   return (
     <NeetoUIForm
@@ -58,6 +74,14 @@ const Form = () => {
           name="title"
           placeholder={t("form.placeholders.title")}
         />
+        <FormikSelect
+          isMulti
+          required
+          label={t("form.category")}
+          name="categories"
+          options={categoryOptions}
+          placeholder={t("form.placeholders.category")}
+        />
         <FormikTextarea
           required
           className="max-h-40 w-full"
@@ -69,14 +93,14 @@ const Form = () => {
       <div className="mt-40 flex justify-end gap-2 ">
         <Button
           className="w-20"
-          disabled={isLoading}
+          disabled={isSubmissionLoading}
           label={t("form.cancel")}
           style="secondary"
           type="reset"
         />
         <FormikButton
           className="w-20"
-          disabled={isLoading}
+          disabled={isSubmissionLoading}
           label={t("form.submit")}
           type="submit"
         />

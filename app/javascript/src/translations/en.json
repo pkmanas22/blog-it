@@ -19,16 +19,22 @@
       "required": "Description is required",
       "min": "Description must be at least {{min}} characters",
       "max": "Description must be at most {{max}} characters"
+    },
+    "categories": {
+      "required": "At least one category must be selected",
+      "min": "You must select at least one category"
     }
   },
   "form": {
     "title": "Title",
     "description": "Description",
+    "category": "Category",
     "submit": "Submit",
     "cancel": "Cancel",
     "placeholders": {
       "title": "Enter the post title",
-      "description": "Write a detailed description"
+      "description": "Write a detailed description",
+      "category": "Search category"
     }
   }
 }
