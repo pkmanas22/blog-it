@@ -8,7 +8,7 @@ import withT from "utils/withT";
 
 import List from "./List";
 
-const BlogPosts = ({ t }) => (
+const BlogLists = ({ t }) => (
   <>
     <PageHeader label={t("blogPosts")}>
       <Link to={routes.blogs.create}>
@@ -19,4 +19,4 @@ const BlogPosts = ({ t }) => (
   </>
 );
 
-export default withT(BlogPosts);
+export default withT(BlogLists);

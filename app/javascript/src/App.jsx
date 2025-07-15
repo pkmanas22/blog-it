@@ -1,7 +1,7 @@
 import React from "react";
 
 import Blog from "components/Blog";
-import BlogPosts from "components/BlogPosts";
+import BlogLists from "components/BlogLists";
 import { Sidebar } from "components/common";
 import CreateNewPost from "components/CreateNewPost";
 import { QueryClientProvider } from "react-query";
@@ -23,7 +23,7 @@ const App = () => (
         <Sidebar />
         <div className="flex-1 overflow-y-auto p-12">
           <Switch>
-            <Route exact component={BlogPosts} path={routes.blogs.index} />
+            <Route exact component={BlogLists} path={routes.blogs.index} />
             <Route exact component={CreateNewPost} path={routes.blogs.create} />
             <Route exact component={Blog} path={routes.blogs.show} />
             <Redirect from={routes.root} to={routes.blogs.index} />
