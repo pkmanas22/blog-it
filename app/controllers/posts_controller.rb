@@ -2,9 +2,8 @@
 
 class PostsController < ApplicationController
   def index
-    posts = Post.all
-
-    render status: :ok, json: { posts: }
+    @posts = Post.order({ updated_at: :desc })
+    render_json({ posts: @posts })
   end
 
   def create
