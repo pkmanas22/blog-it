@@ -5,6 +5,9 @@ const routes = {
     create: "/blogs/create",
     show: "/blogs/:slug",
   },
+  categories: {
+    index: "/categories",
+  },
 };
 
 export default routes;
