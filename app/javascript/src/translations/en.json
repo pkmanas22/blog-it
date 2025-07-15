@@ -4,6 +4,10 @@
   "addNewBlog": "Add new blog post",
   "newBlogPost": "New blog post",
   "noBlogPosts": "You have not created any posts yet, try creating a new one",
+  "pageNotFound": {
+    "title": "The page you're looking for doesn't exist.",
+    "button": "Back to home"
+  },
   "errors": {
     "noInternetConnection": "No internet connection",
     "axiosNetworkError": "Network Error",
