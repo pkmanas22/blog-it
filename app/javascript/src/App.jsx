@@ -1,5 +1,6 @@
 import React from "react";
 
+import Blog from "components/Blog";
 import BlogPosts from "components/BlogPosts";
 import { Sidebar } from "components/common";
 import CreateNewPost from "components/CreateNewPost";
@@ -24,6 +25,7 @@ const App = () => (
           <Switch>
             <Route exact component={BlogPosts} path={routes.blogs.index} />
             <Route exact component={CreateNewPost} path={routes.blogs.create} />
+            <Route exact component={Blog} path={routes.blogs.show} />
             <Redirect from={routes.root} to={routes.blogs.index} />
           </Switch>
         </div>

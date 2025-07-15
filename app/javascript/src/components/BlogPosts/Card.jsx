@@ -3,9 +3,15 @@ import React from "react";
 import { formatDate } from "date-fns";
 import { truncate } from "neetocist";
 import { Typography } from "neetoui";
+import { Link } from "react-router-dom";
+import routes from "src/routes";
+import buildUrl from "utils/buildUrl";
 
-const Card = ({ title, description, createdAt }) => (
-  <div className="space-y-2 rounded-md border-b-2 p-2 shadow-sm">
+const Card = ({ title, description, createdAt, slug }) => (
+  <Link
+    className="space-y-2 rounded-md border-b-2 p-2 shadow-sm"
+    to={buildUrl(routes.blogs.show, { slug })}
+  >
     <Typography style="h3" weight="semibold">
       {title}
     </Typography>
@@ -13,7 +19,7 @@ const Card = ({ title, description, createdAt }) => (
     <Typography style="body2">
       {formatDate(new Date(createdAt), "dd MMMM yyyy")}
     </Typography>
-  </div>
+  </Link>
 );
 
 export default Card;

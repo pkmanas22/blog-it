@@ -13,19 +13,19 @@ class PostsController < ApplicationController
     render_notice(t("successfullyCreated"))
   end
 
-  def show
-    @post = Post.find_by(slug: params[:slug])
+  before_action :load_post!, only: %i[show]
 
-    if @post
-      render status: :ok, json: { post: @post }
-    else
-      render status: :not_found, json: { error: "Post not found" }
-    end
+  def show
+    render_json({ post: @post })
   end
 
   private
 
     def post_params
       params.require(:post).permit(:title, :description)
+    end
+
+    def load_post!
+      @post = Post.find_by!(slug: params[:slug])
     end
 end
