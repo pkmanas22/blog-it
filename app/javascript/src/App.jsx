@@ -12,7 +12,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import routes from "src/routes";
+import routes from "routes";
 import queryClient from "utils/queryClient";
 
 const App = () => (

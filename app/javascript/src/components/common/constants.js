@@ -1,5 +1,5 @@
 import { Book, Edit } from "neetoicons";
-import routes from "src/routes";
+import routes from "routes";
 
 export const SIDE_BAR_ITEMS = [
   {

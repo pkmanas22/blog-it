@@ -4,7 +4,7 @@ import { formatDate } from "date-fns";
 import { truncate } from "neetocist";
 import { Tag, Typography } from "neetoui";
 import { Link } from "react-router-dom";
-import routes from "src/routes";
+import routes from "routes";
 import buildUrl from "utils/buildUrl";
 
 const Card = ({

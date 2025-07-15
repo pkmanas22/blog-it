@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from "constants/query";
 
+import categoriesApi from "apis/categories";
 import { useQuery } from "react-query";
-import categoriesApi from "src/apis/categories";
 
 export const useFetchCategories = () =>
   useQuery({

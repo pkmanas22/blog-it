@@ -2,8 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "src": ["app/javascript/src"],
-      "src/*": ["app/javascript/src/*"],
       "apis": ["app/javascript/src/apis"],
       "apis/*": ["app/javascript/src/apis/*"],
       "common": ["app/javascript/src/common"],
