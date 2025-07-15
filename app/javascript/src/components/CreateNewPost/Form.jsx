@@ -5,13 +5,12 @@ import React from "react";
 import { PageLoader } from "components/common";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
-import { Button } from "neetoui";
 import {
   Form as NeetoUIForm,
   Input as FormikInput,
-  Button as FormikButton,
   Textarea as FormikTextarea,
   Select as FormikSelect,
+  ActionBlock,
 } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -59,7 +58,7 @@ const Form = () => {
 
   return (
     <NeetoUIForm
-      className="flex flex-col justify-between"
+      className="flex flex-col justify-between gap-32"
       formikProps={{
         initialValues: NEW_POST_INITIAL_VALUES,
         validationSchema: NEW_POST_VALIDATION_SCHEMA,
@@ -90,21 +89,18 @@ const Form = () => {
           placeholder={t("form.placeholders.description")}
         />
       </div>
-      <div className="mt-40 flex justify-end gap-2 ">
-        <Button
-          className="w-20"
-          disabled={isSubmissionLoading}
-          label={t("form.cancel")}
-          style="secondary"
-          type="reset"
-        />
-        <FormikButton
-          className="w-20"
-          disabled={isSubmissionLoading}
-          label={t("form.submit")}
-          type="submit"
-        />
-      </div>
+      <ActionBlock
+        className="flex flex-row-reverse"
+        cancelButtonProps={{
+          label: t("form.cancel"),
+          disabled: isSubmissionLoading,
+        }}
+        submitButtonProps={{
+          label: t("form.submit"),
+          disabled: isSubmissionLoading,
+          loading: isSubmissionLoading,
+        }}
+      />
     </NeetoUIForm>
   );
 };
