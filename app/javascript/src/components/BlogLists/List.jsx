@@ -23,7 +23,7 @@ const List = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="mb-10 flex flex-col gap-3">
       {posts.map(post => (
         <Card key={post?.id} {...post} />
       ))}
