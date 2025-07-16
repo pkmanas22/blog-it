@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
 
-const Card = ({
+const Item = ({
   title,
   description,
   createdAt,
@@ -38,4 +38,4 @@ const Card = ({
   </div>
 );
 
-export default Card;
+export default Item;

@@ -1,4 +1,4 @@
-import { Book, Edit, ListDetails } from "neetoicons";
+import { Book, Edit } from "neetoicons";
 import routes from "routes";
 
 export const SIDE_BAR_ITEMS = [
@@ -9,10 +9,6 @@ export const SIDE_BAR_ITEMS = [
   {
     icon: Edit,
     slug: routes.blogs.create,
-  },
-  {
-    icon: ListDetails,
-    slug: routes.categories.index,
   },
 ];
 

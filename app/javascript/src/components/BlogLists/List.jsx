@@ -1,10 +1,12 @@
 import React from "react";
 
-import { BlogCard, PageLoader } from "components/common";
+import { PageLoader } from "components/common";
 import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
 import { NoData } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
+
+import Item from "./Item";
 
 const List = () => {
   const { t } = useTranslation();
@@ -24,7 +26,7 @@ const List = () => {
   return (
     <div className="mb-10 flex flex-col gap-3">
       {posts.map(post => (
-        <BlogCard key={post?.id} {...post} />
+        <Item key={post?.id} {...post} />
       ))}
     </div>
   );

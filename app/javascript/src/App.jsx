@@ -2,7 +2,6 @@ import React from "react";
 
 import Blog from "components/Blog";
 import BlogLists from "components/BlogLists";
-import Category from "components/Category";
 import { PageNotFound, Sidebar } from "components/common";
 import CreateNewPost from "components/CreateNewPost";
 import { QueryClientProvider } from "react-query";
@@ -27,7 +26,6 @@ const App = () => (
             <Route exact component={BlogLists} path={routes.blogs.index} />
             <Route exact component={CreateNewPost} path={routes.blogs.create} />
             <Route exact component={Blog} path={routes.blogs.show} />
-            <Route exact component={Category} path={routes.categories.index} />
             <Redirect exact from={routes.root} to={routes.blogs.index} />
             <Route component={PageNotFound} path="*" />
           </Switch>

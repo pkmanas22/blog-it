@@ -23,8 +23,7 @@ const AddModal = ({ t, isOpen, isLoading, onClose, handleCreateCategory }) => (
       </Typography>
     </Header>
     <NeetoUIForm
-      enableReinitialize
-      key={isOpen ? "open" : "closed"} // Resets form between open/close
+      key={isOpen ? "open" : "closed"}
       formikProps={{
         initialValues: NEW_CATEGORY_INITIAL_VALUES,
         validationSchema: NEW_CATEGORY_VALIDATION_SCHEMA,
