@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   before_action :load_post!, only: %i[show]
 
   def show
-    render_json({ post: @post })
+    render
   end
 
   private

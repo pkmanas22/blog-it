@@ -3,7 +3,7 @@
   "blogPosts": "Blog posts",
   "addNewBlog": "Add new blog post",
   "newBlogPost": "New blog post",
-  "noBlogPosts": "You have not created any posts yet, try creating a new one",
+  "noBlogPosts": "No posts found. Try creating a new one.",
   "noCategories": "No categories found. Try creating a new one.",
   "categories": "categories",
   "searchCategory": "Tech",

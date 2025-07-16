@@ -1,8 +1,9 @@
 import React from "react";
 
+import { CategoryTags } from "components/common";
 import { formatDate } from "date-fns";
 import { truncate } from "neetocist";
-import { Tag, Typography } from "neetoui";
+import { Typography } from "neetoui";
 import { Link } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
@@ -21,9 +22,7 @@ const Item = ({
         {title}
       </Typography>
     </Link>
-    {categories.map(({ id, name }) => (
-      <Tag className="mr-1" key={id} label={name} />
-    ))}
+    <CategoryTags {...{ categories }} />
     <Typography className="w-4/5" style="body2">
       {truncate(description, 200)}
     </Typography>

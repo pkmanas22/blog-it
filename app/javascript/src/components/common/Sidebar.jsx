@@ -1,12 +1,12 @@
 import React from "react";
 
+import { AvatarProfile } from "components/common";
 import { ListDetails } from "neetoicons";
-import { Avatar } from "neetoui";
 import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
 
-import { SIDE_BAR_ITEMS, DEFAULT_AVATAR_URL } from "./constants";
+import { SIDE_BAR_ITEMS } from "./constants";
 
 const Sidebar = () => {
   const history = useHistory();
@@ -42,13 +42,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div>
-        <Avatar
-          size="large"
-          user={{
-            imageUrl: DEFAULT_AVATAR_URL,
-            name: "User",
-          }}
-        />
+        <AvatarProfile imageUrl="" />
       </div>
     </div>
   );

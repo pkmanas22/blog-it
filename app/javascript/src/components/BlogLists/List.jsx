@@ -28,7 +28,7 @@ const List = () => {
   }
 
   return (
-    <div className="mb-10 flex flex-col gap-3">
+    <div className="mb-7 flex flex-col gap-3">
       {posts.map(post => (
         <Item key={post?.id} {...post} />
       ))}
