@@ -11,10 +11,8 @@ const buildUrl = (route, params) => {
     }
   });
 
-  const queryParams = pipe(
-    omit(placeholders),
-    keysToSnakeCase,
-    stringify
+  const queryParams = pipe(omit(placeholders), keysToSnakeCase, params =>
+    stringify(params, { arrayFormat: "repeat" })
   )(params);
 
   return isEmpty(queryParams) ? route : `${route}?${queryParams}`;
