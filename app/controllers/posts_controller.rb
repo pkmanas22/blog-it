@@ -2,7 +2,14 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = Post.order({ updated_at: :desc })
+    @posts = Post.includes(:categories).order(updated_at: :desc)
+    if params[:category].present?
+      categories = Array(params[:category])
+      downcased_categories = categories.map(&:downcase)
+
+      @posts = @posts.joins(:categories).where("LOWER(categories.name) IN (?)", downcased_categories).distinct
+    end
+
     render
   end
 
