@@ -3,12 +3,22 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.includes(:categories).order(updated_at: :desc)
+
     if params[:category].present?
       categories = Array(params[:category])
       downcased_categories = categories.map(&:downcase)
 
-      @posts = @posts.joins(:categories).where("LOWER(categories.name) IN (?)", downcased_categories).distinct
+      @posts = @posts
+        .joins(:categories)
+        .where("LOWER(categories.name) IN (?)", downcased_categories)
+        .distinct
     end
+
+    @total_posts_count = @posts.count
+
+    @posts = @posts
+      .limit(page_size)
+      .offset((current_page - 1) * page_size)
 
     render
   end
@@ -26,6 +36,19 @@ class PostsController < ApplicationController
   end
 
   private
+
+    def page_size
+      positive_number_or_default(params[:page_size], 10)
+    end
+
+    def current_page
+      positive_number_or_default(params[:page], 1)
+    end
+
+    def positive_number_or_default(param, default = 1)
+      number = param.to_i
+      number.positive? ? number : default
+    end
 
     def post_params
       params.require(:post).permit(:title, :description, :user_id, category_ids: [])

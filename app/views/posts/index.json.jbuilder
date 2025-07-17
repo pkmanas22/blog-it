@@ -13,3 +13,5 @@ json.posts @posts do |post|
     end
   end
 end
+
+json.total_posts_count @total_posts_count
