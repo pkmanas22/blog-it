@@ -20,13 +20,13 @@ const BlogLists = () => {
   return (
     <div className="flex h-full w-full overflow-hidden">
       {isCategorySidebarOpen && <CategorySidebar />}
-      <div className=" flex flex-1 flex-col overflow-hidden bg-white py-12 pl-8">
+      <div className=" flex h-full flex-1 flex-col bg-white py-12 pl-8">
         <PageHeader label={t("blogPosts")}>
           <Link to={routes.blogs.create}>
             <Button label={t("addNewBlog")} />
           </Link>
         </PageHeader>
-        <div className="flex-1 overflow-y-auto pb-10">
+        <div className="h-full flex-1">
           <List />
         </div>
       </div>

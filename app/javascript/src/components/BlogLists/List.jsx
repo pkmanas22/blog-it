@@ -28,10 +28,12 @@ const List = () => {
   }
 
   return (
-    <div className="mb-7 flex flex-col gap-3">
-      {posts.map(post => (
-        <Item key={post?.id} {...post} />
-      ))}
+    <div className="flex h-full flex-col">
+      <div className="mb-5 flex-1 flex-col gap-3 overflow-y-auto">
+        {posts.map(post => (
+          <Item key={post?.id} {...post} />
+        ))}
+      </div>
     </div>
   );
 };
