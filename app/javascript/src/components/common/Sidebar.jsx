@@ -1,5 +1,6 @@
 import React from "react";
 
+import classNames from "classnames";
 import { AvatarProfile } from "components/common";
 import { ListDetails } from "neetoicons";
 import { NavLink, useHistory } from "react-router-dom";
@@ -15,6 +16,10 @@ const Sidebar = () => {
     state => state.toggleCategorySidebarOpen
   );
 
+  const isCategorySidebarOpen = useCategoriesStore(
+    state => state.isCategorySidebarOpen
+  );
+
   const handleCategoryClick = () => {
     history.push(routes.blogs.index);
     toggleCategorySidebarOpen();
@@ -26,7 +31,7 @@ const Sidebar = () => {
         {SIDE_BAR_ITEMS.map(({ slug, icon: Icon }) => (
           <NavLink
             exact
-            activeClassName="bg-black text-white hover:bg-black"
+            activeClassName="bg-black text-white hover:bg-gray-600"
             className="mb-2 block h-8 w-8 rounded-md p-1 hover:bg-gray-200"
             key={slug}
             to={slug}
@@ -35,7 +40,12 @@ const Sidebar = () => {
           </NavLink>
         ))}
         <div
-          className="mb-2 block h-8 w-8 cursor-pointer rounded-md p-1 hover:bg-gray-200"
+          className={classNames(
+            "mb-2 block h-8 w-8 cursor-pointer rounded-md p-1 hover:bg-gray-200",
+            {
+              "bg-gray-800 text-white hover:bg-gray-600": isCategorySidebarOpen,
+            }
+          )}
           onClick={handleCategoryClick}
         >
           <ListDetails />
