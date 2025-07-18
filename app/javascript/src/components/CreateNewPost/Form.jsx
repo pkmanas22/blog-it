@@ -30,7 +30,7 @@ const Form = () => {
   const { isLoading: isSubmissionLoading, mutate: createPost } =
     useCreatePost();
 
-  const { data: { categories = [] } = {}, isLoading: isCategoriesLoading } =
+  const { data: categories = [], isLoading: isCategoriesLoading } =
     useFetchCategories();
 
   const handleFormSubmit = data => {

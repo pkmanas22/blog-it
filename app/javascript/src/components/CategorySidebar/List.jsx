@@ -11,7 +11,7 @@ import Item from "./Item";
 const List = ({ searchTerm = "" }) => {
   const { t } = useTranslation();
 
-  const { isLoading, data: { categories = [] } = {} } = useFetchCategories();
+  const { data: categories = [], isLoading } = useFetchCategories();
 
   if (isLoading) return <PageLoader />;
 

@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 const Blog = () => {
   const { slug } = useParams();
 
-  const { data: { post = {} } = {}, isLoading } = useShowPost(slug);
+  const { data: post = {}, isLoading } = useShowPost(slug);
 
   const {
     title,
