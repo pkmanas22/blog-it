@@ -1,56 +1,61 @@
 {
-  "title": "Blog-it",
-  "blogPosts": "Blog posts",
-  "addNewBlog": "Add new blog post",
-  "newBlogPost": "New blog post",
-  "noBlogPosts": "No posts found. Try creating a new one.",
-  "noCategories": "No categories found. Try creating a new one.",
-  "categories": "categories",
-  "searchCategory": "Search a category",
-  "pageNotFound": {
-    "title": "The page you're looking for doesn't exist.",
-    "button": "Back to home"
+  "metadata": {
+    "title": "Blog-it"
   },
-  "errors": {
-    "noInternetConnection": "No internet connection",
-    "axiosNetworkError": "Network Error",
-    "defaultError": "Something went wrong!"
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "add": "Add"
   },
-  "validation": {
-    "title": {
-      "required": "Title is required",
-      "min": "Title must be at least {{min}} characters",
-      "max": "Title must be at most {{max}} characters"
-    },
-    "description": {
-      "required": "Description is required",
-      "min": "Description must be at least {{min}} characters",
-      "max": "Description must be at most {{max}} characters"
-    },
-    "categories": {
-      "required": "At least one category must be selected",
-      "min": "You must select at least one category"
+  "blog": {
+    "blogPosts": "Blog posts",
+    "addNew": "Add new blog post",
+    "newPost": "New blog post",
+    "noPosts": "No posts found. Try creating a new one."
+  },
+  "category": {
+    "title": "Categories",
+    "search": "Search a category",
+    "noCategories": "No categories found. Try creating a new one.",
+    "newCategory": {
+      "header": "New category",
+      "title": "Category title",
+      "placeholder": "News"
     }
   },
   "form": {
     "title": "Title",
     "description": "Description",
     "category": "Category",
-    "submit": "Submit",
-    "cancel": "Cancel",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
     "placeholders": {
       "title": "Enter the post title",
       "description": "Write a detailed description",
-      "category": "Search category"
+      "category": "Search category",
+      "name": "John Doe",
+      "email": "john.doe@gmail.com",
+      "password": "******",
+      "confirmPassword": "******"
     }
   },
-  "newCategoryModal": {
-    "header": "New category",
-    "form": {
-      "title": "Category title",
-      "placeholder": "React",
-      "add": "Add",
-      "cancel": "Cancel"
-    }
+  "validation": {
+    "required": "{{field}} is required.",
+    "min": "{{field}} must be at least {{length}} characters.",
+    "max": "{{field}} must be at most {{length}} characters.",
+    "invalidEmail": "Invalid email address.",
+    "passwordsMismatch": "Both passwords must be the same.",
+    "categoriesRequired": "At least one category must be selected"
+  },
+  "errors": {
+    "default": "Something went wrong!",
+    "axiosNetwork": "Network Error",
+    "noInternetConnection": "No internet connection"
+  },
+  "pageNotFound": {
+    "title": "The page you're looking for doesn't exist.",
+    "button": "Back to home"
   }
 }

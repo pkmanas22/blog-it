@@ -9,7 +9,7 @@ export const NEW_CATEGORY_VALIDATION_SCHEMA = yup.object().shape({
   title: yup
     .string()
     .trim()
-    .required(t("validation.title.required"))
-    .min(2, t("validation.title.min", { min: 2 }))
-    .max(25, t("validation.title.max", { max: 25 })),
+    .required(t("validation.required", { field: t("form.title") }))
+    .min(2, t("validation.min", { field: t("form.title"), length: 2 }))
+    .max(25, t("validation.max", { field: t("form.title"), length: 25 })),
 });

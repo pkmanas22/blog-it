@@ -48,7 +48,7 @@ const Header = ({ setSearchTerm }) => {
     <>
       <div className="mb-5 flex items-center justify-between">
         <Typography style="body2" textTransform="uppercase" weight="bold">
-          {t("categories")}
+          {t("category.title")}
         </Typography>
         <div className="flex items-center gap-2">
           <Search
@@ -67,7 +67,7 @@ const Header = ({ setSearchTerm }) => {
         />
       </div>
       <input
-        placeholder={t("searchCategory")}
+        placeholder={t("category.search")}
         ref={searchRef}
         className={classNames("my-2 block w-full rounded-md px-2 py-1", {
           hidden: !showSearchInput,

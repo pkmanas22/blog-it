@@ -19,7 +19,7 @@ const AddModal = ({ t, isOpen, isLoading, onClose, handleCreateCategory }) => (
   <Modal closeOnOutsideClick={false} {...{ isOpen, onClose }}>
     <Header>
       <Typography id="dialog1Title" style="h2" weight="semibold">
-        {t("newCategoryModal.header")}
+        {t("category.newCategory.header")}
       </Typography>
     </Header>
     <NeetoUIForm
@@ -33,21 +33,21 @@ const AddModal = ({ t, isOpen, isLoading, onClose, handleCreateCategory }) => (
       <Body className="space-y-4">
         <FormikInput
           required
-          label={t("newCategoryModal.form.title")}
+          label={t("category.newCategory.title")}
           name="title"
-          placeholder={t("newCategoryModal.form.placeholder")}
+          placeholder={t("category.newCategory.placeholder")}
         />
       </Body>
       <Footer className="space-x-2">
         <ActionBlock
           className="flex gap-2"
           cancelButtonProps={{
-            label: t("newCategoryModal.form.cancel"),
+            label: t("common.cancel"),
             onClick: onClose,
             disabled: false,
           }}
           submitButtonProps={{
-            label: t("newCategoryModal.form.add"),
+            label: t("common.add"),
             disabled: isLoading,
             loading: isLoading,
           }}

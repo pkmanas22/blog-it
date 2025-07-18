@@ -92,11 +92,11 @@ const Form = () => {
       <ActionBlock
         className="mt-20 flex flex-row-reverse"
         cancelButtonProps={{
-          label: t("form.cancel"),
+          label: t("common.cancel"),
           disabled: isSubmissionLoading,
         }}
         submitButtonProps={{
-          label: t("form.submit"),
+          label: t("common.submit"),
           disabled: isSubmissionLoading,
           loading: isSubmissionLoading,
         }}

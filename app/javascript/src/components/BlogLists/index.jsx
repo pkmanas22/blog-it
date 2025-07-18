@@ -50,9 +50,9 @@ const BlogLists = () => {
       {isCategorySidebarOpen && <CategorySidebar />}
       <div className="flex h-full flex-1 flex-col">
         <div className="pl-8 pr-8 pt-12">
-          <PageHeader label={t("blogPosts")}>
+          <PageHeader label={t("blog.blogPosts")}>
             <Link to={routes.blogs.create}>
-              <Button label={t("addNewBlog")} />
+              <Button label={t("blog.addNew")} />
             </Link>
           </PageHeader>
         </div>

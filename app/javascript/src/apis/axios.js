@@ -35,7 +35,7 @@ const handleSuccessResponse = response => {
 
 const handleErrorResponse = error => {
   const status = error.response?.status;
-  if (error.message === t("errors.axiosNetworkError")) {
+  if (error.message === t("errors.axiosNetwork")) {
     Toastr.error(t("errors.noInternetConnection"));
 
     return Promise.reject(error);
