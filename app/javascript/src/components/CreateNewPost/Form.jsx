@@ -58,7 +58,7 @@ const Form = () => {
 
   return (
     <NeetoUIForm
-      className="flex flex-col justify-between gap-32"
+      className="flex flex-col justify-between"
       formikProps={{
         initialValues: NEW_POST_INITIAL_VALUES,
         validationSchema: NEW_POST_VALIDATION_SCHEMA,
@@ -90,7 +90,7 @@ const Form = () => {
         />
       </div>
       <ActionBlock
-        className="flex flex-row-reverse"
+        className="mt-20 flex flex-row-reverse"
         cancelButtonProps={{
           label: t("form.cancel"),
           disabled: isSubmissionLoading,

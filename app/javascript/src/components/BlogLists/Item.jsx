@@ -16,7 +16,7 @@ const Item = ({
   author: { name: authorName } = {},
   categories = [],
 }) => (
-  <div className="w-11/12 space-y-2 rounded-md border-b-2 p-2 shadow-sm">
+  <div className="w-11/12 space-y-2 rounded-md border-b-2 bg-white p-2 shadow-sm">
     <Link to={buildUrl(routes.blogs.show, { slug })}>
       <Typography className="hover:underline" style="h3" weight="semibold">
         {title}
