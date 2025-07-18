@@ -1,5 +1,9 @@
 const routes = {
   root: "/",
+  auth: {
+    login: "/login",
+    signup: "/signup",
+  },
   blogs: {
     index: "/blogs",
     create: "/blogs/create",

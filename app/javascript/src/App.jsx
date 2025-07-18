@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Login, Signup } from "components/Authentication";
 import Blog from "components/Blog";
 import BlogLists from "components/BlogLists";
 import { PageNotFound, Sidebar } from "components/common";
@@ -26,6 +27,8 @@ const App = () => (
             <Route exact component={BlogLists} path={routes.blogs.index} />
             <Route exact component={CreateNewPost} path={routes.blogs.create} />
             <Route exact component={Blog} path={routes.blogs.show} />
+            <Route exact component={Login} path={routes.auth.login} />
+            <Route exact component={Signup} path={routes.auth.signup} />
             <Redirect exact from={routes.root} to={routes.blogs.index} />
             <Route component={PageNotFound} path="*" />
           </Switch>

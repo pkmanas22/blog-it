@@ -23,6 +23,12 @@
       "placeholder": "News"
     }
   },
+  "auth": {
+    "signup": "Sign up",
+    "login": "Login",
+    "alreadyHaveAccount": "Already have an account?",
+    "doNotHaveAccount": "Don't have an account?"
+  },
   "form": {
     "title": "Title",
     "description": "Description",
@@ -30,15 +36,14 @@
     "name": "Name",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirm Password",
+    "confirmPassword": "Confirm password",
     "placeholders": {
       "title": "Enter the post title",
       "description": "Write a detailed description",
       "category": "Search category",
       "name": "John Doe",
       "email": "john.doe@gmail.com",
-      "password": "******",
-      "confirmPassword": "******"
+      "password": "******"
     }
   },
   "validation": {
@@ -46,7 +51,7 @@
     "min": "{{field}} must be at least {{length}} characters.",
     "max": "{{field}} must be at most {{length}} characters.",
     "invalidEmail": "Invalid email address.",
-    "passwordsMismatch": "Both passwords must be the same.",
+    "passwordsMismatch": "Password mismatch.",
     "categoriesRequired": "At least one category must be selected"
   },
   "errors": {
