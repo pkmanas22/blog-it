@@ -6,7 +6,7 @@
   "noBlogPosts": "No posts found. Try creating a new one.",
   "noCategories": "No categories found. Try creating a new one.",
   "categories": "categories",
-  "searchCategory": "Tech",
+  "searchCategory": "Search a category",
   "pageNotFound": {
     "title": "The page you're looking for doesn't exist.",
     "button": "Back to home"

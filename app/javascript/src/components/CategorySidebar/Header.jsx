@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from "constants/query";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import classNames from "classnames";
 import { useCreateCategory } from "hooks/reactQuery/useCategoriesApi";
@@ -15,6 +15,8 @@ import AddCategoryModal from "./AddModal";
 const Header = ({ setSearchTerm }) => {
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(false);
+
+  const searchRef = useRef(null);
 
   const { t } = useTranslation();
 
@@ -36,6 +38,12 @@ const Header = ({ setSearchTerm }) => {
     setSearchTerm(value);
   });
 
+  useEffect(() => {
+    if (showSearchInput && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [showSearchInput]);
+
   return (
     <>
       <div className="mb-5 flex items-center justify-between">
@@ -45,7 +53,7 @@ const Header = ({ setSearchTerm }) => {
         <div className="flex items-center gap-2">
           <Search
             className="w-5 cursor-pointer"
-            onClick={() => setShowSearchInput(previous => !previous)}
+            onClick={() => setShowSearchInput(shouldShow => !shouldShow)}
           />
           <Plus
             className="w-5 cursor-pointer"
@@ -60,6 +68,7 @@ const Header = ({ setSearchTerm }) => {
       </div>
       <input
         placeholder={t("searchCategory")}
+        ref={searchRef}
         className={classNames("my-2 block w-full rounded-md px-2 py-1", {
           hidden: !showSearchInput,
         })}
