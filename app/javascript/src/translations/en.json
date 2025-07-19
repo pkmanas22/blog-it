@@ -44,6 +44,9 @@
       "name": "John Doe",
       "email": "john.doe@gmail.com",
       "password": "******"
+    },
+    "help": {
+      "email": "Use your company email. This helps us automatically match you to your organization."
     }
   },
   "validation": {

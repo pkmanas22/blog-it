@@ -10,14 +10,14 @@ import { SIGNUP_INITIAL_VALUES, SIGNUP_VALIDATION_SCHEMA } from "./constants";
 
 const Signup = ({ t, handleFormSubmit, isLoading }) => (
   <NeetoUIForm
-    className="space-y-4 text-center"
+    className="space-y-4"
     formikProps={{
       initialValues: SIGNUP_INITIAL_VALUES,
       validationSchema: SIGNUP_VALIDATION_SCHEMA,
       onSubmit: handleFormSubmit,
     }}
   >
-    <Typography style="h1" weight="bold">
+    <Typography className="text-center" style="h1" weight="bold">
       {t("auth.signup")}
     </Typography>
     <Input
@@ -29,6 +29,7 @@ const Signup = ({ t, handleFormSubmit, isLoading }) => (
     />
     <Input
       required
+      helpText={t("form.help.email")}
       label={t("form.email")}
       name="email"
       placeholder={t("form.placeholders.email")}
@@ -49,13 +50,13 @@ const Signup = ({ t, handleFormSubmit, isLoading }) => (
       type="password"
     />
     <Button
-      className="w-full justify-center"
+      className="w-full justify-center text-center"
       disabled={isLoading}
       label={t("auth.signup")}
       loading={isLoading}
       type="submit"
     />
-    <Typography>
+    <Typography className="text-center">
       {t("auth.alreadyHaveAccount")}
       <Link
         className="ml-2 text-blue-800 hover:text-blue-500 hover:underline"
