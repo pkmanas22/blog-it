@@ -28,8 +28,9 @@
 #       enabled: "ON"
 
 en:
+  successfully_created: "%{entity} was successfully created!"
+  successfully_updated: "%{entity} was successfully updated!"
+  generic_error: "Something went wrong. Please try again later."
   post:
     slug:
       immutable: "is immutable!"
-  generic_error: "Something went wrong. Please try again later."
-  successfullyCreated: "%{model} was created successfully"

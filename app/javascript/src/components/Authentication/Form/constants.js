@@ -5,7 +5,7 @@ export const SIGNUP_INITIAL_VALUES = {
   name: "",
   email: "",
   password: "",
-  confirmPassword: "",
+  passwordConfirmation: "",
 };
 
 export const SIGNUP_VALIDATION_SCHEMA = yup.object().shape({
@@ -25,7 +25,7 @@ export const SIGNUP_VALIDATION_SCHEMA = yup.object().shape({
     .required(t("validation.required", { field: t("form.password") }))
     .min(6, t("validation.min", { field: t("form.password"), length: 6 })),
 
-  confirmPassword: yup
+  passwordConfirmation: yup
     .string()
     .required(t("validation.required", { field: t("form.confirmPassword") }))
     .oneOf([yup.ref("password")], t("validation.passwordsMismatch")),

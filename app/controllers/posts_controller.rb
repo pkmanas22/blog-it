@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.save!
-    render_notice(t("successfullyCreated", model: Post.model_name.human))
+    render_notice(t("successfully_created", entity: "Post"))
   end
 
   before_action :load_post!, only: %i[show]

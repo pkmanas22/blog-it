@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   def create
     category = Category.new(category_params)
     category.save!
-    render_notice(t("successfullyCreated", model: Category.model_name.human))
+    render_notice(t("successfully_created", entity: "Category"))
   end
 
   private

@@ -8,7 +8,7 @@ import withT from "utils/withT";
 
 import { SIGNUP_INITIAL_VALUES, SIGNUP_VALIDATION_SCHEMA } from "./constants";
 
-const Signup = ({ t, handleFormSubmit }) => (
+const Signup = ({ t, handleFormSubmit, isLoading }) => (
   <NeetoUIForm
     className="space-y-4 text-center"
     formikProps={{
@@ -44,13 +44,15 @@ const Signup = ({ t, handleFormSubmit }) => (
     <Input
       required
       label={t("form.confirmPassword")}
-      name="confirmPassword"
+      name="passwordConfirmation"
       placeholder={t("form.placeholders.password")}
       type="password"
     />
     <Button
       className="w-full justify-center"
+      disabled={isLoading}
       label={t("auth.signup")}
+      loading={isLoading}
       type="submit"
     />
     <Typography>
