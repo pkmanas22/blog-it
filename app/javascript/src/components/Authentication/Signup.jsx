@@ -19,8 +19,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="m-auto w-1/3">
+    <div className="flex h-screen w-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
         <SignupForm {...{ isLoading, handleFormSubmit }} />
       </div>
     </div>

@@ -3,14 +3,14 @@ import React from "react";
 import { Login, Signup } from "components/Authentication";
 import Blog from "components/Blog";
 import BlogLists from "components/BlogLists";
-import { PageNotFound, Sidebar } from "components/common";
+import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
 import CreateNewPost from "components/CreateNewPost";
 import { QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
-  Route,
   Switch,
   Redirect,
+  Route,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import routes from "routes";
@@ -20,20 +20,27 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <Router>
       <ToastContainer />
-      <div className="neeto-ui-bg-white flex h-screen w-screen">
-        <Sidebar />
-        <div className="flex-1 overflow-x-hidden">
+      <Switch>
+        <Route exact component={Login} path={routes.auth.login} />
+        <Route exact component={Signup} path={routes.auth.signup} />
+        <SidebarLayout>
           <Switch>
-            <Route exact component={BlogLists} path={routes.blogs.index} />
-            <Route exact component={CreateNewPost} path={routes.blogs.create} />
-            <Route exact component={Blog} path={routes.blogs.show} />
-            <Route exact component={Login} path={routes.auth.login} />
-            <Route exact component={Signup} path={routes.auth.signup} />
+            <PrivateRoute
+              exact
+              component={BlogLists}
+              path={routes.blogs.index}
+            />
+            <PrivateRoute
+              exact
+              component={CreateNewPost}
+              path={routes.blogs.create}
+            />
+            <PrivateRoute exact component={Blog} path={routes.blogs.show} />
             <Redirect exact from={routes.root} to={routes.blogs.index} />
-            <Route component={PageNotFound} path="*" />
+            <Route component={PageNotFound} path={routes.fallback} />
           </Switch>
-        </div>
-      </div>
+        </SidebarLayout>
+      </Switch>
     </Router>
   </QueryClientProvider>
 );

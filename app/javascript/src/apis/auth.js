@@ -5,6 +5,11 @@ const signup = payload =>
     user: payload,
   });
 
-const authApi = { signup };
+const login = payload =>
+  axios.post("/sessions", {
+    login: payload,
+  });
+
+const authApi = { signup, login };
 
 export default authApi;

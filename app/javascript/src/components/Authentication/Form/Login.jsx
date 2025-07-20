@@ -8,7 +8,7 @@ import withT from "utils/withT";
 
 import { LOGIN_INITIAL_VALUES, LOGIN_VALIDATION_SCHEMA } from "./constants";
 
-const Login = ({ t, handleFormSubmit }) => (
+const Login = ({ t, handleFormSubmit, isLoading }) => (
   <NeetoUIForm
     className="space-y-4 text-center"
     formikProps={{
@@ -36,7 +36,9 @@ const Login = ({ t, handleFormSubmit }) => (
     />
     <Button
       className="w-full justify-center"
+      disabled={isLoading}
       label={t("auth.login")}
+      loading={isLoading}
       type="submit"
     />
     <Typography>

@@ -3,21 +3,19 @@ import { t } from "i18next";
 import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
+import routes from "routes";
+import useAuthStore from "stores/useAuthStore";
 
 import { AXIOS_BASE_URL, DEFAULT_ERROR_NOTIFICATION } from "./constants";
 
-import routes from "../routes";
-
 const setHttpHeaders = () => {
-  axios.defaults.headers = {
+  axios.defaults.headers.common = {
     Accept: "application/json",
     "Content-Type": "application/json",
     "X-CSRF-TOKEN": document
       .querySelector('[name="csrf-token"]')
       .getAttribute("content"),
   };
-
-  // TODO: Set email & token to localstorage
 };
 
 const handleSuccessResponse = response => {
@@ -53,7 +51,16 @@ const handleErrorResponse = error => {
 };
 
 const registerIntercepts = () => {
-  axios.interceptors.response.use(handleSuccessResponse, handleErrorResponse);
+  axios.interceptors.request.use(config => {
+    const { authToken, email } = useAuthStore.getState().authUser;
+
+    if (authToken && email) {
+      config.headers["X-Auth-Email"] = email;
+      config.headers["X-Auth-Token"] = authToken;
+    }
+
+    return config;
+  });
 
   axios.interceptors.request.use(
     evolve({
@@ -61,6 +68,8 @@ const registerIntercepts = () => {
       params: serializeKeysToSnakeCase,
     })
   );
+
+  axios.interceptors.response.use(handleSuccessResponse, handleErrorResponse);
 };
 
 const initializeAxios = () => {
