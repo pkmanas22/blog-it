@@ -5,6 +5,7 @@ import { useAuthLogin } from "hooks/reactQuery/useAuthApi";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 import useAuthStore from "stores/useAuthStore";
+import queryClient from "utils/queryClient";
 
 const Login = () => {
   const history = useHistory();
@@ -22,7 +23,7 @@ const Login = () => {
         email,
       }) => {
         setAuth({ authToken, userId, userName, email });
-
+        queryClient.clear();
         history.push(routes.blogs.index);
       },
     });

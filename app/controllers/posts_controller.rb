@@ -2,7 +2,13 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(:categories).order(updated_at: :desc)
+    organization_id = current_user.organization_id
+
+    @posts = Post
+      .includes(:categories)
+      .joins(:user)
+      .where(users: { organization_id: organization_id })
+      .order(updated_at: :desc)
 
     if params[:category].present?
       categories = Array(params[:category])
@@ -24,7 +30,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    updated_params = post_params.merge({ user_id: current_user.id })
+    post = Post.new(updated_params)
     post.save!
     render_notice(t("successfully_created", entity: "Post"))
   end
@@ -51,7 +58,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :user_id, category_ids: [])
+      params.require(:post).permit(:title, :description, category_ids: [])
     end
 
     def load_post!

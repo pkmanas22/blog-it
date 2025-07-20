@@ -39,7 +39,7 @@ const Form = () => {
     const categoryIds = categories.map(({ value }) => value);
 
     createPost(
-      { title, description, categoryIds, userId: 1 },
+      { title, description, categoryIds },
       {
         onSuccess: () => {
           history.push(routes.blogs.index);

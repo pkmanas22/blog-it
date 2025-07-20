@@ -5,6 +5,7 @@ import { useAuthLogout } from "hooks/reactQuery/useAuthApi";
 import { LeftArrow } from "neetoicons";
 import { Avatar, Typography, Dropdown } from "neetoui";
 import useAuthStore from "stores/useAuthStore";
+import queryClient from "utils/queryClient";
 
 const {
   Menu,
@@ -24,6 +25,7 @@ const SidebarFooterProfile = () => {
       onSuccess: () => {
         clearAuth();
         resetAuthTokens();
+        queryClient.clear();
       },
     });
   };
