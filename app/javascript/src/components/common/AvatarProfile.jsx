@@ -4,12 +4,12 @@ import { Avatar } from "neetoui";
 
 import { DEFAULT_AVATAR_URL } from "./constants";
 
-const AvatarProfile = ({ imageUrl = "" }) => (
+const AvatarProfile = ({ imageUrl = "", name }) => (
   <Avatar
     size="large"
     user={{
       imageUrl: imageUrl || DEFAULT_AVATAR_URL,
-      name: "User",
+      name,
     }}
   />
 );

@@ -11,6 +11,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    @current_user = nil
+  end
+
   private
 
     def login_params

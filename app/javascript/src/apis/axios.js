@@ -40,7 +40,9 @@ const handleErrorResponse = error => {
   }
 
   if (status === 401) {
-    // TODO: Check for authorization response
+    const clearAuth = useAuthStore.getState().clearAuth;
+    clearAuth();
+    setTimeout(() => (window.location.href = routes.root), 2000);
   }
 
   Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
@@ -52,7 +54,7 @@ const handleErrorResponse = error => {
 
 const registerIntercepts = () => {
   axios.interceptors.request.use(config => {
-    const { authToken, email } = useAuthStore.getState().authUser;
+    const { authToken = null, email = null } = useAuthStore.getState().authUser;
 
     if (authToken && email) {
       config.headers["X-Auth-Email"] = email;
@@ -76,6 +78,11 @@ const initializeAxios = () => {
   axios.defaults.baseURL = AXIOS_BASE_URL;
   setHttpHeaders();
   registerIntercepts();
+};
+
+export const resetAuthTokens = () => {
+  delete axios.defaults.headers.common["X-Auth-Email"];
+  delete axios.defaults.headers.common["X-Auth-Token"];
 };
 
 export default initializeAxios;

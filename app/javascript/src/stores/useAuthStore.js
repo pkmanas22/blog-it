@@ -13,6 +13,9 @@ const useAuthStore = create(
           authUser: { authToken, userId, userName, email },
           isAuthenticated: !!(authToken && email),
         }),
+
+      clearAuth: () =>
+        set({ authUser: { ...EMPTY_AUTH_USER }, isAuthenticated: false }),
     }),
     { name: "x-auth-store" }
   )

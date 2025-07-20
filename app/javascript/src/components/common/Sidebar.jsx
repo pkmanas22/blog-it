@@ -1,13 +1,13 @@
 import React from "react";
 
 import classNames from "classnames";
-import { AvatarProfile } from "components/common";
 import { ListDetails } from "neetoicons";
 import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
 
 import { SIDE_BAR_ITEMS } from "./constants";
+import SidebarFooterProfile from "./SidebarFooterProfile";
 
 const Sidebar = () => {
   const history = useHistory();
@@ -51,9 +51,7 @@ const Sidebar = () => {
           <ListDetails />
         </div>
       </div>
-      <div>
-        <AvatarProfile imageUrl="" />
-      </div>
+      <SidebarFooterProfile />
     </div>
   );
 };
