@@ -1,5 +1,3 @@
-import { QUERY_KEYS } from "constants/query";
-
 import React from "react";
 
 import { PageLoader } from "components/common";
@@ -18,7 +16,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
-import queryClient from "utils/queryClient";
 
 import {
   NEW_POST_INITIAL_VALUES,
@@ -48,21 +45,13 @@ const Form = () => {
       {
         onSuccess: () => {
           history.push(routes.blogs.index);
-          queryClient.invalidateQueries(QUERY_KEYS.POSTS);
         },
       }
     );
   };
 
   const handleCreateCategory = category => {
-    createCategory(
-      { name: category },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries(QUERY_KEYS.CATEGORIES);
-        },
-      }
-    );
+    createCategory({ name: category });
   };
 
   const categoryOptions = categories.map(({ name, id }) => ({

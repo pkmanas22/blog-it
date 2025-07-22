@@ -1,5 +1,3 @@
-import { QUERY_KEYS } from "constants/query";
-
 import React, { useEffect, useRef, useState } from "react";
 
 import classNames from "classnames";
@@ -8,7 +6,6 @@ import useFuncDebounce from "hooks/useFuncDebounce";
 import { Plus, Search } from "neetoicons";
 import { Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
-import queryClient from "utils/queryClient";
 
 import AddCategoryModal from "./AddModal";
 
@@ -28,7 +25,6 @@ const Header = ({ setSearchTerm }) => {
       {
         onSuccess: () => {
           setShowAddCategoryModal(false);
-          queryClient.invalidateQueries(QUERY_KEYS.CATEGORIES);
         },
       }
     );

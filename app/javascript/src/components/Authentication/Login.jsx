@@ -4,26 +4,15 @@ import LoginForm from "components/Authentication/Form/Login";
 import { useAuthLogin } from "hooks/reactQuery/useAuthApi";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
-import useAuthStore from "stores/useAuthStore";
-import queryClient from "utils/queryClient";
 
 const Login = () => {
   const history = useHistory();
 
   const { mutate: loginUser, isLoading } = useAuthLogin();
 
-  const setAuth = useAuthStore(state => state.setAuth);
-
   const handleFormSubmit = formData => {
     loginUser(formData, {
-      onSuccess: ({
-        id: userId,
-        name: userName,
-        authenticationToken: authToken,
-        email,
-      }) => {
-        setAuth({ authToken, userId, userName, email });
-        queryClient.clear();
+      onSuccess: () => {
         history.push(routes.blogs.index);
       },
     });

@@ -1,11 +1,9 @@
 import React from "react";
 
-import { resetAuthTokens } from "apis/axios";
 import { useAuthLogout } from "hooks/reactQuery/useAuthApi";
 import { LeftArrow } from "neetoicons";
 import { Avatar, Typography, Dropdown } from "neetoui";
 import useAuthStore from "stores/useAuthStore";
-import queryClient from "utils/queryClient";
 
 const {
   Menu,
@@ -16,19 +14,7 @@ const {
 const SidebarFooterProfile = () => {
   const { email, userName: name } = useAuthStore(state => state.authUser);
 
-  const clearAuth = useAuthStore(state => state.clearAuth);
-
   const { mutate: logoutUser } = useAuthLogout();
-
-  const handleLogout = () => {
-    logoutUser(undefined, {
-      onSuccess: () => {
-        clearAuth();
-        resetAuthTokens();
-        queryClient.clear();
-      },
-    });
-  };
 
   return (
     <Dropdown
@@ -49,7 +35,7 @@ const SidebarFooterProfile = () => {
           </div>
         </div>
         <Divider />
-        <MenuItemButton prefix={<LeftArrow size={20} />} onClick={handleLogout}>
+        <MenuItemButton prefix={<LeftArrow size={20} />} onClick={logoutUser}>
           Logout
         </MenuItemButton>
       </Menu>

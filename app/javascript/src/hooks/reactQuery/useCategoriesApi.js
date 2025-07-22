@@ -3,6 +3,7 @@ import { QUERY_KEYS } from "constants/query";
 import categoriesApi from "apis/categories";
 import { prop } from "ramda";
 import { useMutation, useQuery } from "react-query";
+import queryClient from "utils/queryClient";
 
 export const useFetchCategories = () =>
   useQuery({
@@ -11,4 +12,9 @@ export const useFetchCategories = () =>
     select: prop("categories"),
   });
 
-export const useCreateCategory = () => useMutation(categoriesApi.create);
+export const useCreateCategory = () =>
+  useMutation(categoriesApi.create, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(QUERY_KEYS.CATEGORIES);
+    },
+  });
