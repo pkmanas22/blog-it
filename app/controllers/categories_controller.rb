@@ -2,12 +2,11 @@
 
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
-    render
+    @categories = current_organization.categories.order(created_at: :desc)
   end
 
   def create
-    category = Category.new(category_params)
+    category = current_organization.categories.new(category_params)
     category.save!
     render_notice(t("successfully_created", entity: "Category"))
   end
