@@ -6,11 +6,11 @@ const signup = payload =>
   });
 
 const login = payload =>
-  axios.post("/sessions", {
+  axios.post("/session", {
     login: payload,
   });
 
-const logout = () => axios.delete("/sessions");
+const logout = () => axios.delete("/session");
 
 const authApi = { signup, login, logout };
 
