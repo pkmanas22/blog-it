@@ -3,7 +3,10 @@ import { QUERY_KEYS } from "constants/query";
 import React from "react";
 
 import { PageLoader } from "components/common";
-import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
+import {
+  useCreateCategory,
+  useFetchCategories,
+} from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import {
   Form as NeetoUIForm,
@@ -33,6 +36,8 @@ const Form = () => {
   const { data: categories = [], isLoading: isCategoriesLoading } =
     useFetchCategories();
 
+  const { mutate: createCategory } = useCreateCategory();
+
   const handleFormSubmit = data => {
     const { title, description, categories = [] } = data;
 
@@ -49,12 +54,23 @@ const Form = () => {
     );
   };
 
-  if (isCategoriesLoading) return <PageLoader />;
+  const handleCreateCategory = category => {
+    createCategory(
+      { name: category },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(QUERY_KEYS.CATEGORIES);
+        },
+      }
+    );
+  };
 
   const categoryOptions = categories.map(({ name, id }) => ({
     label: name,
     value: id,
   }));
+
+  if (isCategoriesLoading) return <PageLoader />;
 
   return (
     <NeetoUIForm
@@ -74,12 +90,14 @@ const Form = () => {
           placeholder={t("form.placeholders.title")}
         />
         <FormikSelect
+          isCreateable
           isMulti
           required
           label={t("form.category")}
           name="categories"
           options={categoryOptions}
           placeholder={t("form.placeholders.category")}
+          onCreateOption={handleCreateCategory}
         />
         <FormikTextarea
           required
@@ -90,10 +108,11 @@ const Form = () => {
         />
       </div>
       <ActionBlock
-        className="mt-20 flex flex-row-reverse"
+        className="mt-20 flex flex-row-reverse gap-3"
         cancelButtonProps={{
           label: t("common.cancel"),
           disabled: isSubmissionLoading,
+          onClick: () => history.push(routes.blogs.index),
         }}
         submitButtonProps={{
           label: t("common.submit"),
