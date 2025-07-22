@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   MAX_DESCRIPTION_LENGTH = 10000
 
   belongs_to :user
+  belongs_to :organization
   has_and_belongs_to_many :categories
 
   validates :title,
@@ -21,9 +22,17 @@ class Post < ApplicationRecord
 
   validates :user_id, presence: true
 
+  validates :organization_id, presence: true
+
   before_create :set_slug
 
   private
+
+    def self.for_categories(categories)
+      joins(:categories)
+        .where("LOWER(categories.name) IN (?)", Array(categories).map(&:downcase))
+        .distinct
+    end
 
     def set_slug
       title_slug = title.parameterize
