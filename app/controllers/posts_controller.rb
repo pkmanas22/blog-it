@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :load_post!, only: %i[show update]
+  before_action :load_post!, only: %i[show update destroy]
 
   def index
     @posts = Organization.find(current_user.organization_id).posts.order(updated_at: :desc)
@@ -30,6 +30,11 @@ class PostsController < ApplicationController
   def update
     @post.update!(post_params)
     render_notice(t("successfully_updated", entity: "Post"))
+  end
+
+  def destroy
+    @post.destroy!
+    render_notice(t("successfully_deleted", entity: "Post"))
   end
 
   private

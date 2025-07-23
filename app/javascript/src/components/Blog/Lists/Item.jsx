@@ -18,7 +18,11 @@ const Item = ({
 }) => (
   <div className="w-11/12 space-y-2 rounded-md border-b-2 bg-white p-2 shadow-sm">
     <Link to={buildUrl(routes.blogs.show, { slug })}>
-      <Typography className="hover:underline" style="h3" weight="semibold">
+      <Typography
+        className="inline hover:underline"
+        style="h3"
+        weight="semibold"
+      >
         {title}
       </Typography>
     </Link>

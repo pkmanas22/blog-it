@@ -46,9 +46,7 @@ const handleErrorResponse = error => {
     setTimeout(() => (window.location.href = routes.root), 2000);
   }
 
-  if (status !== 404) {
-    Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
-  }
+  Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
 
   if (status === 423) window.location.href = routes.root;
 

@@ -23,6 +23,7 @@ export const useShowPost = slug =>
     queryKey: [QUERY_KEYS.POSTS, slug],
     queryFn: () => postsApi.show(slug),
     select: prop("post"),
+    enabled: !!slug,
   });
 
 export const useEditPost = slug =>
@@ -30,5 +31,14 @@ export const useEditPost = slug =>
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEYS.POSTS);
       queryClient.invalidateQueries([QUERY_KEYS.POSTS, slug]);
+    },
+  });
+
+export const useDeletePost = () =>
+  useMutation(slug => postsApi.destroy(slug), {
+    onSuccess: () => {
+      setTimeout(() => {
+        queryClient.invalidateQueries(QUERY_KEYS.POSTS);
+      }, 100);
     },
   });
