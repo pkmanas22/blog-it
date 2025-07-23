@@ -2,11 +2,14 @@ import React from "react";
 
 import { Typography } from "neetoui";
 
-const PageHeader = ({ label, children }) => (
+const PageHeader = ({ label, labelTag = null, children }) => (
   <div className="flex w-11/12 items-center justify-between py-2">
-    <Typography style="h1" weight="bold">
-      {label}
-    </Typography>
+    <div className="flex items-center gap-2">
+      <Typography style="h1" weight="bold">
+        {label}
+      </Typography>
+      {labelTag && <>{labelTag}</>}
+    </div>
     {children && <>{children}</>}
   </div>
 );

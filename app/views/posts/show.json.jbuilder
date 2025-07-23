@@ -6,6 +6,7 @@ json.post do
     :title,
     :description,
     :slug,
+    :status,
     :created_at,
     :updated_at
 

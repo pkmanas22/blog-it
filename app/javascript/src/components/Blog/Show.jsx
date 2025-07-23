@@ -10,7 +10,7 @@ import {
 import { format } from "date-fns";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { Highlight } from "neetoicons";
-import { Button, Typography } from "neetoui";
+import { Button, Tag, Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
@@ -29,6 +29,7 @@ const Show = () => {
     categories,
     author: { name: authorName } = {},
     createdAt,
+    status,
   } = post;
 
   if (isLoading) return <PageLoader />;
@@ -40,7 +41,12 @@ const Show = () => {
   return (
     <div className="flex h-full flex-col pl-12 pt-12">
       <CategoryTags {...{ categories }} />
-      <PageHeader label={title}>
+      <PageHeader
+        label={title}
+        labelTag={
+          status === "draft" ? <Tag label="Draft" style="warning" /> : null
+        }
+      >
         <Button
           icon={Highlight}
           style="tertiary"
