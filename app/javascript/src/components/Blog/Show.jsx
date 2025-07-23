@@ -9,10 +9,16 @@ import {
 } from "components/common";
 import { format } from "date-fns";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
-import { Typography } from "neetoui";
+import { Highlight } from "neetoicons";
+import { Button, Typography } from "neetoui";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import routes from "routes";
+import buildUrl from "utils/buildUrl";
 
 const Show = () => {
+  const { t } = useTranslation();
+
   const { slug } = useParams();
 
   const { data: post = {}, isLoading, error } = useShowPost(slug);
@@ -34,7 +40,17 @@ const Show = () => {
   return (
     <div className="flex h-full flex-col pl-12 pt-12">
       <CategoryTags {...{ categories }} />
-      <PageHeader label={title} />
+      <PageHeader label={title}>
+        <Button
+          icon={Highlight}
+          style="tertiary"
+          to={buildUrl(routes.blogs.edit, { slug })}
+          tooltipProps={{
+            content: t("common.edit"),
+            position: "top",
+          }}
+        />
+      </PageHeader>
       <div className="flex items-center gap-3 py-2">
         <AvatarProfile />
         <div>
