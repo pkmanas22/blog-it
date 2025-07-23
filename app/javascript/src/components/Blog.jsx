@@ -5,6 +5,7 @@ import {
   PageHeader,
   CategoryTags,
   AvatarProfile,
+  PageNotFound,
 } from "components/common";
 import { format } from "date-fns";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
@@ -14,7 +15,7 @@ import { useParams } from "react-router-dom";
 const Blog = () => {
   const { slug } = useParams();
 
-  const { data: post = {}, isLoading } = useShowPost(slug);
+  const { data: post = {}, isLoading, error } = useShowPost(slug);
 
   const {
     title,
@@ -25,6 +26,10 @@ const Blog = () => {
   } = post;
 
   if (isLoading) return <PageLoader />;
+
+  if (error?.status === 404) {
+    return <PageNotFound />;
+  }
 
   return (
     <div className="flex h-full flex-col pl-12 pt-12">

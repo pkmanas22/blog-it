@@ -49,6 +49,6 @@ class PostsController < ApplicationController
     end
 
     def load_post!
-      @post = Post.find_by!(slug: params[:slug])
+      @post = current_organization.posts.find_by!(slug: params[:slug])
     end
 end

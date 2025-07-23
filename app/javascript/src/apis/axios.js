@@ -32,7 +32,8 @@ const handleSuccessResponse = response => {
 };
 
 const handleErrorResponse = error => {
-  const status = error.response?.status;
+  const { status } = error.response;
+
   if (error.message === t("errors.axiosNetwork")) {
     Toastr.error(t("errors.noInternetConnection"));
 
@@ -45,7 +46,9 @@ const handleErrorResponse = error => {
     setTimeout(() => (window.location.href = routes.root), 2000);
   }
 
-  Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
+  if (status !== 404) {
+    Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
+  }
 
   if (status === 423) window.location.href = routes.root;
 

@@ -6,6 +6,13 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       staleTime: 3_600_000,
+      retry: (_, error) => {
+        const { status } = error;
+
+        if (status === 404) return false;
+
+        return true;
+      },
     },
   },
 });
