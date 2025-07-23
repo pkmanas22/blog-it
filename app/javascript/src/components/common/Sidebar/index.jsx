@@ -6,8 +6,9 @@ import { NavLink, useHistory } from "react-router-dom";
 import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
 
-import { SIDE_BAR_ITEMS } from "./constants";
-import SidebarFooterProfile from "./SidebarFooterProfile";
+import FooterProfile from "./FooterProfile";
+
+import { SIDE_BAR_ITEMS } from "../constants";
 
 const Sidebar = () => {
   const history = useHistory();
@@ -51,7 +52,7 @@ const Sidebar = () => {
           <ListDetails />
         </div>
       </div>
-      <SidebarFooterProfile />
+      <FooterProfile />
     </div>
   );
 };
