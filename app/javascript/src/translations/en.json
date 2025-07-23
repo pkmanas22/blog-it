@@ -31,6 +31,7 @@
   "auth": {
     "signup": "Sign up",
     "login": "Login",
+    "logout": "Logout",
     "alreadyHaveAccount": "Already have an account?",
     "doNotHaveAccount": "Don't have an account?"
   },
