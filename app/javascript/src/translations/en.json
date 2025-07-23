@@ -5,14 +5,18 @@
   "common": {
     "submit": "Submit",
     "cancel": "Cancel",
-    "add": "Add"
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "blog": {
     "blogPosts": "Blog posts",
     "addNew": "Add new blog post",
     "newPost": "New blog post",
     "editPost": "Edit blog post",
-    "noPosts": "No posts found. Try creating a new one."
+    "noPosts": "No posts found. Try creating a new one.",
+    "publish": "Publish",
+    "saveDraft": "Save as draft"
   },
   "category": {
     "title": "Categories",

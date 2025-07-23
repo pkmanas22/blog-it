@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { PageHeader } from "components/common";
+import { ActionBlock, PageHeader } from "components/common";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,7 @@ import NewPostForm from "./Form";
 import { getCategoryIds } from "./utils";
 
 const New = () => {
+  const [isPublishButtonActive, setIsPublishButtonActive] = useState(false);
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -33,9 +34,21 @@ const New = () => {
     );
   };
 
+  const handleActionSubmit = () => {
+    alert(isPublishButtonActive);
+  };
+
   return (
     <div className="h-full py-12 pl-12">
-      <PageHeader label={t("blog.newPost")} />
+      <PageHeader label={t("blog.newPost")}>
+        <ActionBlock
+          {...{
+            isPublishButtonActive,
+            setIsPublishButtonActive,
+            handleActionSubmit,
+          }}
+        />
+      </PageHeader>
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">
         <NewPostForm
           initialValues={NEW_POST_INITIAL_VALUES}

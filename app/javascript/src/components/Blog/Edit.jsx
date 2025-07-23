@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { PageHeader, PageLoader } from "components/common";
+import { ActionBlock, PageHeader, PageLoader } from "components/common";
 import { useEditPost, useShowPost } from "hooks/reactQuery/usePostsApi";
 import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router-dom";
@@ -11,6 +11,8 @@ import EditPostForm from "./Form";
 import { formatCategoriesForSelectInput, getCategoryIds } from "./utils";
 
 const Edit = () => {
+  const [isPublishButtonActive, setIsPublishButtonActive] = useState(false);
+
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -37,6 +39,10 @@ const Edit = () => {
     );
   };
 
+  const handleActionSubmit = () => {
+    alert(isPublishButtonActive);
+  };
+
   const initialValues = {
     ...post,
     categories: formatCategoriesForSelectInput(post.categories),
@@ -48,7 +54,16 @@ const Edit = () => {
 
   return (
     <div className="h-full py-12 pl-12">
-      <PageHeader label={t("blog.editPost")} />
+      <PageHeader label={t("blog.editPost")}>
+        <ActionBlock
+          {...{
+            isPublishButtonActive,
+            setIsPublishButtonActive,
+            handleActionSubmit,
+          }}
+          shouldShowMenubar
+        />
+      </PageHeader>
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">
         <EditPostForm
           {...{ handleFormSubmit, isSubmissionLoading, initialValues }}
