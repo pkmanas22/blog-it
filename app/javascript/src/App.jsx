@@ -4,7 +4,7 @@ import { Login, Signup } from "components/Authentication";
 import Blog from "components/Blog";
 import BlogLists from "components/BlogLists";
 import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
-import CreateNewPost from "components/CreateNewPost";
+import NewPost from "components/NewPost";
 import { QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
@@ -32,7 +32,7 @@ const App = () => (
             />
             <PrivateRoute
               exact
-              component={CreateNewPost}
+              component={NewPost}
               path={routes.blogs.create}
             />
             <PrivateRoute exact component={Blog} path={routes.blogs.show} />
