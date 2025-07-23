@@ -12,7 +12,7 @@ import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { Typography } from "neetoui";
 import { useParams } from "react-router-dom";
 
-const Blog = () => {
+const Show = () => {
   const { slug } = useParams();
 
   const { data: post = {}, isLoading, error } = useShowPost(slug);
@@ -51,4 +51,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Show;

@@ -13,10 +13,11 @@ import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
 import buildUrl from "utils/buildUrl";
 
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
 import List from "./List";
 
-const BlogLists = () => {
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constants";
+
+const Lists = () => {
   const queryParams = useQueryParams();
   const { page } = queryParams;
 
@@ -72,4 +73,4 @@ const BlogLists = () => {
   );
 };
 
-export default BlogLists;
+export default Lists;

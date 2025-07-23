@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Login, Signup } from "components/Authentication";
-import Blog from "components/Blog";
 import EditBlog from "components/Blog/Edit";
-import BlogLists from "components/BlogLists";
+import BlogLists from "components/Blog/Lists";
+import NewBlog from "components/Blog/New";
+import ShowBlog from "components/Blog/Show";
 import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
-import NewPost from "components/NewPost";
 import { QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
@@ -33,10 +33,10 @@ const App = () => (
             />
             <PrivateRoute
               exact
-              component={NewPost}
+              component={NewBlog}
               path={routes.blogs.create}
             />
-            <PrivateRoute exact component={Blog} path={routes.blogs.show} />
+            <PrivateRoute exact component={ShowBlog} path={routes.blogs.show} />
             <PrivateRoute exact component={EditBlog} path={routes.blogs.edit} />
             <Redirect exact from={routes.root} to={routes.blogs.index} />
             <Route component={PageNotFound} path={routes.fallback} />

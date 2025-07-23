@@ -10,6 +10,8 @@ class PostsController < ApplicationController
       @posts = @posts.for_categories(params[:category])
     end
 
+    @total_posts_count = @posts.count
+
     @posts = @posts
       .limit(page_size)
       .offset(offset)
