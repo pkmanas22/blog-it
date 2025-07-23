@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { ActionBlock, PageHeader } from "components/common";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
@@ -12,6 +12,9 @@ import { getCategoryIds } from "./utils";
 
 const New = () => {
   const [isPublishButtonActive, setIsPublishButtonActive] = useState(false);
+
+  const formikRef = useRef(null);
+
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -22,20 +25,24 @@ const New = () => {
   const handleFormSubmit = data => {
     const { title, description, categories = [] } = data;
 
-    const categoryIds = getCategoryIds(categories);
+    const params = {
+      title,
+      description,
+      categoryIds: getCategoryIds(categories),
+      status: isPublishButtonActive ? "published" : "draft",
+    };
 
-    createPost(
-      { title, description, categoryIds },
-      {
-        onSuccess: () => {
-          history.push(routes.blogs.index);
-        },
-      }
-    );
+    createPost(params, {
+      onSuccess: () => {
+        history.push(routes.blogs.index);
+      },
+    });
   };
 
   const handleActionSubmit = () => {
-    alert(isPublishButtonActive);
+    if (formikRef.current) {
+      formikRef.current.handleSubmit();
+    }
   };
 
   return (
@@ -52,7 +59,7 @@ const New = () => {
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">
         <NewPostForm
           initialValues={NEW_POST_INITIAL_VALUES}
-          {...{ handleFormSubmit, isSubmissionLoading }}
+          {...{ handleFormSubmit, isSubmissionLoading, formikRef }}
         />
       </div>
     </div>

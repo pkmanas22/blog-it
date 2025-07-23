@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { ActionBlock, PageHeader, PageLoader } from "components/common";
 import { useEditPost, useShowPost } from "hooks/reactQuery/usePostsApi";
@@ -11,7 +11,7 @@ import EditPostForm from "./Form";
 import { formatCategoriesForSelectInput, getCategoryIds } from "./utils";
 
 const Edit = () => {
-  const [isPublishButtonActive, setIsPublishButtonActive] = useState(false);
+  const [isPublishButtonActive, setIsPublishButtonActive] = useState(true);
 
   const { t } = useTranslation();
 
@@ -21,26 +21,32 @@ const Edit = () => {
 
   const { data: post = {}, isLoading: isPostLoading } = useShowPost(slug);
 
+  const formikRef = useRef(null);
+
   const { mutate: editPost, isLoading: isSubmissionLoading } =
     useEditPost(slug);
 
   const handleFormSubmit = data => {
     const { title, description, categories = [] } = data;
 
-    const categoryIds = getCategoryIds(categories);
+    const params = {
+      title,
+      description,
+      categoryIds: getCategoryIds(categories),
+      status: isPublishButtonActive ? "published" : "draft",
+    };
 
-    editPost(
-      { title, description, categoryIds },
-      {
-        onSuccess: () => {
-          history.push(buildUrl(routes.blogs.show, { slug }));
-        },
-      }
-    );
+    editPost(params, {
+      onSuccess: () => {
+        history.push(buildUrl(routes.blogs.show, { slug }));
+      },
+    });
   };
 
   const handleActionSubmit = () => {
-    alert(isPublishButtonActive);
+    if (formikRef.current) {
+      formikRef.current.handleSubmit();
+    }
   };
 
   const initialValues = {
@@ -66,7 +72,12 @@ const Edit = () => {
       </PageHeader>
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">
         <EditPostForm
-          {...{ handleFormSubmit, isSubmissionLoading, initialValues }}
+          {...{
+            handleFormSubmit,
+            isSubmissionLoading,
+            initialValues,
+            formikRef,
+          }}
         />
       </div>
     </div>

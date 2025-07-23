@@ -2,6 +2,7 @@ import React from "react";
 
 import { ActionDropdown, Button } from "neetoui";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
 import ItemButton from "./ItemButton";
 import Menubar from "./Menubar";
@@ -16,13 +17,19 @@ const ActionBlock = ({
 }) => {
   const { t } = useTranslation();
 
+  const history = useHistory();
+
   const dropdownButtonLabel = isPublishButtonActive
     ? t("blog.publish")
     : t("blog.saveDraft");
 
   return (
     <div className="flex items-center gap-3">
-      <Button label={t("common.cancel")} style="secondary" />
+      <Button
+        label={t("common.cancel")}
+        style="secondary"
+        onClick={() => history.goBack()}
+      />
       <ActionDropdown
         buttonStyle="primary"
         label={dropdownButtonLabel}

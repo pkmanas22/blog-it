@@ -11,17 +11,13 @@ import {
   Input as FormikInput,
   Textarea as FormikTextarea,
   Select as FormikSelect,
-  ActionBlock,
 } from "neetoui/formik";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
 
 import { POST_FORM_VALIDATION_SCHEMA } from "./constants";
 
-const Form = ({ handleFormSubmit, initialValues, isSubmissionLoading }) => {
+const Form = ({ handleFormSubmit, initialValues, formikRef }) => {
   const { t } = useTranslation();
-
-  const history = useHistory();
 
   const { data: categories = [], isLoading: isCategoriesLoading } =
     useFetchCategories();
@@ -41,6 +37,7 @@ const Form = ({ handleFormSubmit, initialValues, isSubmissionLoading }) => {
       className="flex flex-col justify-between"
       formikProps={{
         initialValues,
+        innerRef: formikRef,
         validationSchema: POST_FORM_VALIDATION_SCHEMA,
         onSubmit: handleFormSubmit,
       }}
@@ -65,25 +62,12 @@ const Form = ({ handleFormSubmit, initialValues, isSubmissionLoading }) => {
         />
         <FormikTextarea
           required
-          className="max-h-40 w-full"
+          className="w-full"
           label={t("form.description")}
           name="description"
           placeholder={t("form.placeholders.description")}
         />
       </div>
-      <ActionBlock
-        className="mt-20 flex flex-row-reverse gap-3"
-        cancelButtonProps={{
-          label: t("common.cancel"),
-          disabled: isSubmissionLoading,
-          onClick: () => history.goBack(),
-        }}
-        submitButtonProps={{
-          label: t("common.submit"),
-          disabled: isSubmissionLoading,
-          loading: isSubmissionLoading,
-        }}
-      />
     </NeetoUIForm>
   );
 };
