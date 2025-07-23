@@ -12,6 +12,11 @@ const create = payload =>
 
 const show = slug => axios.get(`/posts/${slug}`);
 
-const postsApi = { fetch, create, show };
+const edit = (slug, payload) =>
+  axios.patch(`/posts/${slug}`, {
+    post: payload,
+  });
+
+const postsApi = { fetch, create, show, edit };
 
 export default postsApi;

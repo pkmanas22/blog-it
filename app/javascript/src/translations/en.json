@@ -11,6 +11,7 @@
     "blogPosts": "Blog posts",
     "addNew": "Add new blog post",
     "newPost": "New blog post",
+    "editPost": "Edit blog post",
     "noPosts": "No posts found. Try creating a new one."
   },
   "category": {

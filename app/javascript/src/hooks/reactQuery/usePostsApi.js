@@ -24,3 +24,11 @@ export const useShowPost = slug =>
     queryFn: () => postsApi.show(slug),
     select: prop("post"),
   });
+
+export const useEditPost = slug =>
+  useMutation(payload => postsApi.edit(slug, payload), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(QUERY_KEYS.POSTS);
+      queryClient.invalidateQueries([QUERY_KEYS.POSTS, slug]);
+    },
+  });

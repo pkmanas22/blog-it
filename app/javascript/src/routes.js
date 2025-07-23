@@ -8,6 +8,7 @@ const routes = {
     index: "/blogs",
     create: "/blogs/create",
     show: "/blogs/:slug/show",
+    edit: "/blogs/:slug/edit",
   },
   categories: {
     index: "/categories",

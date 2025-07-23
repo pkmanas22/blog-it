@@ -2,6 +2,7 @@ import React from "react";
 
 import { Login, Signup } from "components/Authentication";
 import Blog from "components/Blog";
+import EditBlog from "components/Blog/Edit";
 import BlogLists from "components/BlogLists";
 import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
 import NewPost from "components/NewPost";
@@ -36,6 +37,7 @@ const App = () => (
               path={routes.blogs.create}
             />
             <PrivateRoute exact component={Blog} path={routes.blogs.show} />
+            <PrivateRoute exact component={EditBlog} path={routes.blogs.edit} />
             <Redirect exact from={routes.root} to={routes.blogs.index} />
             <Route component={PageNotFound} path={routes.fallback} />
           </Switch>

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :load_post!, only: %i[show update]
+
   def index
     @posts = Organization.find(current_user.organization_id).posts.order(updated_at: :desc)
 
@@ -19,10 +21,13 @@ class PostsController < ApplicationController
     render_notice(t("successfully_created", entity: "Post"))
   end
 
-  before_action :load_post!, only: %i[show]
-
   def show
     render
+  end
+
+  def update
+    @post.update!(post_params)
+    render_notice(t("successfully_updated", entity: "Post"))
   end
 
   private
