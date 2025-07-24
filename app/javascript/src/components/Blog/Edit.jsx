@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 
 import { ActionBlock, PageHeader, PageLoader } from "components/common";
 import { useEditPost, useShowPost } from "hooks/reactQuery/usePostsApi";
+import { ExternalLink } from "neetoicons";
+import { Button } from "neetoui";
 import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
@@ -27,7 +29,7 @@ const Edit = () => {
     useEditPost(slug);
 
   const handleFormSubmit = data => {
-    const { title, description, categories = [] } = data;
+    const { title, description, slug, categories = [] } = data;
 
     const params = {
       title,
@@ -61,14 +63,22 @@ const Edit = () => {
   return (
     <div className="h-full py-12 pl-12">
       <PageHeader label={t("blog.editPost")}>
-        <ActionBlock
-          {...{
-            isPublishButtonActive,
-            setIsPublishButtonActive,
-            handleActionSubmit,
-          }}
-          shouldShowMenubar
-        />
+        <div className="flex items-center gap-3">
+          <Button
+            icon={ExternalLink}
+            style="text"
+            to={buildUrl(routes.blogs.show, { slug })}
+            tooltipProps={{ content: "Preview", position: "top" }}
+          />
+          <ActionBlock
+            {...{
+              isPublishButtonActive,
+              setIsPublishButtonActive,
+              handleActionSubmit,
+            }}
+            shouldShowMenubar
+          />
+        </div>
       </PageHeader>
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">
         <EditPostForm

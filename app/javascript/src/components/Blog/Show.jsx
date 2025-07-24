@@ -60,11 +60,15 @@ const Show = () => {
       <div className="flex items-center gap-3 py-2">
         <AvatarProfile />
         <div>
-          <Typography style="body2" weight="semibold">
+          <Typography style="body1" weight="semibold">
             {authorName}
           </Typography>
           <Typography style="body2">
-            {formatDateWithFallback(lastPublishedDate, "dd MMMM yyyy")}
+            {formatDateWithFallback(
+              lastPublishedDate,
+              "dd MMMM yyyy",
+              t("blog.notPublished")
+            )}
           </Typography>
         </div>
       </div>

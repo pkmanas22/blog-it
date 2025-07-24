@@ -8,6 +8,7 @@ export const DEFAULT_PAGE_SIZE = 5;
 export const NEW_POST_INITIAL_VALUES = {
   title: "",
   description: "",
+  categories: [],
 };
 
 export const POST_FORM_VALIDATION_SCHEMA = yup.object().shape({
