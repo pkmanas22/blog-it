@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useDeletePost, useEditPost } from "hooks/reactQuery/usePostsApi";
+import { notEquals } from "neetocist";
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
 import withT from "utils/withT";
@@ -10,18 +12,44 @@ const {
   Divider,
 } = Dropdown;
 
-const Actions = ({ t, status }) => (
-  <Dropdown buttonStyle="text" icon={MenuHorizontal}>
-    <Menu>
-      <MenuItemButton onClick={() => {}}>
-        {status === "draft" ? t("common.publish") : t("common.unpublish")}
-      </MenuItemButton>
-      <Divider />
-      <MenuItemButton style="danger" onClick={() => {}}>
-        {t("common.delete")}
-      </MenuItemButton>
-    </Menu>
-  </Dropdown>
-);
+const Actions = ({ t, status, slug }) => {
+  const { mutate: editPost, isLoading: isSubmissionLoading } =
+    useEditPost(slug);
+
+  const { mutate: deletePost, isLoading: isDeleteLoading } = useDeletePost();
+
+  const isPublished = notEquals(status, "draft");
+
+  const statusToShow = isPublished
+    ? t("common.unpublish")
+    : t("common.publish");
+
+  const handleActionClick = () => {
+    const params = {
+      status: isPublished ? "draft" : "published",
+    };
+
+    editPost(params);
+  };
+
+  return (
+    <Dropdown
+      buttonStyle="text"
+      disabled={isSubmissionLoading || isDeleteLoading}
+      icon={MenuHorizontal}
+      strategy="fixed"
+    >
+      <Menu>
+        <MenuItemButton onClick={handleActionClick}>
+          {statusToShow}
+        </MenuItemButton>
+        <Divider />
+        <MenuItemButton style="danger" onClick={() => deletePost(slug)}>
+          {t("common.delete")}
+        </MenuItemButton>
+      </Menu>
+    </Dropdown>
+  );
+};
 
 export default withT(Actions);

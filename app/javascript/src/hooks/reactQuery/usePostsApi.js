@@ -15,6 +15,7 @@ export const useCreatePost = () =>
   useMutation(postsApi.create, {
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEYS.POSTS);
+      queryClient.invalidateQueries(QUERY_KEYS.MY_POSTS);
     },
   });
 
@@ -30,6 +31,7 @@ export const useEditPost = slug =>
   useMutation(payload => postsApi.edit(slug, payload), {
     onSuccess: () => {
       queryClient.invalidateQueries(QUERY_KEYS.POSTS);
+      queryClient.invalidateQueries(QUERY_KEYS.MY_POSTS);
       queryClient.invalidateQueries([QUERY_KEYS.POSTS, slug]);
     },
   });
@@ -37,8 +39,15 @@ export const useEditPost = slug =>
 export const useDeletePost = () =>
   useMutation(slug => postsApi.destroy(slug), {
     onSuccess: () => {
+      queryClient.invalidateQueries(QUERY_KEYS.MY_POSTS);
       setTimeout(() => {
         queryClient.invalidateQueries(QUERY_KEYS.POSTS);
       }, 100);
     },
+  });
+
+export const useFetchMyPosts = () =>
+  useQuery({
+    queryKey: QUERY_KEYS.MY_POSTS,
+    queryFn: () => postsApi.fetchMyPosts(),
   });

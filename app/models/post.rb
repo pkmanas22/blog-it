@@ -28,6 +28,8 @@ class Post < ApplicationRecord
 
   before_create :set_slug
 
+  before_save :set_published_date
+
   private
 
     def self.for_categories(categories)
@@ -56,6 +58,12 @@ class Post < ApplicationRecord
     def slug_not_changed
       if will_save_change_to_slug? && self.persisted?
         errors.add(:slug, I18n.t("post.slug.immutable"))
+      end
+    end
+
+    def set_published_date
+      if will_save_change_to_status? && status == "published"
+        self.last_published_date = Time.current
       end
     end
 end

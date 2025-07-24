@@ -2,30 +2,30 @@ import React from "react";
 
 import { t } from "i18next";
 import { capitalize } from "neetocist";
-import { defaultTo, join } from "ramda";
 
 import RenderActions from "./Actions";
 import RenderTitle from "./Title";
+import { formatCategories, formatPublishedDate } from "./utils";
 
 const COLUMNS = [
   {
     title: t("blogTable.columns.title"),
     dataIndex: "title",
     key: "title",
-    width: 300,
     render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
   },
   {
     title: t("blogTable.columns.category"),
-    dataIndex: "category",
-    key: "category",
-    render: join(", "),
+    dataIndex: "categories",
+    key: "categories",
+    width: 300,
+    render: formatCategories,
   },
   {
     title: t("blogTable.columns.lastPublished"),
-    dataIndex: "lastPublished",
-    key: "lastPublished",
-    render: defaultTo("---"),
+    dataIndex: "lastPublishedDate",
+    key: "lastPublishedDate",
+    render: formatPublishedDate,
   },
   {
     title: t("blogTable.columns.status"),
@@ -37,7 +37,7 @@ const COLUMNS = [
     title: "",
     dataIndex: "actions",
     key: "actions",
-    render: (_, { status }) => <RenderActions {...{ status }} />,
+    render: (_, { status, slug }) => <RenderActions {...{ status, slug }} />,
     width: 50,
   },
 ];
