@@ -7,4 +7,12 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :organization_id }
 
   validates :organization_id, presence: true
+
+  before_save :to_capitalize
+
+  private
+
+    def to_capitalize
+      name.capitalize!
+    end
 end
