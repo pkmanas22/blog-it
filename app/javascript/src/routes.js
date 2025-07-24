@@ -13,6 +13,7 @@ const routes = {
   categories: {
     index: "/categories",
   },
+  myBlogs: "/my-blogs",
   fallback: "*",
 };
 
