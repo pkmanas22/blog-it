@@ -34,7 +34,7 @@ const New = () => {
 
     createPost(params, {
       onSuccess: () => {
-        history.push(routes.blogs.index);
+        history.push(routes.myBlogs);
       },
     });
   };

@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import ItemButton from "./ItemButton";
-import Menubar from "./Menubar";
 
 const { Menu } = ActionDropdown;
 
@@ -13,7 +12,6 @@ const ActionBlock = ({
   isPublishButtonActive,
   setIsPublishButtonActive,
   handleActionSubmit,
-  shouldShowMenubar = false,
 }) => {
   const { t } = useTranslation();
 
@@ -48,7 +46,6 @@ const ActionBlock = ({
           />
         </Menu>
       </ActionDropdown>
-      {shouldShowMenubar && <Menubar />}
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 
-import { ActionBlock, PageHeader, PageLoader } from "components/common";
+import {
+  ActionBlock,
+  ActionMenubar,
+  PageHeader,
+  PageLoader,
+} from "components/common";
 import { useEditPost, useShowPost } from "hooks/reactQuery/usePostsApi";
 import { ExternalLink } from "neetoicons";
 import { Button } from "neetoui";
@@ -78,6 +83,7 @@ const Edit = () => {
             }}
             shouldShowMenubar
           />
+          <ActionMenubar {...{ slug }} />
         </div>
       </PageHeader>
       <div className="h-11/12 container w-11/12 overflow-y-auto rounded-md border p-3 shadow-sm md:p-12">

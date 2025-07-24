@@ -4,7 +4,7 @@ import { useDeletePost } from "hooks/reactQuery/usePostsApi";
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
 import { useTranslation } from "react-i18next";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import routes from "routes";
 import withT from "utils/withT";
 
@@ -13,10 +13,8 @@ const {
   MenuItem: { Button: MenuItemButton },
 } = Dropdown;
 
-const Menubar = () => {
+const Menubar = ({ slug }) => {
   const { t } = useTranslation();
-
-  const { slug } = useParams();
 
   const history = useHistory();
 
@@ -25,7 +23,7 @@ const Menubar = () => {
   const handleDelete = () => {
     deletePost(slug, {
       onSuccess: () => {
-        history.push(routes.blogs.index);
+        history.push(routes.myBlogs);
       },
     });
   };

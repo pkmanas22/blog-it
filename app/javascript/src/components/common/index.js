@@ -1,4 +1,5 @@
 import ActionBlock from "./ActionBlock";
+import ActionMenubar from "./ActionBlock/Menubar";
 import AvatarProfile from "./AvatarProfile";
 import CategoryTags from "./CategoryTags";
 import PageHeader from "./PageHeader";
@@ -9,6 +10,7 @@ import Sidebar from "./Sidebar";
 import SidebarLayout from "./SidebarLayout";
 
 export {
+  ActionMenubar,
   ActionBlock,
   Sidebar,
   PageHeader,
