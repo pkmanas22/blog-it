@@ -20,8 +20,8 @@ const ActionBlock = ({
   const history = useHistory();
 
   const dropdownButtonLabel = isPublishButtonActive
-    ? t("blog.publish")
-    : t("blog.saveDraft");
+    ? t("common.publish")
+    : t("common.saveDraft");
 
   return (
     <div className="flex items-center gap-3">
@@ -39,12 +39,12 @@ const ActionBlock = ({
           <ItemButton
             handleClick={() => setIsPublishButtonActive(true)}
             isActive={isPublishButtonActive}
-            label={t("blog.publish")}
+            label={t("common.publish")}
           />
           <ItemButton
             handleClick={() => setIsPublishButtonActive(false)}
             isActive={!isPublishButtonActive}
-            label={t("blog.saveDraft")}
+            label={t("common.saveDraft")}
           />
         </Menu>
       </ActionDropdown>

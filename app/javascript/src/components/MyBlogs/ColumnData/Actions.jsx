@@ -2,6 +2,7 @@ import React from "react";
 
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
+import withT from "utils/withT";
 
 const {
   Menu,
@@ -9,18 +10,18 @@ const {
   Divider,
 } = Dropdown;
 
-const Actions = ({ status }) => (
+const Actions = ({ t, status }) => (
   <Dropdown buttonStyle="text" icon={MenuHorizontal}>
     <Menu>
       <MenuItemButton onClick={() => {}}>
-        {status === "draft" ? "Publish" : "Unpublish"}
+        {status === "draft" ? t("common.publish") : t("common.unpublish")}
       </MenuItemButton>
       <Divider />
       <MenuItemButton style="danger" onClick={() => {}}>
-        Delete
+        {t("common.delete")}
       </MenuItemButton>
     </Menu>
   </Dropdown>
 );
 
-export default Actions;
+export default withT(Actions);

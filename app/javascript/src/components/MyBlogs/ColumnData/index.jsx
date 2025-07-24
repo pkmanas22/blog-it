@@ -1,5 +1,6 @@
 import React from "react";
 
+import { t } from "i18next";
 import { capitalize } from "neetocist";
 import { defaultTo, join } from "ramda";
 
@@ -8,26 +9,26 @@ import RenderTitle from "./Title";
 
 const COLUMNS = [
   {
-    title: "Title",
+    title: t("blogTable.columns.title"),
     dataIndex: "title",
     key: "title",
     width: 300,
     render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
   },
   {
-    title: "Category",
+    title: t("blogTable.columns.category"),
     dataIndex: "category",
     key: "category",
     render: join(", "),
   },
   {
-    title: "Last Published At",
+    title: t("blogTable.columns.lastPublished"),
     dataIndex: "lastPublished",
     key: "lastPublished",
     render: defaultTo("---"),
   },
   {
-    title: "Status",
+    title: t("blogTable.columns.status"),
     dataIndex: "status",
     key: "status",
     render: capitalize,

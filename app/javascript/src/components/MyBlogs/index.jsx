@@ -46,8 +46,10 @@ const MyBlogs = () => {
 
   return (
     <div className="h-full space-y-4 pl-12 pt-12">
-      <PageHeader label={t("blog.myPosts")} />
-      <Typography>{ROW_DATA.length} articles</Typography>
+      <PageHeader label={t("blogTable.header")} />
+      <Typography style="h3" weight="semibold">
+        {t("blogTable.blogCount", { count: ROW_DATA.length })}
+      </Typography>
       <div className="w-11/12">
         <Table
           rowSelection

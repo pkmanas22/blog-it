@@ -7,17 +7,28 @@
     "cancel": "Cancel",
     "add": "Add",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "saveDraft": "Save as draft"
   },
   "blog": {
     "blogPosts": "Blog posts",
     "addNew": "Add new blog post",
     "newPost": "New blog post",
-    "myPosts": "My blog posts",
     "editPost": "Edit blog post",
-    "noPosts": "No posts found. Try creating a new one.",
-    "publish": "Publish",
-    "saveDraft": "Save as draft"
+    "noPosts": "No posts found. Try creating a new one."
+  },
+  "blogTable": {
+    "header": "My blog posts",
+    "blogCount_one": "{{count}} article",
+    "blogCount_other": "{{count}} articles",
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "lastPublished": "Last Published At",
+      "status": "Status"
+    }
   },
   "category": {
     "title": "Categories",
