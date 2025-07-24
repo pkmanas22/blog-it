@@ -7,7 +7,6 @@ import {
   AvatarProfile,
   PageNotFound,
 } from "components/common";
-import { format } from "date-fns";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { Highlight } from "neetoicons";
 import { Button, Tag, Typography } from "neetoui";
@@ -15,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
+import formatDateWithFallback from "utils/formatDateWithFallback";
 
 const Show = () => {
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ const Show = () => {
     description,
     categories,
     author: { name: authorName } = {},
-    createdAt,
+    lastPublishedDate,
     status,
   } = post;
 
@@ -64,7 +64,7 @@ const Show = () => {
             {authorName}
           </Typography>
           <Typography style="body2">
-            {format(createdAt, "dd MMMM yyyy")}
+            {formatDateWithFallback(lastPublishedDate, "dd MMMM yyyy")}
           </Typography>
         </div>
       </div>

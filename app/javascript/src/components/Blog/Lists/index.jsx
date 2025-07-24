@@ -58,7 +58,7 @@ const Lists = () => {
           </PageHeader>
         </div>
         <div className="flex-1 overflow-y-auto px-8">
-          <List isLoading={isLoading} posts={posts} />
+          <List {...{ isLoading, posts }} />
         </div>
         <div className="flex justify-end p-4">
           <Pagination

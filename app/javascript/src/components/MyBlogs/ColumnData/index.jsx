@@ -2,10 +2,11 @@ import React from "react";
 
 import { t } from "i18next";
 import { capitalize } from "neetocist";
+import { join, map, pipe } from "ramda";
+import formatDateWithFallback from "utils/formatDateWithFallback";
 
 import RenderActions from "./Actions";
 import RenderTitle from "./Title";
-import { formatCategories, formatPublishedDate } from "./utils";
 
 const COLUMNS = [
   {
@@ -19,13 +20,13 @@ const COLUMNS = [
     dataIndex: "categories",
     key: "categories",
     width: 300,
-    render: formatCategories,
+    render: pipe(map(capitalize), join(", ")),
   },
   {
     title: t("blogTable.columns.lastPublished"),
     dataIndex: "lastPublishedDate",
     key: "lastPublishedDate",
-    render: formatPublishedDate,
+    render: date => formatDateWithFallback(date, "PPpp"),
   },
   {
     title: t("blogTable.columns.status"),

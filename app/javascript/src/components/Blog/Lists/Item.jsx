@@ -1,17 +1,17 @@
 import React from "react";
 
 import { CategoryTags } from "components/common";
-import { formatDate } from "date-fns";
 import { truncate } from "neetocist";
 import { Typography } from "neetoui";
 import { Link } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
+import formatDateWithFallback from "utils/formatDateWithFallback";
 
 const Item = ({
   title,
   description,
-  createdAt,
+  lastPublishedDate,
   slug,
   author: { name: authorName } = {},
   categories = [],
@@ -35,7 +35,7 @@ const Item = ({
         {authorName}
       </Typography>
       <Typography style="body3">
-        {formatDate(new Date(createdAt), "dd MMMM yyyy")}
+        {formatDateWithFallback(lastPublishedDate, "dd MMMM yyyy")}
       </Typography>
     </div>
   </div>
