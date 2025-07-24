@@ -1,5 +1,6 @@
 import React from "react";
 
+import classNames from "classnames";
 import {
   PageLoader,
   PageHeader,
@@ -8,11 +9,14 @@ import {
   PageNotFound,
 } from "components/common";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
+import { notEquals } from "neetocist";
 import { Highlight } from "neetoicons";
 import { Button, Tag, Typography } from "neetoui";
+import { equals } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import routes from "routes";
+import useAuthStore from "stores/useAuthStore";
 import buildUrl from "utils/buildUrl";
 import formatDateWithFallback from "utils/formatDateWithFallback";
 
@@ -23,11 +27,13 @@ const Show = () => {
 
   const { data: post = {}, isLoading, error } = useShowPost(slug);
 
+  const authUser = useAuthStore(state => state.authUser);
+
   const {
     title,
     description,
     categories,
-    author: { name: authorName } = {},
+    author: { name: authorName, id: authorId } = {},
     lastPublishedDate,
     status,
   } = post;
@@ -44,13 +50,16 @@ const Show = () => {
       <PageHeader
         label={title}
         labelTag={
-          status === "draft" ? <Tag label="Draft" style="warning" /> : null
+          equals(status, "draft") ? <Tag label="Draft" style="warning" /> : null
         }
       >
         <Button
           icon={Highlight}
           style="tertiary"
           to={buildUrl(routes.blogs.edit, { slug })}
+          className={classNames({
+            hidden: notEquals(authorId, authUser?.userId),
+          })}
           tooltipProps={{
             content: t("common.edit"),
             position: "top",
