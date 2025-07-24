@@ -7,7 +7,7 @@ import routes from "routes";
 import buildUrl from "utils/buildUrl";
 
 const Title = ({ label, slug }) => (
-  <Link to={buildUrl(routes.blogs.show, { slug })}>
+  <Link to={buildUrl(routes.blogs.edit, { slug })}>
     <Typography component="span" title={label}>
       {truncate(label, 40)}
     </Typography>
