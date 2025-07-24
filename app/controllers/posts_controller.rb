@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :load_post!, only: %i[show update destroy]
 
   def index
-    @posts = Organization.find(current_user.organization_id).posts.order(updated_at: :desc)
+    @posts = fetch_published_posts.order(last_published_date: :desc)
 
     if params[:category].present?
       @posts = @posts.for_categories(params[:category])
@@ -62,5 +62,9 @@ class PostsController < ApplicationController
 
     def load_post!
       @post = current_organization.posts.find_by!(slug: params[:slug])
+    end
+
+    def fetch_published_posts
+      current_organization.posts.where(status: "published")
     end
 end
