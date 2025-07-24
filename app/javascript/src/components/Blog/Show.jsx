@@ -68,7 +68,9 @@ const Show = () => {
           </Typography>
         </div>
       </div>
-      <Typography className="w-11/12 pb-3">{description}</Typography>
+      <Typography className="w-11/12 whitespace-pre-line pb-3">
+        {description}
+      </Typography>
     </div>
   );
 };
