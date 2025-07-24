@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import { Book, Edit, Folder } from "neetoicons";
 import routes from "routes";
 
@@ -5,14 +6,17 @@ export const SIDE_BAR_ITEMS = [
   {
     icon: Book,
     slug: routes.blogs.index,
+    label: t("blog.blogPosts"),
   },
   {
     icon: Edit,
     slug: routes.blogs.create,
+    label: t("blog.addNew"),
   },
   {
     icon: Folder,
     slug: routes.myBlogs,
+    label: t("blogTable.header"),
   },
 ];
 
