@@ -2,28 +2,15 @@ import React from "react";
 
 import { PageHeader, PageLoader } from "components/common";
 import { useFetchMyPosts } from "hooks/reactQuery/usePostsApi";
-import { Table, Typography } from "neetoui";
-import { pluck } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import COLUMNS from "./ColumnData";
+import Content from "./Content";
 
 const MyBlogs = () => {
   const { t } = useTranslation();
 
-  const { data: { posts = [], totalPostsCount } = {}, isLoading } =
+  const { data: { posts = [], totalPostsCount: totalPosts } = {}, isLoading } =
     useFetchMyPosts();
-
-  const formattedRowData = posts.map(
-    ({ title, slug, status, lastPublishedDate, categories }) => ({
-      key: slug,
-      title,
-      status,
-      slug,
-      lastPublishedDate,
-      categories: pluck("name", categories),
-    })
-  );
 
   if (isLoading) {
     return <PageLoader />;
@@ -32,19 +19,7 @@ const MyBlogs = () => {
   return (
     <div className="h-full space-y-4 pl-12 pt-12">
       <PageHeader label={t("blogTable.header")} />
-      <Typography style="h3" weight="semibold">
-        {t("blogTable.blogCount", { count: totalPostsCount })}
-      </Typography>
-      <div className="w-11/12">
-        <Table
-          rowSelection
-          bordered={false}
-          columnData={COLUMNS}
-          loading={isLoading}
-          rowData={formattedRowData}
-          totalCount={totalPostsCount}
-        />
-      </div>
+      <Content {...{ posts, totalPosts }} />
     </div>
   );
 };

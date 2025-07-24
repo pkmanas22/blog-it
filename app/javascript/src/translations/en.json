@@ -6,6 +6,7 @@
     "submit": "Submit",
     "cancel": "Cancel",
     "add": "Add",
+    "create": "Create",
     "edit": "Edit",
     "delete": "Delete",
     "publish": "Publish",
@@ -23,6 +24,7 @@
   },
   "blogTable": {
     "header": "My blog posts",
+    "noPosts": "You have not created any blog post yet.",
     "blogCount_one": "{{count}} article",
     "blogCount_other": "{{count}} articles",
     "columns": {
