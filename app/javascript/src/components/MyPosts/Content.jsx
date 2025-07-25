@@ -1,7 +1,7 @@
 import React from "react";
 
 import { NoData, Table, Typography } from "neetoui";
-import { pluck } from "ramda";
+import { isEmpty, pluck } from "ramda";
 import { useTranslation } from "react-i18next";
 import routes from "routes";
 
@@ -21,7 +21,7 @@ const Content = ({ totalPosts, isLoading, posts = [] }) => {
     })
   );
 
-  if (!totalPosts) {
+  if (isEmpty(posts)) {
     return (
       <NoData
         className="mt-7 h-72 w-full text-center"

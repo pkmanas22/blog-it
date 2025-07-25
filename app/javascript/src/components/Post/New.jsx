@@ -15,9 +15,9 @@ const New = () => {
 
   const formikRef = useRef(null);
 
-  const { t } = useTranslation();
-
   const history = useHistory();
+
+  const { t } = useTranslation();
 
   const { isLoading: isSubmissionLoading, mutate: createPost } =
     useCreatePost();

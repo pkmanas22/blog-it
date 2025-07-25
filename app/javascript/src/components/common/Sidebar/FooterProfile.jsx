@@ -12,7 +12,7 @@ const {
   Divider,
 } = Dropdown;
 
-const SidebarFooterProfile = () => {
+const FooterProfile = () => {
   const { t } = useTranslation();
 
   const authUser = useAuthStore.pickFrom();
@@ -48,4 +48,4 @@ const SidebarFooterProfile = () => {
   );
 };
 
-export default SidebarFooterProfile;
+export default FooterProfile;

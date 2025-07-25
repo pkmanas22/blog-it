@@ -3,9 +3,9 @@ import React from "react";
 import { Tag } from "neetoui";
 
 const CategoryTags = ({ categories = [] }) => (
-  <div>
+  <div className="flex items-center gap-1">
     {categories.map(({ id, name }) => (
-      <Tag className="mr-1" key={id} label={name} style="success" />
+      <Tag key={id} label={name} style="success" />
     ))}
   </div>
 );

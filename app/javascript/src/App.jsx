@@ -8,19 +8,14 @@ import PostLists from "components/Post/Lists";
 import NewPost from "components/Post/New";
 import ShowPost from "components/Post/Show";
 import { QueryClientProvider } from "react-query";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import routes from "routes";
 import queryClient from "utils/queryClient";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <Router>
+    <BrowserRouter>
       <ToastContainer />
       <Switch>
         <Route exact component={Login} path={routes.auth.login} />
@@ -45,7 +40,7 @@ const App = () => (
           </Switch>
         </SidebarLayout>
       </Switch>
-    </Router>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 

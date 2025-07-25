@@ -15,11 +15,11 @@ import { formatCategoriesForSelectInput, getCategoryIds } from "../utils";
 const Edit = () => {
   const [isPublishButtonActive, setIsPublishButtonActive] = useState(true);
 
+  const formikRef = useRef(null);
+
   const history = useHistory();
 
   const { post, isPostLoading, isPostNotFound } = useFetchPostWithStatus();
-
-  const formikRef = useRef(null);
 
   const { mutate: editPost, isLoading: isSubmissionLoading } = useEditPost(
     post?.slug
