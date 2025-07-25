@@ -14,12 +14,12 @@ const Header = ({
   setIsPublishButtonActive,
   handleActionSubmit,
 }) => (
-  <PageHeader label={t("blog.editPost")}>
+  <PageHeader label={t("post.editPost")}>
     <div className="flex items-center gap-3">
       <Button
         icon={ExternalLink}
         style="text"
-        to={buildUrl(routes.blogs.show, { slug })}
+        to={buildUrl(routes.posts.show, { slug })}
         tooltipProps={{ content: "Preview", position: "top" }}
       />
       <ActionBlock

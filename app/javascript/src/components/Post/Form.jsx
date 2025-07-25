@@ -1,7 +1,7 @@
 import React from "react";
 
-import { formatCategoriesForSelectInput } from "components/Blog/utils";
 import { PageLoader } from "components/common";
+import { formatCategoriesForSelectInput } from "components/Post/utils";
 import {
   useCreateCategory,
   useFetchCategories,

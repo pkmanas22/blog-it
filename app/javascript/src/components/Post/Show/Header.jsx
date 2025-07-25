@@ -26,7 +26,7 @@ const Header = ({ title, author: { id: authorId } = {}, status, slug }) => {
       <Button
         icon={Highlight}
         style="tertiary"
-        to={buildUrl(routes.blogs.edit, { slug })}
+        to={buildUrl(routes.posts.edit, { slug })}
         className={classNames({
           hidden: notEquals(authorId, authUser?.userId),
         })}

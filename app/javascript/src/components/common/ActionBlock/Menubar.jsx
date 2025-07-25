@@ -23,7 +23,7 @@ const Menubar = ({ slug }) => {
   const handleDelete = () => {
     deletePost(slug, {
       onSuccess: () => {
-        history.push(routes.myBlogs);
+        history.push(routes.myPosts);
       },
     });
   };

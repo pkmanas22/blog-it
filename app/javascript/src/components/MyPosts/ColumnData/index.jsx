@@ -8,29 +8,29 @@ import formatDateWithFallback from "utils/formatDateWithFallback";
 import RenderActions from "./Actions";
 import RenderTitle from "./Title";
 
-const COLUMNS = [
+const COLUMN_DATA = [
   {
-    title: t("blogTable.columns.title"),
+    title: t("postTable.columns.title"),
     dataIndex: "title",
     key: "title",
     render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
     width: 350,
   },
   {
-    title: t("blogTable.columns.category"),
+    title: t("postTable.columns.category"),
     dataIndex: "categories",
     key: "categories",
     width: 300,
     render: pipe(map(capitalize), join(", ")),
   },
   {
-    title: t("blogTable.columns.lastPublished"),
+    title: t("postTable.columns.lastPublished"),
     dataIndex: "lastPublishedDate",
     key: "lastPublishedDate",
     render: date => formatDateWithFallback(date, "PPpp"),
   },
   {
-    title: t("blogTable.columns.status"),
+    title: t("postTable.columns.status"),
     dataIndex: "status",
     key: "status",
     render: capitalize,
@@ -45,4 +45,4 @@ const COLUMNS = [
   },
 ];
 
-export default COLUMNS;
+export default COLUMN_DATA;

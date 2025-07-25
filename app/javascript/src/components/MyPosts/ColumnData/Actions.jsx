@@ -4,7 +4,7 @@ import { useDeletePost, useEditPost } from "hooks/reactQuery/usePostsApi";
 import { notEquals } from "neetocist";
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
-import withT from "utils/withT";
+import { useTranslation } from "react-i18next";
 
 const {
   Menu,
@@ -12,7 +12,9 @@ const {
   Divider,
 } = Dropdown;
 
-const Actions = ({ t, status, slug }) => {
+const Actions = ({ status, slug }) => {
+  const { t } = useTranslation();
+
   const { mutate: editPost, isLoading: isSubmissionLoading } =
     useEditPost(slug);
 
@@ -52,4 +54,4 @@ const Actions = ({ t, status, slug }) => {
   );
 };
 
-export default withT(Actions);
+export default Actions;

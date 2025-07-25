@@ -28,7 +28,7 @@ const Item = ({ name: categoryName }) => {
   const handleUpdateParams = () => {
     history.replace(
       buildUrl(
-        routes.blogs.index,
+        routes.posts.index,
         filterNonNull({ category: updatedCategories })
       )
     );

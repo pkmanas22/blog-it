@@ -34,7 +34,7 @@ const New = () => {
 
     createPost(params, {
       onSuccess: () => {
-        history.push(routes.myBlogs);
+        history.push(routes.myPosts);
       },
     });
   };
@@ -47,7 +47,7 @@ const New = () => {
 
   return (
     <div className="h-full py-12 pl-12">
-      <PageHeader label={t("blog.newPost")}>
+      <PageHeader label={t("post.newPost")}>
         <ActionBlock
           {...{
             isPublishButtonActive,

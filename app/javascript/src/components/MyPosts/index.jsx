@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import Content from "./Content";
 
-const MyBlogs = () => {
+const MyPosts = () => {
   const { t } = useTranslation();
 
   const { data: { posts = [], totalPostsCount: totalPosts } = {}, isLoading } =
@@ -18,10 +18,10 @@ const MyBlogs = () => {
 
   return (
     <div className="h-full space-y-4 pl-12 pt-12">
-      <PageHeader label={t("blogTable.header")} />
+      <PageHeader label={t("postTable.header")} />
       <Content {...{ posts, totalPosts }} />
     </div>
   );
 };
 
-export default MyBlogs;
+export default MyPosts;

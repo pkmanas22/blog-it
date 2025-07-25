@@ -8,9 +8,9 @@ import withT from "utils/withT";
 
 const Header = ({ t }) => (
   <div className="pl-8 pr-8 pt-12">
-    <PageHeader label={t("blog.blogPosts")}>
-      <Link to={routes.blogs.create}>
-        <Button label={t("blog.addNew")} />
+    <PageHeader label={t("post.lists")}>
+      <Link to={routes.posts.create}>
+        <Button label={t("post.addNew")} />
       </Link>
     </PageHeader>
   </div>

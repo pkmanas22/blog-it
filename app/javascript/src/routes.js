@@ -4,16 +4,16 @@ const routes = {
     login: "/login",
     signup: "/signup",
   },
-  blogs: {
-    index: "/blogs",
-    create: "/blogs/create",
-    show: "/blogs/:slug/show",
-    edit: "/blogs/:slug/edit",
+  posts: {
+    index: "/posts",
+    create: "/posts/create",
+    show: "/posts/:slug/show",
+    edit: "/posts/:slug/edit",
   },
   categories: {
     index: "/categories",
   },
-  myBlogs: "/my-blogs",
+  myPosts: "/my-posts",
   fallback: "*",
 };
 

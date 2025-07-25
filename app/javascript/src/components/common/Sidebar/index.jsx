@@ -28,7 +28,7 @@ const Sidebar = () => {
     );
 
   const handleCategoryClick = () => {
-    history.push(routes.blogs.index);
+    history.push(routes.posts.index);
     toggleCategorySidebarOpen();
   };
 
@@ -40,7 +40,7 @@ const Sidebar = () => {
         ))}
         <Button
           style="text"
-          tooltipProps={{ content: t("blog.category") }}
+          tooltipProps={{ content: t("post.category") }}
           className={classNames(
             "mb-2 block h-8 w-8 cursor-pointer rounded-md p-1 hover:bg-gray-200",
             {

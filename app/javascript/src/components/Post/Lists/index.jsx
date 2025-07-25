@@ -36,7 +36,7 @@ const Lists = () => {
   const handlePageNavigation = page =>
     history.replace(
       buildUrl(
-        routes.blogs.index,
+        routes.posts.index,
         filterNonNull(mergeLeft({ page }, queryParams))
       )
     );

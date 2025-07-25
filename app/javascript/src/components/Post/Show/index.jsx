@@ -41,7 +41,7 @@ const Show = () => {
           {...{
             authorName,
             lastPublishedDate,
-            fallbackText: t("blog.notPublished"),
+            fallbackText: t("post.notPublished"),
           }}
         />
       </div>

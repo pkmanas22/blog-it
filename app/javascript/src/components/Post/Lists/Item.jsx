@@ -16,7 +16,7 @@ const Item = ({
   categories = [],
 }) => (
   <div className="w-11/12 space-y-2 rounded-md border-b-2 bg-white p-2 shadow-sm">
-    <Link to={buildUrl(routes.blogs.show, { slug })}>
+    <Link to={buildUrl(routes.posts.show, { slug })}>
       <Typography
         className="inline hover:underline"
         style="h3"

@@ -16,7 +16,7 @@ const Contents = ({ posts = [], isLoading }) => {
 
   if (isEmpty(posts)) {
     return (
-      <NoData className="mt-40 w-full text-center" title={t("blog.noPosts")} />
+      <NoData className="mt-40 w-full text-center" title={t("post.noPosts")} />
     );
   }
 

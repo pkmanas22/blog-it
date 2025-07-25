@@ -1,12 +1,12 @@
 import React from "react";
 
 import { Login, Signup } from "components/Authentication";
-import EditBlog from "components/Blog/Edit";
-import BlogLists from "components/Blog/Lists";
-import NewBlog from "components/Blog/New";
-import ShowBlog from "components/Blog/Show";
 import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
-import MyBlogs from "components/MyBlogs";
+import MyPosts from "components/MyPosts";
+import EditPost from "components/Post/Edit";
+import PostLists from "components/Post/Lists";
+import NewPost from "components/Post/New";
+import ShowPost from "components/Post/Show";
 import { QueryClientProvider } from "react-query";
 import {
   BrowserRouter as Router,
@@ -29,18 +29,18 @@ const App = () => (
           <Switch>
             <PrivateRoute
               exact
-              component={BlogLists}
-              path={routes.blogs.index}
+              component={PostLists}
+              path={routes.posts.index}
             />
             <PrivateRoute
               exact
-              component={NewBlog}
-              path={routes.blogs.create}
+              component={NewPost}
+              path={routes.posts.create}
             />
-            <PrivateRoute exact component={MyBlogs} path={routes.myBlogs} />
-            <PrivateRoute exact component={ShowBlog} path={routes.blogs.show} />
-            <PrivateRoute exact component={EditBlog} path={routes.blogs.edit} />
-            <Redirect exact from={routes.root} to={routes.blogs.index} />
+            <PrivateRoute exact component={MyPosts} path={routes.myPosts} />
+            <PrivateRoute exact component={ShowPost} path={routes.posts.show} />
+            <PrivateRoute exact component={EditPost} path={routes.posts.edit} />
+            <Redirect exact from={routes.root} to={routes.posts.index} />
             <Route component={PageNotFound} path={routes.fallback} />
           </Switch>
         </SidebarLayout>

@@ -7,7 +7,7 @@ import routes from "routes";
 import buildUrl from "utils/buildUrl";
 
 const Title = ({ label, slug }) => (
-  <Link to={buildUrl(routes.blogs.edit, { slug })}>
+  <Link to={buildUrl(routes.posts.edit, { slug })}>
     <Button
       className="hover:underline"
       component="span"

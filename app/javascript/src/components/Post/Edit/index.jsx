@@ -37,7 +37,7 @@ const Edit = () => {
 
     editPost(params, {
       onSuccess: () => {
-        history.push(buildUrl(routes.blogs.show, { slug }));
+        history.push(buildUrl(routes.posts.show, { slug }));
       },
     });
   };

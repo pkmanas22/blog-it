@@ -5,18 +5,18 @@ import routes from "routes";
 export const SIDE_BAR_ITEMS = [
   {
     icon: Book,
-    slug: routes.blogs.index,
-    label: t("blog.blogPosts"),
+    slug: routes.posts.index,
+    label: t("post.lists"),
   },
   {
     icon: Edit,
-    slug: routes.blogs.create,
-    label: t("blog.addNew"),
+    slug: routes.posts.create,
+    label: t("post.addNew"),
   },
   {
     icon: Folder,
-    slug: routes.myBlogs,
-    label: t("blogTable.header"),
+    slug: routes.myPosts,
+    label: t("postTable.header"),
   },
 ];
 
