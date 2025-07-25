@@ -10,27 +10,27 @@ import RenderTitle from "./Title";
 
 const COLUMN_DATA = [
   {
-    title: t("postTable.columns.title"),
+    title: t("myPosts.columns.title"),
     dataIndex: "title",
     key: "title",
     render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
     width: 350,
   },
   {
-    title: t("postTable.columns.category"),
+    title: t("myPosts.columns.category"),
     dataIndex: "categories",
     key: "categories",
     width: 300,
     render: pipe(map(capitalize), join(", ")),
   },
   {
-    title: t("postTable.columns.lastPublished"),
+    title: t("myPosts.columns.lastPublished"),
     dataIndex: "lastPublishedDate",
     key: "lastPublishedDate",
     render: date => formatDateWithFallback(date, "PPpp"),
   },
   {
-    title: t("postTable.columns.status"),
+    title: t("myPosts.columns.status"),
     dataIndex: "status",
     key: "status",
     render: capitalize,

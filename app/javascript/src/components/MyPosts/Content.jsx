@@ -23,21 +23,23 @@ const Content = ({ totalPosts, isLoading, posts = [] }) => {
 
   if (isEmpty(posts)) {
     return (
-      <NoData
-        className="mt-7 h-72 w-full text-center"
-        title={t("postTable.noPosts")}
-        secondaryButtonProps={{
-          label: t("post.addNew"),
-          to: routes.posts.create,
-        }}
-      />
+      <div className="flex w-full items-center justify-center">
+        <NoData
+          image="https://cdn-icons-png.flaticon.com/512/15/15457.png"
+          title={t("noData.blog.title")}
+          primaryButtonProps={{
+            label: t("noData.blog.button"),
+            to: routes.posts.create,
+          }}
+        />
+      </div>
     );
   }
 
   return (
     <>
       <Typography style="h3" weight="semibold">
-        {t("postTable.postCount", { count: totalPosts })}
+        {t("myPosts.postCount", { count: totalPosts })}
       </Typography>
       <div className="w-11/12">
         <Table

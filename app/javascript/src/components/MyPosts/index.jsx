@@ -18,7 +18,7 @@ const MyPosts = () => {
 
   return (
     <div className="h-full space-y-4 pl-12 pt-12">
-      <PageHeader label={t("postTable.header")} />
+      <PageHeader label={t("myPosts.header")} />
       <Content {...{ posts, totalPosts }} />
     </div>
   );

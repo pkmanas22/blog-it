@@ -16,7 +16,7 @@ export const SIDE_BAR_ITEMS = [
   {
     icon: Folder,
     slug: routes.myPosts,
-    label: t("postTable.header"),
+    label: t("myPosts.header"),
   },
 ];
 
