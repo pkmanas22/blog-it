@@ -1,12 +1,11 @@
 import React from "react";
 
-import { CategoryTags } from "components/common";
+import { CategoryTags, PublishDetails } from "components/common";
 import { truncate } from "neetocist";
 import { Typography } from "neetoui";
 import { Link } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
-import formatDateWithFallback from "utils/formatDateWithFallback";
 
 const Item = ({
   title,
@@ -30,14 +29,7 @@ const Item = ({
     <Typography className="w-4/5" style="body2">
       {truncate(description, 200)}
     </Typography>
-    <div>
-      <Typography style="body3" weight="semibold">
-        {authorName}
-      </Typography>
-      <Typography style="body3">
-        {formatDateWithFallback(lastPublishedDate, "dd MMMM yyyy")}
-      </Typography>
-    </div>
+    <PublishDetails {...{ authorName, lastPublishedDate }} />
   </div>
 );
 

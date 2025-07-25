@@ -6,6 +6,7 @@ import PageHeader from "./PageHeader";
 import PageLoader from "./PageLoader";
 import PageNotFound from "./PageNotFound";
 import PrivateRoute from "./PrivateRoute";
+import PublishDetails from "./PublishDetails";
 import Sidebar from "./Sidebar";
 import SidebarLayout from "./SidebarLayout";
 
@@ -20,4 +21,5 @@ export {
   AvatarProfile,
   PrivateRoute,
   SidebarLayout,
+  PublishDetails,
 };

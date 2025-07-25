@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import Item from "./Item";
 
-const List = ({ posts = [], isLoading }) => {
+const Contents = ({ posts = [], isLoading }) => {
   const { t } = useTranslation();
 
   if (isLoading) {
@@ -29,4 +29,4 @@ const List = ({ posts = [], isLoading }) => {
   );
 };
 
-export default List;
+export default Contents;
