@@ -81,8 +81,10 @@
   },
   "errors": {
     "default": "Something went wrong!",
-    "axiosNetwork": "Network Error",
-    "noInternetConnection": "No internet connection"
+    "noInternetConnection": "No internet connection",
+    "axios": {
+      "network": "Network Error"
+    }
   },
   "pageNotFound": {
     "title": "The page you're looking for doesn't exist.",
