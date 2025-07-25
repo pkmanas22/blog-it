@@ -45,9 +45,3 @@ export const useDeletePost = () =>
       }, 100);
     },
   });
-
-export const useFetchMyPosts = () =>
-  useQuery({
-    queryKey: QUERY_KEYS.MY_POSTS,
-    queryFn: () => postsApi.fetchMyPosts(),
-  });

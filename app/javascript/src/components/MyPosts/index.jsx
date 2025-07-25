@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PageHeader, PageLoader } from "components/common";
-import { useFetchMyPosts } from "hooks/reactQuery/usePostsApi";
+import { useFetchMyPosts } from "hooks/reactQuery/useMyPostsApi";
 import { useTranslation } from "react-i18next";
 
 import Content from "./Content";
