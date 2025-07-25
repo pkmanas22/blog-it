@@ -66,6 +66,7 @@ const Edit = () => {
       <Header
         {...{
           slug: post?.slug,
+          title: post?.title,
           isPublishButtonActive,
           setIsPublishButtonActive,
           handleActionSubmit,

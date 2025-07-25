@@ -2,6 +2,7 @@ import ActionBlock from "./ActionBlock";
 import ActionMenubar from "./ActionBlock/Menubar";
 import AvatarProfile from "./AvatarProfile";
 import CategoryTags from "./CategoryTags";
+import DeleteModal from "./DeleteModal";
 import PageHeader from "./Header";
 import PageLoader from "./Loader";
 import PageNotFound from "./NotFound";
@@ -22,4 +23,5 @@ export {
   PrivateRoute,
   SidebarLayout,
   PublishDetails,
+  DeleteModal,
 };

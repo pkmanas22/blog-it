@@ -95,5 +95,10 @@
     "categories": {
       "description": "There are no categories to show."
     }
+  },
+  "deleteConfirmation": {
+    "title": "Delete blog post?",
+    "button": "Delete",
+    "message": "You are deleting the post <typography>{{name}}</typography>. This can't be undone."
   }
 }

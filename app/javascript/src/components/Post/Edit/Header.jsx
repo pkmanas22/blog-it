@@ -10,6 +10,7 @@ import withT from "utils/withT";
 const Header = ({
   t,
   slug,
+  title,
   isPublishButtonActive,
   setIsPublishButtonActive,
   handleActionSubmit,
@@ -30,7 +31,7 @@ const Header = ({
         }}
         shouldShowMenubar
       />
-      <ActionMenubar {...{ slug }} />
+      <ActionMenubar {...{ slug, title }} />
     </div>
   </PageHeader>
 );

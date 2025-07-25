@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useDeletePost } from "hooks/reactQuery/usePostsApi";
 import { MenuHorizontal } from "neetoicons";
@@ -8,12 +8,16 @@ import { useHistory } from "react-router-dom";
 import routes from "routes";
 import withT from "utils/withT";
 
+import DeleteModal from "../DeleteModal";
+
 const {
   Menu,
   MenuItem: { Button: MenuItemButton },
 } = Dropdown;
 
-const Menubar = ({ slug }) => {
+const Menubar = ({ slug, title }) => {
+  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
+
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -29,13 +33,24 @@ const Menubar = ({ slug }) => {
   };
 
   return (
-    <Dropdown buttonStyle="text" disabled={isLoading} icon={MenuHorizontal}>
-      <Menu>
-        <MenuItemButton style="danger" onClick={handleDelete}>
-          {t("common.delete")}
-        </MenuItemButton>
-      </Menu>
-    </Dropdown>
+    <>
+      <Dropdown buttonStyle="text" disabled={isLoading} icon={MenuHorizontal}>
+        <Menu>
+          <MenuItemButton
+            style="danger"
+            onClick={() => setShouldShowDeleteAlert(true)}
+          >
+            {t("common.delete")}
+          </MenuItemButton>
+        </Menu>
+      </Dropdown>
+      <DeleteModal
+        isOpen={shouldShowDeleteAlert}
+        name={title}
+        onClose={() => setShouldShowDeleteAlert(false)}
+        onSubmit={handleDelete}
+      />
+    </>
   );
 };
 

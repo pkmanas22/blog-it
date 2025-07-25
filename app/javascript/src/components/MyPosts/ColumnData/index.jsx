@@ -40,7 +40,9 @@ const COLUMN_DATA = [
     title: "",
     dataIndex: "actions",
     key: "actions",
-    render: (_, { status, slug }) => <RenderActions {...{ status, slug }} />,
+    render: (_, { status, slug, title }) => (
+      <RenderActions {...{ status, slug, title }} />
+    ),
     width: 50,
   },
 ];

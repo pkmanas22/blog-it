@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { DeleteModal } from "components/common";
 import { useDeletePost, useEditPost } from "hooks/reactQuery/usePostsApi";
 import { notEquals } from "neetocist";
 import { MenuHorizontal } from "neetoicons";
@@ -12,7 +13,9 @@ const {
   Divider,
 } = Dropdown;
 
-const Actions = ({ status, slug }) => {
+const Actions = ({ status, slug, title }) => {
+  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
+
   const { t } = useTranslation();
 
   const { mutate: editPost, isLoading: isSubmissionLoading } =
@@ -35,22 +38,33 @@ const Actions = ({ status, slug }) => {
   };
 
   return (
-    <Dropdown
-      buttonStyle="text"
-      disabled={isSubmissionLoading || isDeleteLoading}
-      icon={MenuHorizontal}
-      strategy="fixed"
-    >
-      <Menu>
-        <MenuItemButton onClick={handleActionClick}>
-          {statusToShow}
-        </MenuItemButton>
-        <Divider />
-        <MenuItemButton style="danger" onClick={() => deletePost(slug)}>
-          {t("common.delete")}
-        </MenuItemButton>
-      </Menu>
-    </Dropdown>
+    <>
+      <Dropdown
+        buttonStyle="text"
+        disabled={isSubmissionLoading || isDeleteLoading}
+        icon={MenuHorizontal}
+        strategy="fixed"
+      >
+        <Menu>
+          <MenuItemButton onClick={handleActionClick}>
+            {statusToShow}
+          </MenuItemButton>
+          <Divider />
+          <MenuItemButton
+            style="danger"
+            onClick={() => setShouldShowDeleteAlert(true)}
+          >
+            {t("common.delete")}
+          </MenuItemButton>
+        </Menu>
+      </Dropdown>
+      <DeleteModal
+        isOpen={shouldShowDeleteAlert}
+        name={title}
+        onClose={() => setShouldShowDeleteAlert(false)}
+        onSubmit={() => deletePost(slug)}
+      />
+    </>
   );
 };
 
