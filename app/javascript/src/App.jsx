@@ -1,24 +1,21 @@
 import React from "react";
 
 import { Login, Signup } from "components/Authentication";
-import Blog from "components/Blog";
-import BlogLists from "components/BlogLists";
 import { PageNotFound, PrivateRoute, SidebarLayout } from "components/common";
-import NewPost from "components/NewPost";
+import MyPosts from "components/MyPosts";
+import EditPost from "components/Post/Edit";
+import PostLists from "components/Post/Lists";
+import NewPost from "components/Post/New";
+import ShowPost from "components/Post/Show";
 import { QueryClientProvider } from "react-query";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import routes from "routes";
 import queryClient from "utils/queryClient";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <Router>
+    <BrowserRouter>
       <ToastContainer />
       <Switch>
         <Route exact component={Login} path={routes.auth.login} />
@@ -27,21 +24,23 @@ const App = () => (
           <Switch>
             <PrivateRoute
               exact
-              component={BlogLists}
-              path={routes.blogs.index}
+              component={PostLists}
+              path={routes.posts.index}
             />
             <PrivateRoute
               exact
               component={NewPost}
-              path={routes.blogs.create}
+              path={routes.posts.create}
             />
-            <PrivateRoute exact component={Blog} path={routes.blogs.show} />
-            <Redirect exact from={routes.root} to={routes.blogs.index} />
+            <PrivateRoute exact component={MyPosts} path={routes.myPosts} />
+            <PrivateRoute exact component={ShowPost} path={routes.posts.show} />
+            <PrivateRoute exact component={EditPost} path={routes.posts.edit} />
+            <Redirect exact from={routes.root} to={routes.posts.index} />
             <Route component={PageNotFound} path={routes.fallback} />
           </Switch>
         </SidebarLayout>
       </Switch>
-    </Router>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 

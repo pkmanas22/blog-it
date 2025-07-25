@@ -18,37 +18,37 @@ const setHttpHeaders = () => {
   };
 };
 
-const handleSuccessResponse = response => {
-  if (response?.data) {
-    response.data = keysToCamelCase(response.data);
+const handleSuccessResponse = ({ data: responseData }) => {
+  if (responseData) {
+    responseData = keysToCamelCase(responseData);
 
-    if (response.data.notice) {
-      Toastr.success(response.data.notice);
+    if (responseData?.notice) {
+      Toastr.success(responseData.notice);
     }
   }
-  response.success = response.status === 200;
 
-  return response.data;
+  return responseData;
 };
 
 const handleErrorResponse = error => {
-  const { status } = error.response;
-
-  if (error.message === t("errors.axiosNetwork")) {
+  if (error.message === t("errors.axios.network")) {
     Toastr.error(t("errors.noInternetConnection"));
 
     return Promise.reject(error);
   }
 
+  const {
+    status,
+    data: { error: errorMessage },
+  } = error.response;
+
   if (status === 401) {
-    const clearAuth = useAuthStore.getState().clearAuth;
+    const { clearAuth } = useAuthStore.getState();
     clearAuth();
     setTimeout(() => (window.location.href = routes.root), 2000);
   }
 
-  if (status !== 404) {
-    Toastr.error(error.response?.data?.error || DEFAULT_ERROR_NOTIFICATION);
-  }
+  Toastr.error(errorMessage || DEFAULT_ERROR_NOTIFICATION);
 
   if (status === 423) window.location.href = routes.root;
 

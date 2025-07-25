@@ -13,7 +13,7 @@ const Login = () => {
   const handleFormSubmit = formData => {
     loginUser(formData, {
       onSuccess: () => {
-        history.push(routes.blogs.index);
+        history.push(routes.posts.index);
       },
     });
   };

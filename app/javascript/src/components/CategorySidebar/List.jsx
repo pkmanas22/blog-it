@@ -20,7 +20,12 @@ const List = ({ searchTerm = "" }) => {
   );
 
   if (isEmpty(filteredCategories)) {
-    return <NoData className="my-4" description={t("category.noCategories")} />;
+    return (
+      <NoData
+        className="my-6 w-full items-center"
+        description={t("noData.categories.description")}
+      />
+    );
   }
 
   return filteredCategories.map(category => (

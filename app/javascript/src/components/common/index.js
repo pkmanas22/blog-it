@@ -1,13 +1,19 @@
+import ActionBlock from "./ActionBlock";
+import ActionMenubar from "./ActionBlock/Menubar";
 import AvatarProfile from "./AvatarProfile";
 import CategoryTags from "./CategoryTags";
-import PageHeader from "./PageHeader";
-import PageLoader from "./PageLoader";
-import PageNotFound from "./PageNotFound";
+import DeleteModal from "./DeleteModal";
+import PageHeader from "./Header";
+import PageLoader from "./Loader";
+import PageNotFound from "./NotFound";
 import PrivateRoute from "./PrivateRoute";
+import PublishDetails from "./PublishDetails";
 import Sidebar from "./Sidebar";
 import SidebarLayout from "./SidebarLayout";
 
 export {
+  ActionMenubar,
+  ActionBlock,
   Sidebar,
   PageHeader,
   CategoryTags,
@@ -16,4 +22,6 @@ export {
   AvatarProfile,
   PrivateRoute,
   SidebarLayout,
+  PublishDetails,
+  DeleteModal,
 };

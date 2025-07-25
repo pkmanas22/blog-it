@@ -1,32 +1,28 @@
 import React from "react";
 
 import CategorySidebar from "components/CategorySidebar";
-import { PageHeader } from "components/common";
 import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
 import useQueryParams from "hooks/useQueryParams";
 import { filterNonNull } from "neetocist";
-import { Button, Pagination } from "neetoui";
+import { Pagination } from "neetoui";
 import { mergeLeft } from "ramda";
-import { useTranslation } from "react-i18next";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
 import buildUrl from "utils/buildUrl";
 
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constants";
-import List from "./List";
+import Contents from "./Contents";
+import Header from "./Header";
 
-const BlogLists = () => {
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constants";
+
+const Lists = () => {
   const queryParams = useQueryParams();
   const { page } = queryParams;
 
-  const { t } = useTranslation();
-
   const history = useHistory();
 
-  const isCategorySidebarOpen = useCategoriesStore(
-    state => state.isCategorySidebarOpen
-  );
+  const isCategorySidebarOpen = useCategoriesStore.pickFrom();
 
   const postParams = {
     ...queryParams,
@@ -40,7 +36,7 @@ const BlogLists = () => {
   const handlePageNavigation = page =>
     history.replace(
       buildUrl(
-        routes.blogs.index,
+        routes.posts.index,
         filterNonNull(mergeLeft({ page }, queryParams))
       )
     );
@@ -49,15 +45,9 @@ const BlogLists = () => {
     <div className="flex h-full w-full overflow-hidden">
       {isCategorySidebarOpen && <CategorySidebar />}
       <div className="flex h-full flex-1 flex-col">
-        <div className="pl-8 pr-8 pt-12">
-          <PageHeader label={t("blog.blogPosts")}>
-            <Link to={routes.blogs.create}>
-              <Button label={t("blog.addNew")} />
-            </Link>
-          </PageHeader>
-        </div>
+        <Header />
         <div className="flex-1 overflow-y-auto px-8">
-          <List isLoading={isLoading} posts={posts} />
+          <Contents {...{ isLoading, posts }} />
         </div>
         <div className="flex justify-end p-4">
           <Pagination
@@ -72,4 +62,4 @@ const BlogLists = () => {
   );
 };
 
-export default BlogLists;
+export default Lists;

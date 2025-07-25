@@ -10,7 +10,7 @@ const PrivateRoute = ({
   redirectRoute = "/login",
   ...props
 }) => {
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const isAuthenticated = useAuthStore.pickFrom();
 
   if (!isAuthenticated) {
     return (

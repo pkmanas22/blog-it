@@ -5,18 +5,36 @@
   "common": {
     "submit": "Submit",
     "cancel": "Cancel",
-    "add": "Add"
+    "add": "Add",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "saveDraft": "Save as draft"
   },
-  "blog": {
-    "blogPosts": "Blog posts",
+  "post": {
+    "lists": "Blog posts",
     "addNew": "Add new blog post",
     "newPost": "New blog post",
-    "noPosts": "No posts found. Try creating a new one."
+    "editPost": "Edit blog post",
+    "category": "Category wise blog posts",
+    "notPublished": "Not published yet."
+  },
+  "myPosts": {
+    "header": "My blog posts",
+    "postCount_one": "{{count}} article",
+    "postCount_other": "{{count}} articles",
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "lastPublished": "Last Published At",
+      "status": "Status"
+    }
   },
   "category": {
     "title": "Categories",
     "search": "Search a category",
-    "noCategories": "No categories found. Try creating a new one.",
     "newCategory": {
       "header": "New category",
       "title": "Category title",
@@ -26,6 +44,7 @@
   "auth": {
     "signup": "Sign up",
     "login": "Login",
+    "logout": "Logout",
     "alreadyHaveAccount": "Already have an account?",
     "doNotHaveAccount": "Don't have an account?"
   },
@@ -42,7 +61,7 @@
       "description": "Write a detailed description",
       "category": "Search category",
       "name": "John Doe",
-      "email": "john.doe@gmail.com",
+      "email": "name@work-email.com",
       "password": "******"
     },
     "help": {
@@ -59,11 +78,27 @@
   },
   "errors": {
     "default": "Something went wrong!",
-    "axiosNetwork": "Network Error",
-    "noInternetConnection": "No internet connection"
+    "noInternetConnection": "No internet connection",
+    "axios": {
+      "network": "Network Error"
+    }
   },
   "pageNotFound": {
-    "title": "The page you're looking for doesn't exist.",
+    "title": "The page you're looking for can't be found.",
     "button": "Back to home"
+  },
+  "noData": {
+    "blog": {
+      "title": "There are no blogs to show.",
+      "button": "Add new blog"
+    },
+    "categories": {
+      "description": "There are no categories to show."
+    }
+  },
+  "deleteConfirmation": {
+    "title": "Delete blog post?",
+    "button": "Delete",
+    "message": "You are deleting the post <typography>{{name}}</typography>. This can't be undone."
   }
 }

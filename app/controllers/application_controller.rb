@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   protect_from_forgery
 
   rescue_from StandardError, with: :handle_api_exception
+  rescue_from Pundit::NotAuthorizedError, with: :handle_authorization_error
 
   before_action :authenticate_user_using_x_auth_token
 
@@ -31,6 +34,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def handle_authorization_error
+      render_error(t("authorization.denied"), :forbidden)
+    end
 
     def handle_database_level_exception(exception)
       handle_generic_exception(exception, :unprocessable_entity)

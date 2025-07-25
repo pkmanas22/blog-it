@@ -17,7 +17,8 @@
     "husky": "^8.0.0",
     "lint-staged": "12.3.7",
     "prettier": "^2.6.1",
-    "prettier-plugin-tailwindcss": "^0.1.8"
+    "prettier-plugin-tailwindcss": "^0.1.8",
+    "vite-plugin-babel": "^1.3.2"
   },
   "scripts": {
     "build": "node esbuild.config.js",
@@ -29,7 +30,8 @@
     "@babel/plugin-transform-react-constant-elements": "^7.25.9",
     "@babel/plugin-transform-runtime": "7.19.1",
     "@babel/preset-env": "7.17.10",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-react": "^7.27.1",
+    "@bigbinary/babel-preset-neeto": "1.0.6",
     "@bigbinary/neeto-cist": "^1.0.6",
     "@bigbinary/neeto-icons": "^1.17.6",
     "@bigbinary/neetoui": "^5.2.41",
@@ -108,6 +110,12 @@
     ],
     "app/views/**/*.html.erb": [
       "bundle exec erblint --lint-all --format compact -a"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@bigbinary/neeto"
     ]
   }
 }

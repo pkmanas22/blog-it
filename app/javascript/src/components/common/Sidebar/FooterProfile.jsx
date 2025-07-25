@@ -3,6 +3,7 @@ import React from "react";
 import { useAuthLogout } from "hooks/reactQuery/useAuthApi";
 import { LeftArrow } from "neetoicons";
 import { Avatar, Typography, Dropdown } from "neetoui";
+import { useTranslation } from "react-i18next";
 import useAuthStore from "stores/useAuthStore";
 
 const {
@@ -11,8 +12,12 @@ const {
   Divider,
 } = Dropdown;
 
-const SidebarFooterProfile = () => {
-  const { email, userName: name } = useAuthStore(state => state.authUser);
+const FooterProfile = () => {
+  const { t } = useTranslation();
+
+  const authUser = useAuthStore.pickFrom();
+
+  const { email, userName: name } = authUser;
 
   const { mutate: logoutUser } = useAuthLogout();
 
@@ -36,11 +41,11 @@ const SidebarFooterProfile = () => {
         </div>
         <Divider />
         <MenuItemButton prefix={<LeftArrow size={20} />} onClick={logoutUser}>
-          Logout
+          {t("auth.logout")}
         </MenuItemButton>
       </Menu>
     </Dropdown>
   );
 };
 
-export default SidebarFooterProfile;
+export default FooterProfile;

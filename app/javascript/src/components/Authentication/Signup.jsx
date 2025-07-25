@@ -13,7 +13,7 @@ const Signup = () => {
   const handleFormSubmit = formData => {
     signupUser(formData, {
       onSuccess: () => {
-        history.push(routes.blogs.index);
+        history.push(routes.posts.index);
       },
     });
   };

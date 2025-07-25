@@ -7,7 +7,7 @@ import queryClient from "utils/queryClient";
 export const useAuthSignup = () => useMutation(authApi.signup);
 
 export const useAuthLogin = () => {
-  const setAuth = useAuthStore(state => state.setAuth);
+  const setAuth = useAuthStore.pickFrom();
 
   return useMutation(authApi.login, {
     onSuccess: ({
@@ -23,7 +23,7 @@ export const useAuthLogin = () => {
 };
 
 export const useAuthLogout = () => {
-  const clearAuth = useAuthStore(state => state.clearAuth);
+  const clearAuth = useAuthStore.pickFrom();
 
   return useMutation(authApi.logout, {
     onSuccess: () => {

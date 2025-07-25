@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   def index
-    @categories = current_organization.categories.order(created_at: :desc)
+    @categories = policy_scope(Category).order(created_at: :desc)
   end
 
   def create
     category = current_organization.categories.new(category_params)
+    authorize category
     category.save!
     render_notice(t("successfully_created", entity: "Category"))
   end
