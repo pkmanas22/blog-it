@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 import useCategoriesStore from "stores/useCategoriesStore";
+import { useShallow } from "zustand/shallow";
 
 import FooterProfile from "./FooterProfile";
 import SidebarItem from "./Item";
@@ -18,13 +19,13 @@ const Sidebar = () => {
 
   const history = useHistory();
 
-  const toggleCategorySidebarOpen = useCategoriesStore(
-    state => state.toggleCategorySidebarOpen
-  );
-
-  const isCategorySidebarOpen = useCategoriesStore(
-    state => state.isCategorySidebarOpen
-  );
+  const { isCategorySidebarOpen, toggleCategorySidebarOpen } =
+    useCategoriesStore(
+      useShallow(state => ({
+        isCategorySidebarOpen: state.isCategorySidebarOpen,
+        toggleCategorySidebarOpen: state.toggleCategorySidebarOpen,
+      }))
+    );
 
   const handleCategoryClick = () => {
     history.push(routes.blogs.index);

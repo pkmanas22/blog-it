@@ -27,7 +27,7 @@ const Show = () => {
 
   const { data: post = {}, isLoading, error } = useShowPost(slug);
 
-  const authUser = useAuthStore(state => state.authUser);
+  const authUser = useAuthStore.pickFrom();
 
   const {
     title,

@@ -25,9 +25,7 @@ const Lists = () => {
 
   const history = useHistory();
 
-  const isCategorySidebarOpen = useCategoriesStore(
-    state => state.isCategorySidebarOpen
-  );
+  const isCategorySidebarOpen = useCategoriesStore.pickFrom();
 
   const postParams = {
     ...queryParams,

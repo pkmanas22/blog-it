@@ -15,7 +15,9 @@ const {
 const SidebarFooterProfile = () => {
   const { t } = useTranslation();
 
-  const { email, userName: name } = useAuthStore(state => state.authUser);
+  const authUser = useAuthStore.pickFrom();
+
+  const { email, userName: name } = authUser;
 
   const { mutate: logoutUser } = useAuthLogout();
 
