@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import { ListDetails } from "neetoicons";
 import { Button } from "neetoui";
+import { paths } from "ramda";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -19,13 +20,11 @@ const Sidebar = () => {
 
   const history = useHistory();
 
-  const { isCategorySidebarOpen, toggleCategorySidebarOpen } =
-    useCategoriesStore(
-      useShallow(state => ({
-        isCategorySidebarOpen: state.isCategorySidebarOpen,
-        toggleCategorySidebarOpen: state.toggleCategorySidebarOpen,
-      }))
-    );
+  const [isCategorySidebarOpen, toggleCategorySidebarOpen] = useCategoriesStore(
+    useShallow(
+      paths([["isCategorySidebarOpen"], ["toggleCategorySidebarOpen"]])
+    )
+  );
 
   const handleCategoryClick = () => {
     history.push(routes.posts.index);

@@ -8,11 +8,11 @@ class Category < ApplicationRecord
 
   validates :organization_id, presence: true
 
-  before_save :to_capitalize
+  before_save :capitalize_name
 
   private
 
-    def to_capitalize
+    def capitalize_name
       name.capitalize!
     end
 end

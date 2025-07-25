@@ -30,6 +30,7 @@ const Menubar = ({ slug, title }) => {
         history.push(routes.myPosts);
       },
     });
+    setShouldShowDeleteAlert(true);
   };
 
   return (

@@ -37,6 +37,11 @@ const Actions = ({ status, slug, title }) => {
     editPost(params);
   };
 
+  const handleDelete = () => {
+    deletePost(slug);
+    setShouldShowDeleteAlert(true);
+  };
+
   return (
     <>
       <Dropdown
@@ -62,7 +67,7 @@ const Actions = ({ status, slug, title }) => {
         isOpen={shouldShowDeleteAlert}
         name={title}
         onClose={() => setShouldShowDeleteAlert(false)}
-        onSubmit={() => deletePost(slug)}
+        onSubmit={handleDelete}
       />
     </>
   );

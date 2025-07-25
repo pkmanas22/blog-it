@@ -11,9 +11,7 @@ import Item from "./Item";
 const Contents = ({ posts = [], isLoading }) => {
   const { t } = useTranslation();
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
+  if (isLoading) return <PageLoader />;
 
   if (isEmpty(posts)) {
     return (
