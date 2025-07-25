@@ -14,6 +14,7 @@ const COLUMNS = [
     dataIndex: "title",
     key: "title",
     render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
+    width: 350,
   },
   {
     title: t("blogTable.columns.category"),
@@ -33,6 +34,7 @@ const COLUMNS = [
     dataIndex: "status",
     key: "status",
     render: capitalize,
+    width: 100,
   },
   {
     title: "",

@@ -46,6 +46,7 @@ const Content = ({ totalPosts, isLoading, posts = [] }) => {
           columnData={COLUMNS}
           loading={isLoading}
           rowData={formattedRowData}
+          tableLayout="auto"
           totalCount={totalPosts}
         />
       </div>
