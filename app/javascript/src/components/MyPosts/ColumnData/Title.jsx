@@ -9,7 +9,7 @@ import buildUrl from "utils/buildUrl";
 const Title = ({ label, slug }) => (
   <Link to={buildUrl(routes.posts.edit, { slug })}>
     <Button
-      className="hover:underline"
+      className="text-left hover:underline"
       component="span"
       style="link"
       tooltipProps={{ content: label, position: "top" }}

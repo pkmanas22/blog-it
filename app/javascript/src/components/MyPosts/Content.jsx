@@ -1,5 +1,6 @@
 import React from "react";
 
+import useQueryParams from "hooks/useQueryParams";
 import { NoData, Table, Typography } from "neetoui";
 import { isEmpty, pluck } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,7 @@ import COLUMN_DATA from "./ColumnData";
 
 const Content = ({ totalPosts, isLoading, posts = [] }) => {
   const { t } = useTranslation();
+  const { page } = useQueryParams();
 
   const formattedRowData = posts.map(
     ({ title, slug, status, lastPublishedDate, categories }) => ({
@@ -43,13 +45,18 @@ const Content = ({ totalPosts, isLoading, posts = [] }) => {
       </Typography>
       <div className="w-11/12">
         <Table
+          fixedHeight
           rowSelection
           bordered={false}
           columnData={COLUMN_DATA}
+          currentPageNumber={page}
           loading={isLoading}
           rowData={formattedRowData}
-          tableLayout="auto"
+          tableLayout="fixed"
           totalCount={totalPosts}
+          scroll={{
+            y: 400,
+          }}
         />
       </div>
     </>
