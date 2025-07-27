@@ -1,19 +1,15 @@
-import React from "react";
-
 import { t } from "i18next";
 import { capitalize } from "neetocist";
 import { join, map, pipe } from "ramda";
-import formatDateWithFallback from "utils/formatDateWithFallback";
 
-import RenderActions from "./Actions";
-import RenderTitle from "./Title";
+import { renderActions, renderFormattedDate, renderTitle } from "./utils";
 
 const COLUMN_DATA = [
   {
     title: t("myPosts.columns.title"),
     dataIndex: "title",
     key: "title",
-    render: (label, { slug }) => <RenderTitle {...{ label, slug }} />,
+    render: renderTitle,
     width: 350,
   },
   {
@@ -27,7 +23,7 @@ const COLUMN_DATA = [
     title: t("myPosts.columns.lastPublished"),
     dataIndex: "lastPublishedDate",
     key: "lastPublishedDate",
-    render: date => formatDateWithFallback(date, "PPpp"),
+    render: renderFormattedDate,
   },
   {
     title: t("myPosts.columns.status"),
@@ -40,9 +36,7 @@ const COLUMN_DATA = [
     title: "",
     dataIndex: "actions",
     key: "actions",
-    render: (_, { status, slug, title }) => (
-      <RenderActions {...{ status, slug, title }} />
-    ),
+    render: renderActions,
     width: 50,
   },
 ];
