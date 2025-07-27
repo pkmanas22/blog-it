@@ -14,7 +14,7 @@ const {
 } = Dropdown;
 
 const Actions = ({ status, slug, title }) => {
-  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(null);
 
   const { t } = useTranslation();
 
@@ -38,8 +38,13 @@ const Actions = ({ status, slug, title }) => {
   };
 
   const handleDelete = () => {
-    deletePost(slug);
-    setShouldShowDeleteAlert(true);
+    if (!postToDelete) return;
+
+    deletePost(slug, {
+      onSuccess: () => {
+        setPostToDelete(null);
+      },
+    });
   };
 
   return (
@@ -57,16 +62,16 @@ const Actions = ({ status, slug, title }) => {
           <Divider />
           <MenuItemButton
             style="danger"
-            onClick={() => setShouldShowDeleteAlert(true)}
+            onClick={() => setPostToDelete({ slug, title })}
           >
             {t("common.delete")}
           </MenuItemButton>
         </Menu>
       </Dropdown>
       <DeleteModal
-        isOpen={shouldShowDeleteAlert}
-        name={title}
-        onClose={() => setShouldShowDeleteAlert(false)}
+        isOpen={postToDelete !== null}
+        name={postToDelete?.title || ""}
+        onClose={() => setPostToDelete(null)}
         onSubmit={handleDelete}
       />
     </>
