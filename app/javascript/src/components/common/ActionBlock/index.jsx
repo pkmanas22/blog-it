@@ -1,8 +1,8 @@
 import React from "react";
 
+import useGoBackSafely from "hooks/useGoBackSafely";
 import { ActionDropdown, Button } from "neetoui";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
 
 import ItemButton from "./ItemButton";
 
@@ -15,7 +15,7 @@ const ActionBlock = ({
 }) => {
   const { t } = useTranslation();
 
-  const history = useHistory();
+  const handleCancel = useGoBackSafely();
 
   const dropdownButtonLabel = isPublishButtonActive
     ? t("common.publish")
@@ -26,7 +26,7 @@ const ActionBlock = ({
       <Button
         label={t("common.cancel")}
         style="secondary"
-        onClick={() => history.goBack()}
+        onClick={handleCancel}
       />
       <ActionDropdown
         buttonStyle="primary"
