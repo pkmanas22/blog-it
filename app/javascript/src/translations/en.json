@@ -28,7 +28,7 @@
     "columns": {
       "title": "Title",
       "category": "Category",
-      "lastPublished": "Last Published At",
+      "lastPublished": "Last published at",
       "status": "Status"
     }
   },
