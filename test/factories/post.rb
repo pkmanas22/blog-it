@@ -8,7 +8,6 @@ FactoryBot.define do
     upvotes { Faker::Number.between(from: 0, to: 100) }
     downvotes { Faker::Number.between(from: 0, to: 100) }
     is_bloggable { Faker::Boolean.boolean }
-    status { %w[draft published].sample }
     user { build(:user, organization: organization) }
 
     after(:create) do |post|
