@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   before_action :load_post!, only: %i[show update destroy]
+  before_action :authorize_post!, only: %i[show update destroy]
 
   def index
     posts = policy_scope(Post, policy_scope_class: PostPolicy::Scope)
@@ -23,17 +24,14 @@ class PostsController < ApplicationController
 
   def create
     post = current_user.posts.new(post_params.merge({ organization_id: current_user.organization_id }))
-    authorize post
     post.save!
     render_notice(t("successfully_created", entity: "Post"))
   end
 
   def show
-    authorize @post
   end
 
   def update
-    authorize @post
     @post.update!(post_params)
     render_notice(t("successfully_updated", entity: "Post"))
   end
@@ -69,5 +67,9 @@ class PostsController < ApplicationController
 
     def load_post!
       @post = current_organization.posts.find_by!(slug: params[:slug])
+    end
+
+    def authorize_post!
+      authorize @post
     end
 end
