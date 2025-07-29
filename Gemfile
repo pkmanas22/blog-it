@@ -63,8 +63,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 end
 
-gem "react-rails", "~> 2.7.1"
-
 gem "data_migrate"
-
+gem "kaminari"
 gem "pundit"
+gem "react-rails", "~> 2.7.1"

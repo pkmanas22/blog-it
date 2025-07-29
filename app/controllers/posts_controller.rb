@@ -17,9 +17,7 @@ class PostsController < ApplicationController
 
     @total_posts_count = @posts.count
 
-    @posts = @posts
-      .limit(page_size)
-      .offset(offset)
+    @posts = @posts.page(params[:page]).per(params[:page_size])
   end
 
   def create
@@ -43,23 +41,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-    def offset
-      (current_page - 1) * page_size
-    end
-
-    def page_size
-      positive_number_or_default(params[:page_size], 10)
-    end
-
-    def current_page
-      positive_number_or_default(params[:page], 1)
-    end
-
-    def positive_number_or_default(param, default = 1)
-      number = param.to_i
-      number.positive? ? number : default
-    end
 
     def post_params
       params.require(:post).permit(:title, :description, :status, category_ids: [])
