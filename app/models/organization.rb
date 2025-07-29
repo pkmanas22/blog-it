@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Organization < ApplicationRecord
+  VALID_DOMAIN_REGEX = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/i
+
   has_many :users
   has_many :posts
   has_many :categories
@@ -10,7 +12,8 @@ class Organization < ApplicationRecord
     uniqueness: true
   validates :domain,
     presence: true,
-    uniqueness: { case_sensitive: false }
+    uniqueness: { case_sensitive: false },
+    format: { with: VALID_DOMAIN_REGEX }
 
   before_save :to_lowercase
 
