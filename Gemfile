@@ -45,6 +45,12 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
+
+  # Rails integration for factory_bot, a replacement for fixtures
+  gem "factory_bot_rails"
+
+  # For auto-generating demo data
+  gem "faker"
 end
 
 group :development do
@@ -61,6 +67,9 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+
+  gem "minitest-bisect"
+  gem "simplecov", require: false
 end
 
 gem "data_migrate"
