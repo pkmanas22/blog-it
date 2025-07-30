@@ -8,6 +8,7 @@
     "add": "Add",
     "create": "Create",
     "edit": "Edit",
+    "column": "Column",
     "delete": "Delete",
     "publish": "Publish",
     "unpublish": "Unpublish",
@@ -25,6 +26,9 @@
     "header": "My blog posts",
     "postCount_one": "{{count}} article",
     "postCount_other": "{{count}} articles",
+    "filter": "Filter",
+    "submit": "Done",
+    "reset": "Clear filters",
     "columns": {
       "title": "Title",
       "category": "Category",
@@ -56,13 +60,15 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm password",
+    "status": "Status",
     "placeholders": {
       "title": "Enter the post title",
       "description": "Write a detailed description",
       "category": "Search category",
       "name": "John Doe",
       "email": "name@work-email.com",
-      "password": "******"
+      "password": "******",
+      "status": "Select status"
     },
     "help": {
       "email": "Use your company email. This helps us automatically match you to your organization."

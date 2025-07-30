@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useQueryParams from "hooks/useQueryParams";
 import { filterNonNull } from "neetocist";
@@ -9,11 +9,18 @@ import { useHistory } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
 
-import COLUMN_DATA from "./ColumnData";
-
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constant";
+import ColumnSelector from "./ColumnSelector";
+import {
+  DEFAULT_CHECKED_COLUMNS,
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from "./constant";
+import FilterPane from "./FilterPane";
+import { filteredColumns } from "./utils";
 
 const Table = ({ totalPostsCount, posts = [] }) => {
+  const [checkedColumns, setCheckedColumns] = useState(DEFAULT_CHECKED_COLUMNS);
+
   const { t } = useTranslation();
 
   const history = useHistory();
@@ -28,14 +35,20 @@ const Table = ({ totalPostsCount, posts = [] }) => {
 
   return (
     <>
-      <Typography style="h3" weight="semibold">
-        {t("myPosts.postCount", { count: totalPostsCount })}
-      </Typography>
+      <div className="flex w-11/12 items-center justify-between">
+        <Typography style="h3" weight="semibold">
+          {t("myPosts.postCount", { count: totalPostsCount })}
+        </Typography>
+        <div className="flex items-center gap-3">
+          <ColumnSelector {...{ checkedColumns, setCheckedColumns }} />
+          <FilterPane />
+        </div>
+      </div>
       <div className="w-11/12">
         <NeetoUITable
           rowSelection
           bordered={false}
-          columnData={COLUMN_DATA}
+          columnData={filteredColumns(checkedColumns)}
           currentPageNumber={Number(page) || DEFAULT_PAGE_INDEX}
           defaultPageSize={DEFAULT_PAGE_SIZE}
           handlePageChange={handlePageNavigation}

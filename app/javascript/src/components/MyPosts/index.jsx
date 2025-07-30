@@ -6,9 +6,9 @@ import useQueryParams from "hooks/useQueryParams";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constant";
 import NoPost from "./NoPost";
 import MyPostTable from "./Table";
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./Table/constant";
 
 const MyPosts = () => {
   const { t } = useTranslation();
