@@ -13,7 +13,9 @@ class PostPolicy
   end
 
   def show?
-    post.organization_id == user.organization_id
+    return true if post.user_id == user.id
+
+    post.organization_id == user.organization_id && post.status == "published"
   end
 
   def update?

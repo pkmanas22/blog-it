@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   def create
     post = current_user.posts.new(post_params.merge({ organization_id: current_user.organization_id }))
+    authorize post
     post.save!
     render_notice(t("successfully_created", entity: "Post"))
   end
