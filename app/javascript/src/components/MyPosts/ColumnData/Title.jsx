@@ -14,7 +14,7 @@ const Title = ({ label, slug }) => (
       style="link"
       tooltipProps={{ content: label, position: "top" }}
     >
-      {truncate(label, 50)}
+      {truncate(label, 45)}
     </Button>
   </Link>
 );

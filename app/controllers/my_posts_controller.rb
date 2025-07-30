@@ -7,5 +7,9 @@ class MyPostsController < ApplicationController
     posts = policy_scope(Post, policy_scope_class: MyPostPolicy::Scope)
 
     @posts = posts.order(created_at: :desc)
+
+    @total_posts_count = @posts.count
+
+    @posts = @posts.page(params[:page]).per(params[:page_size])
   end
 end

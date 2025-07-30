@@ -1,10 +1,11 @@
 import { QUERY_KEYS } from "constants/query";
 
-import postsApi from "apis/posts";
+import myPostsApi from "apis/myPosts";
 import { useQuery } from "react-query";
 
-export const useFetchMyPosts = () =>
+export const useFetchMyPosts = ({ page, pageSize }) =>
   useQuery({
-    queryKey: QUERY_KEYS.MY_POSTS,
-    queryFn: () => postsApi.fetchMyPosts(),
+    queryKey: [QUERY_KEYS.MY_POSTS, page, pageSize],
+    queryFn: () => myPostsApi.fetchMyPosts({ page, pageSize }),
+    keepPreviousData: true,
   });

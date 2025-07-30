@@ -1,6 +1,6 @@
 import { t } from "i18next";
 import { capitalize } from "neetocist";
-import { join, map, pipe } from "ramda";
+import { join, map, pipe, pluck } from "ramda";
 
 import { renderActions, renderFormattedDate, renderTitle } from "./utils";
 
@@ -10,14 +10,14 @@ const COLUMN_DATA = [
     dataIndex: "title",
     key: "title",
     render: renderTitle,
-    width: 350,
+    width: 400,
   },
   {
     title: t("myPosts.columns.category"),
     dataIndex: "categories",
     key: "categories",
     width: 300,
-    render: pipe(map(capitalize), join(", ")),
+    render: pipe(pluck("name"), map(capitalize), join(", ")),
   },
   {
     title: t("myPosts.columns.lastPublished"),

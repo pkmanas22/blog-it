@@ -2,26 +2,16 @@ import React from "react";
 
 import useQueryParams from "hooks/useQueryParams";
 import { NoData, Table, Typography } from "neetoui";
-import { isEmpty, pluck } from "ramda";
+import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import routes from "routes";
 
 import COLUMN_DATA from "./ColumnData";
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constant";
 
-const Content = ({ totalPosts, isLoading, posts = [] }) => {
-  const { t } = useTranslation();
+const Content = ({ totalPostsCount, handlePageNavigation, posts = [] }) => {
   const { page } = useQueryParams();
-
-  const formattedRowData = posts.map(
-    ({ title, slug, status, lastPublishedDate, categories }) => ({
-      key: slug,
-      title,
-      status,
-      slug,
-      lastPublishedDate,
-      categories: pluck("name", categories),
-    })
-  );
+  const { t } = useTranslation();
 
   if (isEmpty(posts)) {
     return (
@@ -41,21 +31,21 @@ const Content = ({ totalPosts, isLoading, posts = [] }) => {
   return (
     <>
       <Typography style="h3" weight="semibold">
-        {t("myPosts.postCount", { count: totalPosts })}
+        {t("myPosts.postCount", { count: totalPostsCount })}
       </Typography>
       <div className="w-11/12">
         <Table
-          fixedHeight
           rowSelection
           bordered={false}
           columnData={COLUMN_DATA}
-          currentPageNumber={page}
-          loading={isLoading}
-          rowData={formattedRowData}
+          currentPageNumber={Number(page) || DEFAULT_PAGE_INDEX}
+          defaultPageSize={DEFAULT_PAGE_SIZE}
+          handlePageChange={handlePageNavigation}
+          rowData={posts}
           tableLayout="fixed"
-          totalCount={totalPosts}
+          totalCount={totalPostsCount}
           scroll={{
-            y: 400,
+            y: 350,
           }}
         />
       </div>
