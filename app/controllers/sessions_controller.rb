@@ -4,7 +4,14 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user_using_x_auth_token
 
   def create
-    @user = User.find_by!(email: login_params[:email].downcase)
+    email = login_params[:email]&.downcase
+    password = login_params[:password]
+
+    if email.blank? || password.blank?
+      return render_error(t("session.email_password_required"), :bad_request)
+    end
+
+    @user = User.find_by!(email: email)
 
     unless @user.authenticate(login_params[:password])
       render_error(t("session.incorrect_credentials"), :unauthorized)
