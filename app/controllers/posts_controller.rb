@@ -36,7 +36,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authorize @post
     @post.destroy!
     render_notice(t("successfully_deleted", entity: "Post"))
   end
