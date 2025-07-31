@@ -12,11 +12,12 @@ import {
   DEFAULT_PAGE_SIZE,
 } from "./constant";
 import FilterPane from "./FilterPane";
-import Message from "./Message";
+import StatusMessage from "./StatusMessage";
 import MyPostTable from "./Table";
 
 const MyPosts = () => {
   const [checkedColumns, setCheckedColumns] = useState(DEFAULT_CHECKED_COLUMNS);
+  const [selectedRowIds, setSelectedRowIds] = useState([95]);
 
   const { t } = useTranslation();
 
@@ -40,13 +41,21 @@ const MyPosts = () => {
     <div className="h-full space-y-4 pl-12 pt-12">
       <PageHeader label={t("myPosts.header")} />
       <div className="flex w-11/12 items-center justify-between">
-        <Message {...{ totalPostsCount }} />
+        <StatusMessage {...{ totalPostsCount, selectedRowIds }} />
         <div className="flex items-center gap-3">
           <ColumnSelector {...{ checkedColumns, setCheckedColumns }} />
           <FilterPane />
         </div>
       </div>
-      <MyPostTable {...{ checkedColumns, posts, totalPostsCount }} />
+      <MyPostTable
+        {...{
+          selectedRowIds,
+          setSelectedRowIds,
+          checkedColumns,
+          posts,
+          totalPostsCount,
+        }}
+      />
     </div>
   );
 };

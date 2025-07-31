@@ -12,7 +12,13 @@ import buildUrl from "utils/buildUrl";
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constant";
 import { filteredColumns } from "../utils";
 
-const Table = ({ checkedColumns, totalPostsCount, posts = [] }) => {
+const Table = ({
+  selectedRowIds,
+  setSelectedRowIds,
+  checkedColumns,
+  totalPostsCount,
+  posts = [],
+}) => {
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -43,10 +49,19 @@ const Table = ({ checkedColumns, totalPostsCount, posts = [] }) => {
         defaultPageSize={DEFAULT_PAGE_SIZE}
         handlePageChange={handlePageNavigation}
         rowData={posts}
+        selectedRowKeys={selectedRowIds}
         tableLayout="fixed"
         totalCount={totalPostsCount}
+        bulkSelectAllRowsProps={{
+          selectAllRowButtonLabel: "Select all 55 users",
+          selectAllRowMessage: "All 15 users on this page are selected",
+          setBulkSelectedAllRows: function noRefCheck() {},
+        }}
         scroll={{
           y: 350,
+        }}
+        onRowSelect={selectedRowKeys => {
+          setSelectedRowIds(selectedRowKeys);
         }}
       />
     </div>

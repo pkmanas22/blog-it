@@ -12,7 +12,8 @@
     "delete": "Delete",
     "publish": "Publish",
     "unpublish": "Unpublish",
-    "saveDraft": "Save as draft"
+    "saveDraft": "Save as draft",
+    "draft": "Draft"
   },
   "post": {
     "lists": "Blog posts",
@@ -31,6 +32,9 @@
     "reset": "Clear filters",
     "searchTitle_one": "{{count}} result for '{{title}}'",
     "searchTitle_other": "{{count}} results for '{{title}}'",
+    "postSelectedCount_one": "<bold>{{count}} article </bold> selected of {{totalPostsCount}}",
+    "postSelectedCount_other": "<bold>{{count}} articles </bold> selected of {{totalPostsCount}}",
+    "changeStatus": "Change status",
     "columns": {
       "title": "Title",
       "category": "Category",
