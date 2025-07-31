@@ -28,7 +28,9 @@ const Message = ({ totalPostsCount }) => {
     const updatedParams = getUpdatedParams({
       key,
       value,
+      queryParams,
     });
+
     history.replace(buildUrl(routes.myPosts, filterNonNull(updatedParams)));
   };
 

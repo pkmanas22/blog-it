@@ -21,17 +21,19 @@ export const getSelectedCategories = (category, categoryOptions) =>
   );
 
 export const getUpdatedParams = ({ key, value, queryParams }) => {
-  const newParams = { ...queryParams };
+  const updatedParams = { ...queryParams };
 
-  if (key === "title") newParams.title = null;
+  if (key === "title") updatedParams.title = null;
 
-  if (key === "status") newParams.status = null;
+  if (key === "status") updatedParams.status = null;
 
   if (key === "category") {
     const filteredCategories = without(
       [value],
       getCategoryParams(queryParams?.category)
     );
-    newParams.category = filteredCategories;
+    updatedParams.category = filteredCategories;
   }
+
+  return updatedParams;
 };
