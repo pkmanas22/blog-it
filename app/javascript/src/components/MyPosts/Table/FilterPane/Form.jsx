@@ -1,7 +1,10 @@
 import React from "react";
 
+import { PageLoader } from "components/common";
 import { formatCategoriesForSelectInput } from "components/Post/utils";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
+import useQueryParams from "hooks/useQueryParams";
+import { findBy } from "neetocist";
 import {
   Form as NeetoUIForm,
   Input as FormikInput,
@@ -11,18 +14,30 @@ import { useTranslation } from "react-i18next";
 
 import { FILTER_PANE_FORM_INITIAL_VALUES, STATUS_OPTIONS } from "./constant";
 
+import { getSelectedCategories } from "../utils";
+
 const Form = ({ handleFormSubmit, formikRef }) => {
   const { t } = useTranslation();
+  const { title, category, status } = useQueryParams();
 
-  const { data: categories = [] } = useFetchCategories();
+  const { data: categories = [], isLoading } = useFetchCategories();
 
   const categoryOptions = formatCategoriesForSelectInput(categories);
+
+  const initialValues = {
+    ...FILTER_PANE_FORM_INITIAL_VALUES,
+    title,
+    categories: getSelectedCategories(category, categoryOptions),
+    status: findBy({ value: status }, STATUS_OPTIONS),
+  };
+
+  if (isLoading) return <PageLoader />;
 
   return (
     <NeetoUIForm
       className="w-full"
       formikProps={{
-        initialValues: FILTER_PANE_FORM_INITIAL_VALUES,
+        initialValues,
         innerRef: formikRef,
         onSubmit: handleFormSubmit,
       }}

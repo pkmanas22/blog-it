@@ -1,10 +1,17 @@
 import React, { useRef, useState } from "react";
 
+import { filterNonNull } from "neetocist";
 import { Filter } from "neetoicons";
 import { Button, Pane, Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import routes from "routes";
+import buildUrl from "utils/buildUrl";
 
+import { FILTER_PANE_FORM_INITIAL_VALUES } from "./constant";
 import FilterForm from "./Form";
+
+import { getCategoryNames } from "../utils";
 
 const { Header, Body, Footer } = Pane;
 
@@ -14,9 +21,16 @@ const FilterPane = () => {
   const formikRef = useRef(null);
 
   const { t } = useTranslation();
+  const history = useHistory();
 
-  const handleFormSubmit = () => {
-    // TODO: console.log(data);
+  const handleFormSubmit = ({ title, categories, status }) => {
+    const params = {
+      title: title || null,
+      status: status?.value,
+      category: getCategoryNames(categories),
+    };
+    history.replace(buildUrl(routes.myPosts, filterNonNull(params)));
+    setIsOpen(false);
   };
 
   const handleActionSubmit = () => {
@@ -27,7 +41,8 @@ const FilterPane = () => {
 
   const handleActionReset = () => {
     if (formikRef.current) {
-      formikRef.current.handleReset();
+      formikRef.current.resetForm({ values: FILTER_PANE_FORM_INITIAL_VALUES });
+      history.push(routes.myPosts);
     }
   };
 
