@@ -26,7 +26,7 @@
     "header": "My blog posts",
     "postCount_one": "{{count}} article",
     "postCount_other": "{{count}} articles",
-    "filter": "Filter",
+    "filter": "Filters",
     "submit": "Done",
     "reset": "Clear filters",
     "columns": {
