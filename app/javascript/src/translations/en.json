@@ -29,6 +29,8 @@
     "filter": "Filters",
     "submit": "Done",
     "reset": "Clear filters",
+    "searchTitle_one": "{{count}} result for '{{title}}'",
+    "searchTitle_other": "{{count}} results for '{{title}}'",
     "columns": {
       "title": "Title",
       "category": "Category",

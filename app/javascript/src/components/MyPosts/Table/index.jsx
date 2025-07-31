@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 import useQueryParams from "hooks/useQueryParams";
 import { filterNonNull } from "neetocist";
-import { Typography, Table as NeetoUITable } from "neetoui";
+import { Table as NeetoUITable } from "neetoui";
 import { mergeLeft } from "ramda";
-import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 import buildUrl from "utils/buildUrl";
@@ -16,12 +15,11 @@ import {
   DEFAULT_PAGE_SIZE,
 } from "./constant";
 import FilterPane from "./FilterPane";
+import Message from "./Message";
 import { filteredColumns } from "./utils";
 
 const Table = ({ totalPostsCount, posts = [] }) => {
   const [checkedColumns, setCheckedColumns] = useState(DEFAULT_CHECKED_COLUMNS);
-
-  const { t } = useTranslation();
 
   const history = useHistory();
 
@@ -36,9 +34,7 @@ const Table = ({ totalPostsCount, posts = [] }) => {
   return (
     <>
       <div className="flex w-11/12 items-center justify-between">
-        <Typography style="h3" weight="semibold">
-          {t("myPosts.postCount", { count: totalPostsCount })}
-        </Typography>
+        <Message {...{ totalPostsCount }} />
         <div className="flex items-center gap-3">
           <ColumnSelector {...{ checkedColumns, setCheckedColumns }} />
           <FilterPane />
