@@ -28,12 +28,6 @@ class Post < ApplicationRecord
 
   private
 
-    def self.for_categories(categories)
-      joins(:categories)
-        .where("LOWER(categories.name) IN (?)", Array(categories).map(&:downcase))
-        .distinct
-    end
-
     def set_slug
       title_slug = title.parameterize
       regex_pattern = "slug #{Constants::DB_REGEX_OPERATOR} ?"

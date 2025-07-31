@@ -11,9 +11,7 @@ class PostsController < ApplicationController
     posts = policy_scope(Post, policy_scope_class: PostPolicy::Scope)
     @posts = posts.order(last_published_date: :desc)
 
-    if params[:category].present?
-      @posts = @posts.for_categories(params[:category])
-    end
+    @posts = PostFilterService.new(@posts, params).process!
 
     @total_posts_count = @posts.count
 

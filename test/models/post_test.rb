@@ -260,23 +260,4 @@ class PostTest < ActiveSupport::TestCase
     @post.save!
     assert_equal original_date, @post.reload.last_published_date
   end
-
-  def test_for_categories_returns_posts_matching_single_category_case_insensitive
-    @post.save!
-    post2 = create(:post, user: @user, organization: @organization, categories: [@category2])
-
-    result = Post.for_categories(@category1.name.upcase)
-    assert_includes result, @post
-    assert_not_includes result, post2
-  end
-
-  def test_for_categories_returns_posts_matching_multiple_categories_case_insensitive
-    @post.save!
-    post2 = create(:post, user: @user, organization: @organization, categories: [@category2])
-
-    category_names = [@category1.name.upcase, @category2.name.downcase]
-    result = Post.for_categories(category_names)
-    assert_includes result, @post
-    assert_includes result, post2
-  end
 end

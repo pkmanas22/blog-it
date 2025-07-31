@@ -8,6 +8,8 @@ class MyPostsController < ApplicationController
 
     @posts = posts.order(created_at: :desc)
 
+    @posts = PostFilterService.new(@posts, params).process!
+
     @total_posts_count = @posts.count
 
     @posts = @posts.page(params[:page]).per(params[:page_size])
