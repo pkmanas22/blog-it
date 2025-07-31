@@ -18,9 +18,9 @@ const Contents = ({ posts = [], isLoading }) => {
       <div className="flex h-full w-full items-center justify-center">
         <NoData
           image="https://cdn-icons-png.flaticon.com/512/15/15457.png"
-          title={t("noData.blog.title")}
+          title={t("noData.post.title")}
           primaryButtonProps={{
-            label: t("noData.blog.button"),
+            label: t("noData.post.button"),
             to: routes.posts.create,
           }}
         />

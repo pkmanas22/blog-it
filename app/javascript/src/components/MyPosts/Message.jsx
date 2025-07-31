@@ -2,7 +2,7 @@ import React from "react";
 
 import classNames from "classnames";
 import useQueryParams from "hooks/useQueryParams";
-import { filterNonNull, isNotPresent, isPresent } from "neetocist";
+import { filterNonNull, isPresent } from "neetocist";
 import { Tag, Typography } from "neetoui";
 import { any } from "ramda";
 import { useTranslation } from "react-i18next";
@@ -37,7 +37,7 @@ const Message = ({ totalPostsCount }) => {
   if (shouldShowFilteredMessage) {
     return (
       <div className="flex items-center gap-2">
-        <Typography hidden={isNotPresent(title)} style="h3" weight="semibold">
+        <Typography style="h3" weight="semibold">
           {t("myPosts.searchTitle", { count: totalPostsCount, title })}
         </Typography>
         {categoryParams?.map(category => (

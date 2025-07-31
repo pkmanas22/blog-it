@@ -96,9 +96,9 @@
     "button": "Back to home"
   },
   "noData": {
-    "blog": {
-      "title": "There are no blogs to show.",
-      "button": "Add new blog"
+    "post": {
+      "title": "There are no posts to show.",
+      "button": "Add new post"
     },
     "categories": {
       "description": "There are no categories to show."

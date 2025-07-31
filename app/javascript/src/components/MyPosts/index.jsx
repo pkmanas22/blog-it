@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { PageHeader, PageLoader } from "components/common";
 import { useFetchMyPosts } from "hooks/reactQuery/useMyPostsApi";
 import useQueryParams from "hooks/useQueryParams";
-import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import NoPost from "./NoPost";
+import ColumnSelector from "./ColumnSelector";
+import {
+  DEFAULT_CHECKED_COLUMNS,
+  DEFAULT_PAGE_INDEX,
+  DEFAULT_PAGE_SIZE,
+} from "./constant";
+import FilterPane from "./FilterPane";
+import Message from "./Message";
 import MyPostTable from "./Table";
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./Table/constant";
 
 const MyPosts = () => {
+  const [checkedColumns, setCheckedColumns] = useState(DEFAULT_CHECKED_COLUMNS);
+
   const { t } = useTranslation();
 
   const queryParams = useQueryParams();
@@ -29,14 +36,17 @@ const MyPosts = () => {
     return <PageLoader />;
   }
 
-  if (isEmpty(posts)) {
-    return <NoPost />;
-  }
-
   return (
     <div className="h-full space-y-4 pl-12 pt-12">
       <PageHeader label={t("myPosts.header")} />
-      <MyPostTable {...{ posts, totalPostsCount }} />
+      <div className="flex w-11/12 items-center justify-between">
+        <Message {...{ totalPostsCount }} />
+        <div className="flex items-center gap-3">
+          <ColumnSelector {...{ checkedColumns, setCheckedColumns }} />
+          <FilterPane />
+        </div>
+      </div>
+      <MyPostTable {...{ checkedColumns, posts, totalPostsCount }} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { filterBy } from "neetocist";
 import { compose, includes, is, map, prop, toLower, without } from "ramda";
 
-import COLUMN_DATA from "./ColumnData";
+import COLUMN_DATA from "./Table/ColumnData";
 
 export const filteredColumns = checkedColumns =>
   filterBy(({ key, title }) => !title || checkedColumns[key], COLUMN_DATA);
