@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
+import {
+  useBulkDestroyPost,
+  useBulkUpdatePostStatus,
+} from "hooks/reactQuery/useMyPostsApi";
 import { Delete } from "neetoicons";
-import { Button, Dropdown, Typography } from "neetoui";
+import { Alert, Button, Dropdown, Typography } from "neetoui";
 import { Trans, useTranslation } from "react-i18next";
 
 const {
@@ -9,19 +13,24 @@ const {
   MenuItem: { Button: MenuItemButton },
 } = Dropdown;
 
-const Bulk = ({ selectedRowIds, totalPostsCount }) => {
+const Bulk = ({ selectedRowIds, setSelectedRowIds, totalPostsCount }) => {
+  const [shouldShowDeleteAlert, setShouldShowDeleteAlert] = useState(false);
   const { t } = useTranslation();
 
-  const handleBulkDraft = () => {
-    alert("draft");
-  };
+  const { mutate: bulkUpdateStatus } = useBulkUpdatePostStatus();
+  const { mutate: bulkDestroy } = useBulkDestroyPost();
 
-  const handleBulkPublish = () => {
-    alert("published");
+  const selectedRowCount = selectedRowIds.length;
+
+  const handleBulkUpdate = status => {
+    bulkUpdateStatus({ postIds: selectedRowIds, status });
+    setSelectedRowIds([]);
   };
 
   const handleBulkDelete = () => {
-    alert("Deleted");
+    bulkDestroy({ postIds: selectedRowIds });
+    setShouldShowDeleteAlert(false);
+    setSelectedRowIds([]);
   };
 
   return (
@@ -30,15 +39,15 @@ const Bulk = ({ selectedRowIds, totalPostsCount }) => {
         <Trans
           components={{ bold: <strong /> }}
           i18nKey="myPosts.postSelectedCount"
-          values={{ count: selectedRowIds.length, totalPostsCount }}
+          values={{ count: selectedRowCount, totalPostsCount }}
         />
       </Typography>
       <Dropdown buttonStyle="secondary" label={t("myPosts.changeStatus")}>
         <Menu>
-          <MenuItemButton onClick={handleBulkDraft}>
+          <MenuItemButton onClick={() => handleBulkUpdate("draft")}>
             {t("common.draft")}
           </MenuItemButton>
-          <MenuItemButton onClick={handleBulkPublish}>
+          <MenuItemButton onClick={() => handleBulkUpdate("published")}>
             {t("common.publish")}
           </MenuItemButton>
         </Menu>
@@ -48,7 +57,21 @@ const Bulk = ({ selectedRowIds, totalPostsCount }) => {
         iconPosition="right"
         label={t("common.delete")}
         style="danger-text"
-        onClick={handleBulkDelete}
+        onClick={() => setShouldShowDeleteAlert(true)}
+      />
+      <Alert
+        isOpen={shouldShowDeleteAlert}
+        submitButtonLabel={t("common.delete")}
+        title={t("myPosts.bulkDelete.title", { count: selectedRowCount })}
+        message={
+          <Trans
+            components={{ bold: <strong /> }}
+            i18nKey="myPosts.bulkDelete.message"
+            values={{ count: selectedRowCount }}
+          />
+        }
+        onClose={() => setShouldShowDeleteAlert(false)}
+        onSubmit={handleBulkDelete}
       />
     </div>
   );

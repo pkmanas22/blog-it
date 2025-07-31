@@ -15,7 +15,7 @@ import { getCategoryNames } from "../utils";
 
 const { Header, Body, Footer } = Pane;
 
-const FilterPane = () => {
+const FilterPane = ({ setSelectedRowIds }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const formikRef = useRef(null);
@@ -31,6 +31,7 @@ const FilterPane = () => {
     };
     history.replace(buildUrl(routes.myPosts, filterNonNull(params)));
     setIsOpen(false);
+    setSelectedRowIds([]);
   };
 
   const handleActionSubmit = () => {

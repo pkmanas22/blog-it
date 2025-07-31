@@ -46,7 +46,7 @@ class MyPostsController < ApplicationController
   private
 
     def bulk_params
-      params.require(:posts).permit(:status, post_ids: [])
+      params.require(:bulk).permit(:status, post_ids: [])
     end
 
     def authorize_posts!

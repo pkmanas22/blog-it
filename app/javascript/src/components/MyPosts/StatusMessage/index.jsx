@@ -9,7 +9,11 @@ import { useTranslation } from "react-i18next";
 import BulkOperationMessage from "./Bulk";
 import FilterMessage from "./Filter";
 
-const StatusMessage = ({ totalPostsCount, selectedRowIds = [] }) => {
+const StatusMessage = ({
+  totalPostsCount,
+  setSelectedRowIds,
+  selectedRowIds = [],
+}) => {
   const { t } = useTranslation();
 
   const { title, category, status } = useQueryParams();
@@ -17,7 +21,11 @@ const StatusMessage = ({ totalPostsCount, selectedRowIds = [] }) => {
   const shouldShowFilteredMessage = any(isPresent)([title, category, status]);
 
   if (isNotEmpty(selectedRowIds)) {
-    return <BulkOperationMessage {...{ selectedRowIds, totalPostsCount }} />;
+    return (
+      <BulkOperationMessage
+        {...{ selectedRowIds, setSelectedRowIds, totalPostsCount }}
+      />
+    );
   }
 
   if (shouldShowFilteredMessage) {

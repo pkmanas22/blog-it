@@ -17,7 +17,7 @@ import MyPostTable from "./Table";
 
 const MyPosts = () => {
   const [checkedColumns, setCheckedColumns] = useState(DEFAULT_CHECKED_COLUMNS);
-  const [selectedRowIds, setSelectedRowIds] = useState([95]);
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
 
   const { t } = useTranslation();
 
@@ -41,10 +41,12 @@ const MyPosts = () => {
     <div className="h-full space-y-4 pl-12 pt-12">
       <PageHeader label={t("myPosts.header")} />
       <div className="flex w-11/12 items-center justify-between">
-        <StatusMessage {...{ totalPostsCount, selectedRowIds }} />
+        <StatusMessage
+          {...{ totalPostsCount, selectedRowIds, setSelectedRowIds }}
+        />
         <div className="flex items-center gap-3">
           <ColumnSelector {...{ checkedColumns, setCheckedColumns }} />
-          <FilterPane />
+          <FilterPane {...{ setSelectedRowIds }} />
         </div>
       </div>
       <MyPostTable

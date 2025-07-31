@@ -40,6 +40,12 @@
       "category": "Category",
       "lastPublished": "Last published at",
       "status": "Status"
+    },
+    "bulkDelete": {
+      "title_one": "Delete post?",
+      "title_other": "Delete posts?",
+      "message_one": "You are permanently deleting <bold>{{count}} post</bold>. This can't be undone.",
+      "message_other": "You are permanently deleting <bold>{{count}} posts</bold>. This can't be undone."
     }
   },
   "category": {
