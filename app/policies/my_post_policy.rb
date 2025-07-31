@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 class MyPostPolicy
-  attr_reader :user, :post
+  attr_reader :user, :posts
 
-  def initialize(user, post)
+  def initialize(user, posts)
     @user = user
-    @post = post
+    @posts = posts
+  end
+
+  def bulk_update_status?
+    posts.where.not(user_id: user.id).none?
+  end
+
+  def bulk_destroy?
+    posts.where.not(user_id: user.id).none?
   end
 
   class Scope

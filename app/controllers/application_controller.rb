@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user_using_x_auth_token
 
   def handle_api_exception(exception)
+    return if performed?
+
     case exception
     when -> (e) { e.message.include?("PG::") || e.message.include?("SQLite3::") }
       handle_database_level_exception(exception)
