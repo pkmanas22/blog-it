@@ -6,6 +6,8 @@ class Vote < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
+  validates :vote_type, presence: true
+
   after_create :increment_post_counters
   after_update :update_post_counters_if_vote_type_changed
   after_destroy :decrement_post_counters

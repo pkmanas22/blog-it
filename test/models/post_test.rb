@@ -260,4 +260,24 @@ class PostTest < ActiveSupport::TestCase
     @post.save!
     assert_equal original_date, @post.reload.last_published_date
   end
+
+  def test_update_is_bloggable_sets_true_when_net_votes_exceed_threshold
+    @post.upvotes = Constants::BLOGGABLE_THRESHOLD_COUNT + 1
+    @post.downvotes = 0
+    @post.save!
+
+    @post.send(:update_is_bloggable!)
+
+    assert @post.reload.is_bloggable, "Expected is_bloggable to be true when net votes exceed threshold"
+  end
+
+  def test_update_is_bloggable_sets_false_when_net_votes_do_not_exceed_threshold
+    @post.upvotes = Constants::BLOGGABLE_THRESHOLD_COUNT
+    @post.downvotes = @post.upvotes
+    @post.save!
+
+    @post.send(:update_is_bloggable!)
+
+    refute @post.reload.is_bloggable, "Expected is_bloggable to be false when net votes do not exceed threshold"
+  end
 end
