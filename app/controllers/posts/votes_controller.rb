@@ -37,16 +37,16 @@ class Posts::VotesController < ApplicationController
 
     def create_vote
       @post.votes.create!(user: current_user, vote_type: vote_param_value)
-      render_notice(t("successfully_created", entity: "Vote"))
+      render_notice(t("success"))
     end
 
     def destroy_vote
       @vote.destroy!
-      render_notice(t("successfully_deleted", entity: "Vote"))
+      render_notice(t("success"))
     end
 
     def update_vote
       @vote.update!(vote_type: vote_param_value)
-      render_notice(t("successfully_updated", entity: "Vote"))
+      render_notice(t("success"))
     end
 end
