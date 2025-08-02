@@ -22,6 +22,7 @@ const alias = {
   translations: absolutePath("src/translations"),
   utils: absolutePath("src/utils"),
   routes: absolutePath("src/routes"),
+  channels: absolutePath("src/channels"),
 
   neetoui: "@bigbinary/neetoui",
   "neetoui/*": "@bigbinary/neetoui/*",

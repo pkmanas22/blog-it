@@ -23,7 +23,8 @@
     "newPost": "New blog post",
     "editPost": "Edit blog post",
     "category": "Category wise blog posts",
-    "notPublished": "Not published yet."
+    "notPublished": "Not published yet.",
+    "download": "Downloading blog post"
   },
   "myPosts": {
     "header": "My blog posts",

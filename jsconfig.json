@@ -10,6 +10,8 @@
       "assets/*": ["app/javascript/src/assets/*"],
       "constants": ["app/javascript/src/constants"],
       "constants/*": ["app/javascript/src/constants/*"],
+      "channels": ["app/javascript/src/channels"],
+      "channels/*": ["app/javascript/src/channels/*"],
       "components/*": ["app/javascript/src/components/*"],
       "hooks": ["app/javascript/src/hooks"],
       "hooks/*": ["app/javascript/src/hooks/*"],
