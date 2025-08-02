@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class MyPostsControllerTest < ActionDispatch::IntegrationTest
+class Me::PostsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @organization = create(:organization)
     @user = create(:user, organization: @organization)
@@ -16,7 +16,7 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
     other_user = create(:user, organization: @organization)
     other_posts = create_list(:post, 8, user: other_user, organization: @organization)
 
-    get my_posts_path, headers: @headers
+    get me_posts_path, headers: @headers
     assert_response :success
 
     returned_post_ids = response.parsed_body["posts"].map { |post| post["id"] }
@@ -33,8 +33,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
     post_ids = @user_posts.map(&:id)
     new_status = "published"
 
-    patch bulk_update_status_my_posts_path, headers: @headers, params: {
-      posts: {
+    patch bulk_update_status_me_posts_path, headers: @headers, params: {
+      bulk: {
         status: new_status,
         post_ids: post_ids
       }
@@ -54,8 +54,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
     post_ids = @user_posts.map(&:id)
     new_status = "published"
 
-    patch bulk_update_status_my_posts_path, headers: @headers, params: {
-      posts: {
+    patch bulk_update_status_me_posts_path, headers: @headers, params: {
+      bulk: {
         status: new_status,
         post_ids: post_ids
       }
@@ -73,8 +73,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
     other_user = create(:user, organization: @organization)
     other_posts = create_list(:post, 2, user: other_user, organization: @organization)
 
-    patch bulk_update_status_my_posts_path, headers: @headers, params: {
-      posts: {
+    patch bulk_update_status_me_posts_path, headers: @headers, params: {
+      bulk: {
         status: "archived",
         post_ids: other_posts.map(&:id)
       }
@@ -86,8 +86,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
   def test_bulk_destroy_should_delete_user_posts
     post_ids = @user_posts.map(&:id)
 
-    delete bulk_destroy_my_posts_path, headers: @headers, params: {
-      posts: {
+    delete bulk_destroy_me_posts_path, headers: @headers, params: {
+      bulk: {
         post_ids: post_ids
       }
     }
@@ -103,8 +103,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
     other_user = create(:user, organization: @organization)
     other_posts = create_list(:post, 2, user: other_user, organization: @organization)
 
-    delete bulk_destroy_my_posts_path, headers: @headers, params: {
-      posts: {
+    delete bulk_destroy_me_posts_path, headers: @headers, params: {
+      bulk: {
         post_ids: other_posts.map(&:id)
       }
     }
@@ -113,8 +113,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_bulk_update_status_with_empty_post_ids_should_not_update_anything
-    patch bulk_update_status_my_posts_path, headers: @headers, params: {
-      posts: {
+    patch bulk_update_status_me_posts_path, headers: @headers, params: {
+      bulk: {
         status: "archived",
         post_ids: []
       }
@@ -124,8 +124,8 @@ class MyPostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_bulk_destroy_with_empty_post_ids_should_not_delete_anything
-    delete bulk_destroy_my_posts_path, headers: @headers, params: {
-      posts: {
+    delete bulk_destroy_me_posts_path, headers: @headers, params: {
+      bulk: {
         post_ids: []
       }
     }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MyPostsController < ApplicationController
+class Me::PostsController < ApplicationController
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
