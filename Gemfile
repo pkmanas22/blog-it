@@ -76,3 +76,13 @@ gem "data_migrate"
 gem "kaminari"
 gem "pundit"
 gem "react-rails", "~> 2.7.1"
+
+# For periodic sidekiq jobs
+gem "sidekiq-cron"
+
+gem "pg", group: [:production]
+
+# PDF generation gem
+gem "wicked_pdf"
+# wicked_pdf uses the following binary
+gem "wkhtmltopdf-binary"
