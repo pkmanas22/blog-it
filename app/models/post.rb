@@ -8,8 +8,8 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :organization
-
   has_and_belongs_to_many :categories
+  has_many :votes, dependent: :destroy
 
   validates :title,
     presence: true,
@@ -55,5 +55,12 @@ class Post < ApplicationRecord
       if will_save_change_to_status? && status == "published"
         self.last_published_date = Time.current
       end
+    end
+
+    def update_is_bloggable!
+      net_votes = upvotes - downvotes
+      is_bloggable = net_votes > Constants::BLOGGABLE_THRESHOLD_COUNT
+
+      update_column(:is_bloggable, is_bloggable)
     end
 end

@@ -1,17 +1,17 @@
 import axios from "axios";
 
 const fetchMyPosts = params =>
-  axios.get("/my_posts", {
+  axios.get("/me/posts", {
     params,
   });
 
 const bulkUpdatePostStatus = payload =>
-  axios.patch("/my_posts/bulk_update_status", {
+  axios.patch("/me/posts/bulk_update_status", {
     bulk: payload,
   });
 
 const bulkUpdatePostDestroy = payload =>
-  axios.delete("/my_posts/bulk_destroy", {
+  axios.delete("/me/posts/bulk_destroy", {
     data: { bulk: payload },
   });
 

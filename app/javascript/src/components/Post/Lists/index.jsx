@@ -1,7 +1,7 @@
 import React from "react";
 
 import CategorySidebar from "components/CategorySidebar";
-import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
+import useFetchPostsWithMyVotes from "hooks/useFetchPostsWithMyVotes";
 import useQueryParams from "hooks/useQueryParams";
 import { filterNonNull } from "neetocist";
 import { Pagination } from "neetoui";
@@ -18,20 +18,13 @@ import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constants";
 
 const Lists = () => {
   const queryParams = useQueryParams();
-  const { page } = queryParams;
+  const { page } = useQueryParams;
 
   const history = useHistory();
 
   const isCategorySidebarOpen = useCategoriesStore.pickFrom();
 
-  const postParams = {
-    ...queryParams,
-    page: Number(page) || DEFAULT_PAGE_INDEX,
-    pageSize: DEFAULT_PAGE_SIZE,
-  };
-
-  const { data: { posts = [], totalPostsCount } = {}, isLoading } =
-    useFetchPosts(postParams);
+  const { isLoading, posts, totalPostsCount } = useFetchPostsWithMyVotes();
 
   const handlePageNavigation = page =>
     history.replace(
@@ -53,7 +46,7 @@ const Lists = () => {
           <Pagination
             count={totalPostsCount}
             navigate={handlePageNavigation}
-            pageNo={postParams.page}
+            pageNo={Number(page) || DEFAULT_PAGE_INDEX}
             pageSize={DEFAULT_PAGE_SIZE}
           />
         </div>

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  include LoadPost
+
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
-  before_action :load_post!, only: %i[show update destroy]
+  before_action :load_post_by_slug!, only: %i[show update destroy]
   before_action :authorize_post!, only: %i[show update destroy]
 
   def index
@@ -42,10 +44,6 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :description, :status, category_ids: [])
-    end
-
-    def load_post!
-      @post = current_organization.posts.find_by!(slug: params[:slug])
     end
 
     def authorize_post!
