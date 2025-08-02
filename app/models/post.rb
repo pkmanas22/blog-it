@@ -56,4 +56,11 @@ class Post < ApplicationRecord
         self.last_published_date = Time.current
       end
     end
+
+    def update_is_bloggable!
+      net_votes = upvotes - downvotes
+      is_bloggable = net_votes > Constants::BLOGGABLE_THRESHOLD_COUNT
+
+      update_column(:is_bloggable, is_bloggable)
+    end
 end
