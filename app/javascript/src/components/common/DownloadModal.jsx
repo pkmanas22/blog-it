@@ -5,7 +5,6 @@ import postsApi from "apis/posts";
 import { subscribeToReportDownloadChannel } from "channels/reportDownloadChannel";
 import { ProgressBar } from "components/common";
 import FileSaver from "file-saver";
-import { useGeneratePostReport } from "hooks/reactQuery/usePostsApi";
 import Logger from "js-logger";
 import { Modal, Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
@@ -17,9 +16,15 @@ const DownloadModal = ({ isOpen, onClose, slug }) => {
 
   const { t } = useTranslation();
 
-  const { mutate: generateReport } = useGeneratePostReport();
-
   const consumer = createConsumer();
+
+  const generatePdf = async () => {
+    try {
+      await postsApi.generatePdf(slug);
+    } catch (error) {
+      Logger.error(error);
+    }
+  };
 
   const downloadPdf = async () => {
     try {
@@ -35,7 +40,7 @@ const DownloadModal = ({ isOpen, onClose, slug }) => {
       subscribeToReportDownloadChannel({
         consumer,
         setProgress,
-        generatePdf: () => generateReport(slug),
+        generatePdf,
       });
     }
 

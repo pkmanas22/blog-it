@@ -4,8 +4,7 @@ class ReportsJob
   include Sidekiq::Job
 
   def perform(user_id, post_slug)
-    # TODO: Add socket
-    # ActionCable.server.broadcast(user_id, { message: "Rendering the report", progress: 25 })
+    ActionCable.server.broadcast(user_id, { message: I18n.t("report.render"), progress: 25 })
 
     user = User.find(user_id)
     post = Post.find_by!(slug: post_slug)
@@ -15,11 +14,11 @@ class ReportsJob
       layout: "pdf",
       assigns: { post: post, user: user }
     )
-    # ActionCable.server.broadcast(user_id, { message: "Generating the PDF report", progress: 50 })
+    ActionCable.server.broadcast(user_id, { message: I18n.t("report.generate"), progress: 50 })
 
     pdf_blob = WickedPdf.new.pdf_from_string(html_report)
 
-    # ActionCable.server.broadcast(user_id, { message: "Uploading to server", progress: 75 })
+    ActionCable.server.broadcast(user_id, { message: I18n.t("report.upload"), progress: 75 })
 
     post_report = PostReport.find_or_initialize_by(user: user, post: post)
 
@@ -32,6 +31,6 @@ class ReportsJob
     )
     post_report.save!
 
-    # ActionCable.server.broadcast(user_id, { message: "Report generation completed", progress: 100 })
+    ActionCable.server.broadcast(user_id, { message: I18n.t("report.attach"), progress: 100 })
   end
 end

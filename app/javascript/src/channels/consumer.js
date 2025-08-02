@@ -7,7 +7,7 @@ import useAuthStore from "stores/useAuthStore";
 const buildWebsocketURL = () => {
   const { authToken, email } = useAuthStore.getState().authUser;
 
-  return encodeURI(`/asdfmafas?auth_token=${authToken}&email=${email}`);
+  return encodeURI(`/cable?auth_token=${authToken}&email=${email}`);
 };
 
 export default () => createConsumer(buildWebsocketURL());
