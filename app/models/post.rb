@@ -8,8 +8,8 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :organization
-
   has_and_belongs_to_many :categories
+  has_many :votes, dependent: :destroy
 
   validates :title,
     presence: true,
