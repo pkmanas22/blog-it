@@ -45,3 +45,5 @@ export const useDeletePost = () =>
       }, 100);
     },
   });
+
+export const useGeneratePostReport = () => useMutation(postsApi.generatePdf);
