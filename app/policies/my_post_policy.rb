@@ -9,11 +9,11 @@ class MyPostPolicy
   end
 
   def bulk_update_status?
-    posts.where.not(user_id: user.id).none?
+    user_owns_all_posts?
   end
 
   def bulk_destroy?
-    posts.where.not(user_id: user.id).none?
+    user_owns_all_posts?
   end
 
   class Scope
@@ -28,4 +28,10 @@ class MyPostPolicy
       scope.where(user_id: user.id)
     end
   end
+
+  private
+
+    def user_owns_all_posts?
+      posts.where.not(user_id: user.id).none?
+    end
 end

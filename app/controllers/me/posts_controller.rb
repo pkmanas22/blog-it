@@ -51,12 +51,6 @@ class Me::PostsController < ApplicationController
 
     def authorize_posts!
       @posts_to_update = Post.where(id: bulk_params[:post_ids])
-
-      policy = MyPostPolicy.new(current_user, @posts_to_update)
-      action = "#{action_name}?"
-
-      unless policy.public_send(action)
-        raise Pundit::NotAuthorizedError
-      end
+      authorize @posts_to_update, policy_class: MyPostPolicy
     end
 end
