@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import classNames from "classnames";
-import { DownloadModal, PageHeader } from "components/common";
+import { PageHeader } from "components/common";
 import { notEquals } from "neetocist";
 import { Download, Highlight } from "neetoicons";
 import { Button, Tag } from "neetoui";
@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import routes from "routes";
 import useAuthStore from "stores/useAuthStore";
 import buildUrl from "utils/buildUrl";
+
+import DownloadModal from "./DownloadModal";
 
 const Header = ({ title, author: { id: authorId } = {}, status, slug }) => {
   const [shouldDownloadModalOpen, setShouldDownloadModalOpen] = useState(false);

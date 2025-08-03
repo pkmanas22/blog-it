@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { createConsumer } from "@rails/actioncable";
 import postsApi from "apis/posts";
+import createAuthenticatedConsumer from "channels/consumer";
 import { subscribeToReportDownloadChannel } from "channels/reportDownloadChannel";
 import { ProgressBar } from "components/common";
 import FileSaver from "file-saver";
@@ -16,8 +16,6 @@ const DownloadModal = ({ isOpen, onClose, slug }) => {
 
   const { t } = useTranslation();
 
-  const consumer = createConsumer();
-
   const generatePdf = async () => {
     try {
       await postsApi.generatePdf(slug);
@@ -28,7 +26,7 @@ const DownloadModal = ({ isOpen, onClose, slug }) => {
 
   const downloadPdf = async () => {
     try {
-      const { data } = await postsApi.download(slug);
+      const data = await postsApi.download(slug);
       FileSaver.saveAs(data, `${slug}.pdf`);
     } catch (error) {
       Logger.error(error);
@@ -36,27 +34,48 @@ const DownloadModal = ({ isOpen, onClose, slug }) => {
   };
 
   useEffect(() => {
+    let consumer = null;
+    let subscription = null;
+
     if (isOpen) {
-      subscribeToReportDownloadChannel({
-        consumer,
-        setProgress,
-        generatePdf,
-      });
+      try {
+        consumer = createAuthenticatedConsumer();
+
+        subscription = subscribeToReportDownloadChannel({
+          consumer,
+          setProgress,
+          generatePdf,
+        });
+      } catch (error) {
+        Logger.error("Failed to create WebSocket consumer:", error);
+      }
     }
 
     return () => {
-      consumer.disconnect();
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+
+      if (consumer) {
+        consumer.disconnect();
+      }
     };
-  }, [isOpen]);
+  }, [isOpen, slug]);
 
   useEffect(() => {
     if (progress === 100) {
       downloadPdf();
+      setTimeout(() => onClose(), 1000);
     }
   }, [progress]);
 
   return (
-    <Modal {...{ isOpen, onClose }}>
+    <Modal
+      {...{ isOpen, onClose }}
+      closeButton={false}
+      closeOnEsc={false}
+      closeOnOutsideClick={false}
+    >
       <Header>
         <Typography id="dialog1Title" style="h2">
           {t("post.download")}
