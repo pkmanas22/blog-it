@@ -23,8 +23,8 @@ const Item = ({
   netVotes,
   isBloggable,
 }) => (
-  <div className="flex w-11/12 justify-between space-y-2 rounded-md border-b-2 bg-white p-2 shadow-sm">
-    <div>
+  <div className="flex w-11/12 justify-between rounded-md border-b-2 bg-white p-2 shadow-sm">
+    <div className="space-y-2">
       <Link
         className="flex items-center gap-3"
         to={buildUrl(routes.posts.show, { slug })}
@@ -43,7 +43,7 @@ const Item = ({
         />
       </Link>
       <CategoryTags {...{ categories }} />
-      <Typography className="w-11/12" style="body2">
+      <Typography className="w-full" style="body2">
         {truncate(description, 250)}
       </Typography>
       <PublishDetails {...{ authorName, lastPublishedDate }} />

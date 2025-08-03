@@ -15,8 +15,6 @@ class PostsController < ApplicationController
 
     @posts = PostFilterService.new(@posts, params).process!
 
-    @total_posts_count = @posts.count
-
     @posts = @posts.page(params[:page]).per(params[:page_size])
   end
 

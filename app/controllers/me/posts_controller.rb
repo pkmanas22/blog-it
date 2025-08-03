@@ -10,8 +10,6 @@ class Me::PostsController < ApplicationController
     posts = policy_scope(Post, policy_scope_class: MyPostPolicy::Scope)
     @posts = PostFilterService.new(posts, params).process!
 
-    @total_posts_count = @posts.count
-
     @posts = @posts
       .order(created_at: :desc)
       .page(params[:page])
