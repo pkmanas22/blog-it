@@ -7,11 +7,13 @@ import PageHeader from "./Header";
 import PageLoader from "./Loader";
 import PageNotFound from "./NotFound";
 import PrivateRoute from "./PrivateRoute";
+import ProgressBar from "./ProgressBar";
 import PublishDetails from "./PublishDetails";
 import Sidebar from "./Sidebar";
 import SidebarLayout from "./SidebarLayout";
 
 export {
+  ProgressBar,
   ActionMenubar,
   ActionBlock,
   Sidebar,

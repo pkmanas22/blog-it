@@ -1,0 +1,52 @@
+<div>
+  <h1><%= @post.title %></h1>
+
+  <div>
+    <strong>Status:</strong>
+    <span><%= @post.status.capitalize %></span>
+  </div>
+
+  <div>
+    <strong>Categories:</strong>
+    <span><%= @post.categories.map(&:name).join(", ") if @post.respond_to?(:categories) %></span>
+  </div>
+
+  <div>
+    <strong>Description:</strong>
+    <span><%= @post.description %></span>
+  </div>
+
+  <div>
+    <strong>Net votes:</strong>
+    <span><%= @post.upvotes - @post.downvotes %></span>
+  </div>
+
+  <div>
+    <strong>Bloggable:</strong>
+    <span><%= @post.is_bloggable ? "Yes" : "No" %></span>
+  </div>
+
+  <div>
+    <strong>Slug:</strong>
+    <span><%= @post.slug.present? ? @post.slug : "N/A" %></span>
+  </div>
+
+  <div>
+    <strong>Author:</strong>
+    <span><%= @post.user&.name || "Unknown" %></span>
+  </div>
+
+  <div>
+    <strong>Organization:</strong>
+    <span><%= @post.organization&.name || "Unknown" %></span>
+  </div>
+
+  <div>
+    <strong>Last Published Date:</strong>
+    <span><%= @post.last_published_date ? @post.last_published_date.strftime("%B %d, %Y %H:%M %Z") : "Not published yet" %></span>
+  </div>
+
+  <div style="margin-top: 2rem; color: gray ">
+    Report generated on: <%= Time.now.strftime("%B %d, %Y %H:%M %Z") %>
+  </div>
+</div>

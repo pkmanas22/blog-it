@@ -18,7 +18,7 @@ import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "../constants";
 
 const Lists = () => {
   const queryParams = useQueryParams();
-  const { page } = useQueryParams;
+  const { page } = queryParams;
 
   const history = useHistory();
 

@@ -18,13 +18,22 @@ const setHttpHeaders = () => {
   };
 };
 
-const handleSuccessResponse = ({ data: responseData }) => {
-  if (responseData) {
-    responseData = keysToCamelCase(responseData);
+const handleSuccessResponse = response => {
+  const contentType = response.headers["content-type"];
 
-    if (responseData?.notice) {
-      Toastr.success(responseData.notice);
-    }
+  const isBlob =
+    contentType &&
+    (contentType.includes("application/pdf") ||
+      contentType.includes("application/octet-stream"));
+
+  if (isBlob) {
+    return response.data;
+  }
+
+  const responseData = keysToCamelCase(response.data);
+
+  if (responseData?.notice) {
+    Toastr.success(responseData.notice);
   }
 
   return responseData;
