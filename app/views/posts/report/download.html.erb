@@ -17,13 +17,8 @@
   </div>
 
   <div>
-    <strong>Upvotes:</strong>
-    <span><%= @post.upvotes %></span>
-  </div>
-
-  <div>
-    <strong>Downvotes:</strong>
-    <span><%= @post.downvotes %></span>
+    <strong>Net votes:</strong>
+    <span><%= @post.upvotes - @post.downvotes %></span>
   </div>
 
   <div>
