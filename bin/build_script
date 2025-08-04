@@ -10,22 +10,26 @@ def system!(*args)
 end
 
 FileUtils.chdir APP_ROOT do
-  puts "== Installing dependencies =="
+  puts "== Installing Ruby dependencies =="
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
 
-  puts "\n== Executing yarn =="
-  system!("yarn")
+  puts "\n== Installing JavaScript dependencies =="
+  system("yarn check --check-files") || system!("yarn install")
 
-  puts "\n== Precompiling assets =="
-  system!("bin/rails assets:precompile")
+  puts "\n== Handling config/database.yml =="
+  unless File.exist?("config/database.yml")
+    FileUtils.cp "config/database.yml.sample", "config/database.yml"
+  end
 
-  puts "\n== Setting up DB =="
-  system! "bundle exec rake db:setup"
+  puts "\n== Executing yarn build =="
+  system! "bin/yarn"
 
-  puts "\n== Migrating DB =="
-  system! "bundle exec rake db:migrate"
+  puts "\n== Running rake setup =="
+  system! "bundle exec rake setup"
 
-  puts "\n== Restarting application server =="
-  system! "bin/rails restart"
+  puts "\n== Cleaning logs and temp files =="
+  system! "bin/rails log:clear tmp:clear"
+
+  puts "\n== Build script completed =="
 end
