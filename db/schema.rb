@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,18 +46,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "organization_id", null: false
+    t.bigint "organization_id", null: false
     t.index ["organization_id"], name: "index_categories_on_organization_id"
   end
 
   create_table "categories_posts", id: false, force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "category_id", null: false
     t.index ["category_id", "post_id"], name: "index_categories_posts_on_category_id_and_post_id"
     t.index ["post_id", "category_id"], name: "index_categories_posts_on_post_id_and_category_id"
-  end
-
-  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
   end
 
   create_table "post_reports", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_reports_on_post_id"
@@ -83,8 +83,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "user_id", null: false
-    t.integer "organization_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
     t.string "status", default: "draft", null: false
     t.datetime "last_published_date"
     t.index ["organization_id"], name: "index_posts_on_organization_id"
@@ -96,7 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.integer "organization_id", null: false
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "authentication_token"
@@ -104,8 +104,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_172750) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.string "vote_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

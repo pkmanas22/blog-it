@@ -1,15 +1,7 @@
-desc "Sets up DB (development: drop, create, migrate, seed; production: migrate only)"
+desc "Drops DB, creates it, migrates, and seeds with  sample data"
 
-task setup: [:environment] do
-  if Rails.env.production?
-    puts "Production environment detected: running db:migrate only"
-    Rake::Task["db:migrate"].invoke
-  else
-    Rake::Task["db:drop"].invoke
-    Rake::Task["db:create"].invoke
-    Rake::Task["db:migrate"].invoke
-    Rake::Task["populate_with_sample_data"].invoke if Rails.env.development?
-  end
+task setup: [:environment, "db:drop", "db:create", "db:migrate"] do
+  Rake::Task["populate_with_sample_data"].invoke if Rails.env.development?
 end
 
 desc "Populates database with sample data (development only)"
