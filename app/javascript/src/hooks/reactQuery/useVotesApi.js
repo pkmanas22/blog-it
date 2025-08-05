@@ -7,7 +7,6 @@ import queryClient from "utils/queryClient";
 export const useUpdateVoteToPost = slug =>
   useMutation(payload => votesApi.update(slug, payload), {
     onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEYS.VOTES]);
       queryClient.invalidateQueries([QUERY_KEYS.POSTS]);
     },
   });
