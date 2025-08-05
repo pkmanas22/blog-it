@@ -6,6 +6,7 @@ class User < ApplicationRecord
   MAX_EMAIL_LENGTH = 255
 
   belongs_to :organization
+
   has_many :posts, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :post_reports, dependent: :destroy

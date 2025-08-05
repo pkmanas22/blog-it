@@ -8,24 +8,27 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :organization
-  has_and_belongs_to_many :categories
+
   has_many :votes, dependent: :destroy
   has_many :post_reports, dependent: :destroy
 
+  has_and_belongs_to_many :categories
+
+  validates :slug, uniqueness: true
+  validates :user_id, presence: true
+  validates :organization_id, presence: true
   validates :title,
     presence: true,
     length: { maximum: MAX_TITLE_LENGTH }
   validates :description,
     presence: true,
     length: { maximum: MAX_DESCRIPTION_LENGTH }
-  validates :slug, uniqueness: true
-  validates :user_id, presence: true
-  validates :organization_id, presence: true
-  validates_inclusion_of :is_bloggable, in: [true, false]
-  validate :slug_not_changed, on: :update
 
-  before_create :set_slug
+  validate :slug_not_changed, on: :update
+  validates_inclusion_of :is_bloggable, in: [true, false]
+
   before_save :set_published_date
+  before_create :set_slug
 
   private
 

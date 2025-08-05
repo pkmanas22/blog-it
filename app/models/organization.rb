@@ -3,9 +3,9 @@
 class Organization < ApplicationRecord
   VALID_DOMAIN_REGEX = /(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}/i
 
-  has_many :users
-  has_many :posts
-  has_many :categories
+  has_many :users, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :categories, dependent: :destroy
 
   validates :name,
     presence: true,
