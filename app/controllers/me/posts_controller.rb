@@ -37,7 +37,7 @@ class Me::PostsController < ApplicationController
   end
 
   def bulk_destroy
-    @posts_to_update.delete_all
+    @posts_to_update.destroy_all
     render_notice(t("success"))
   end
 
