@@ -219,4 +219,29 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     json = response.parsed_body
     assert_equal I18n.t("authorization.denied"), json["error"]
   end
+
+  def test_index_includes_my_vote_per_post
+    other_post = create(
+      :post,
+      user: @user,
+      organization: @organization,
+      categories: [@category2],
+      status: "published",
+      last_published_date: 2.days.ago
+    )
+
+    create(:vote, user: @user, post: @post, vote_type: "upvote")
+    create(:vote, user: @user, post: other_post, vote_type: "downvote")
+
+    get posts_path, headers: @headers
+    assert_response :success
+
+    posts_json = response.parsed_body["posts"]
+
+    post_vote = posts_json.find { |p| p["id"] == @post.id }
+    other_post_vote = posts_json.find { |p| p["id"] == other_post.id }
+
+    assert_equal "upvote", post_vote["my_vote"]
+    assert_equal "downvote", other_post_vote["my_vote"]
+  end
 end

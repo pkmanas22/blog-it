@@ -11,11 +11,12 @@ class PostsController < ApplicationController
 
   def index
     posts = policy_scope(Post, policy_scope_class: PostPolicy::Scope)
-    @posts = posts.order(last_published_date: :desc)
+    posts = PostFilterService.new(posts, params).process!
 
-    @posts = PostFilterService.new(@posts, params).process!
+    @posts = posts.page(params[:page]).per(params[:page_size])
 
-    @posts = @posts.page(params[:page]).per(params[:page_size])
+    post_ids = @posts.map(&:id)
+    @my_votes = current_user.votes.where(post_id: post_ids).pluck(:post_id, :vote_type).to_h
   end
 
   def create

@@ -35,7 +35,9 @@ class PostPolicy
     end
 
     def resolve
-      scope.where(organization_id: user.organization_id, status: :published)
+      scope
+        .where(organization_id: user.organization_id, status: :published)
+        .order(last_published_date: :desc)
     end
   end
 end

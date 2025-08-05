@@ -26,7 +26,7 @@ class PostFilterServiceTest < ActiveSupport::TestCase
   end
 
   def test_filter_by_all_params_combined
-    service = PostFilterService.new(@posts, category: "tech", title: "advance", status: "published")
+    service = PostFilterService.new(@posts, category: "tech", title: "Tech Advances", status: "published")
     filtered_posts = service.process!
 
     assert_includes filtered_posts, @post3

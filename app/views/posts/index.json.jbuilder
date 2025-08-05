@@ -14,6 +14,8 @@ json.posts @posts do |post|
   end
 
   json.net_votes post.upvotes - post.downvotes
+
+  json.my_vote @my_votes[post.id]
 end
 
 json.total_posts_count @posts.total_count
